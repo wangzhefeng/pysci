@@ -8,14 +8,27 @@ __author__ = 'wangzhefeng'
 from datetime import datetime, timedelta, timezone
 import re
 
+# ==========================================================
 # Main functions
-# datetime.now()
+# datetime.datetime()
+# datetime.datetime.now()
+# datetime.datetime().strftime("%Y-%m-%d %H:%M:%S")
+# datetime.datetime().strptime("%a, %b %d %H:%M")
+# datetime.datetime().timestamp()
+# datetime.datetime.fromtimestamp()
+# datetime.datetime.utcfromtimestamp()
 # datetime.timestamp()
 # datetime.fromtimestamp()
 # datetime.utcfromtimestamp()
+# ==========================================================
 
+# ==============================
+# 创建 datetime
+# ==============================
 # 获取当前日期和时间(当地时间)
 now = datetime.now()
+
+# 将datetime 转换为特定的字符串
 now_formated = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 print(now)
 print(type(now))
@@ -25,24 +38,26 @@ print(now_formated)
 dt = datetime(2017, 11, 4, 23, 38, 44)
 print(dt)
 
+# ==============================
+# datetime vs timestamp
+# ==============================
 # datetime转换为timestamp(当地时间)
 print(now.timestamp())
 print(dt.timestamp())
-
-timestamp_start = datetime(1970, 1, 1, 8, 0, 0)
-print(timestamp_start.timestamp())
 
 # timestamp转换为datetime
 t = 1429417200.0
 print(datetime.fromtimestamp(t))    # 当地时间（北京）
 print(datetime.utcfromtimestamp(t)) # 格林威治标准时间
 
+# =============================
+# datetime vs str
+# =============================
 # str转换为datetime
 cday = datetime.strptime('2015-6-1 18:19:59', '%Y-%m-%d %H:%M:%S')
 print(cday)
 
 # datetime转换为str
-now = datetime.now()
 print(now.strftime('%a, %b %d %H:%M'))
 
 
@@ -53,9 +68,6 @@ print(now - timedelta(days = 1))
 print(now + timedelta(days = 1, hours = 12))
 
 # 本地时间转换为UTC时间(UTC+0:00)
-now = datetime.now()
-print(now)
-
 tz_utc_8 = timezone(timedelta(hours = 8))
 dt = now.replace(tzinfo = tz_utc_8)
 print(dt)
