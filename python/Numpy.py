@@ -92,7 +92,7 @@ print(arr2d[0][0])
 print(arr2d[:])
 print(arr2d[:, :])
 print(arr2d[:, ])
-print(arr2d[, :])
+print(arr2d[, 1])
 
 # 3d
 arr3d = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])

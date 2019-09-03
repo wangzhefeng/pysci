@@ -148,8 +148,8 @@ siblings = DataFrame(result['siblings'], columns = ['name', 'age', 'pet'])
 print(siblings)
 
 # 2. 将数据写入文本(txt, csv), 写入Excel等
-.to_excel()
-.to_csv()
+df.to_excel()
+df.to_csv()
 
 
 
@@ -553,7 +553,7 @@ df.cummin()
 df.sum()
 df.sum(axis = 1)
 df.sum(axis = 1, skipna = False)
-df.sum(axis = 1, skipna = False, level = )
+df.sum(axis = 1, skipna = False, level = 1)
 df.cumsum()
 df.cumsum(axis = 1)
 # .describe()

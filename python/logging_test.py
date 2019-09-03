@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Date    : 2019-08-16 10:09:56
-# @Author  : Your Name (you@example.org)
-# @Link    : http://example.org
-# @Version : $Id$
 
 import logging 
 logging.basicConfig(filename = "F:/personal/script/log/test.log",
