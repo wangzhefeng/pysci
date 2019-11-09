@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-@author:
-@date:
-"""
-
 
 class FirstClass(object):
 	def setdata(self, value):
