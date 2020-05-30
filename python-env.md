@@ -71,7 +71,7 @@ $ source venv/bin/activate
 $ deactivate
 ```
 
-### 2.3 `virtualwrapper`
+### 2.3 使用 `virtualwrapper` 创建 Python 虚拟环境
 
 #### 2.3.1 Install packages
 
@@ -79,8 +79,12 @@ $ deactivate
 # pipx install virtualenv
 # $ pipx install virtualenv
 
-$ pip3 install virtualenv
-$ pip3 install virtualenvwrapper
+# $ pip3 install virtualenv
+# $ sudo pip3 install virtualenv
+$ sudo apt-get install virtualenv
+
+# $ pip3 install virtualenvwrapper
+$ sudo apt-get install virtualenvwrapper
 ```
 
 #### 2.3.2 Configuration 
@@ -101,7 +105,6 @@ export WORKON_HOME=~/Envs
 export PATH=$PATH:$WORKON_HOME
 source /Users/zfwang/opt/anaconda3/bin/virtualenvwrapper.sh
 ```
-
 
 #### 2.3.3 Create Virtual Env
 
@@ -177,42 +180,42 @@ $ mkvirtualenv --system-site-packages env1
 
 3.Managing Env
 
-> 1.1 Create Env in `WORKON_HOME`
+3.1 Create Env in `WORKON_HOME`
 
 ```shell
 $ workon
 $ mkvirtualenv [-a project_path] [-i package] [-r requirements.txt] [virtualenv options] ENVNAME
 ```
 
-> 1.2 Create Env in `WORKON_HOME`
+3.2 Create Env in `WORKON_HOME`
 
 ```shell
 $ mktmpenv [(-c|--cd)|(-n|--no-cd)] [VIRTUALENV_OPTIONS]
 ```
 
-> 1.3 List all of the Env
+3.3 List all of the Env
 
 ```shell
 $ lsvirtualenv [-b] [-l] [-h]
 ```
-> 1.4 Show the Details for a single Env
+3.4 Show the Details for a single Env
 
 ```shell
 $ showvirtualenv [env]
 ```
 
-> 1.5 Remove an Env from `WORKON_HOME`
+3.5 Remove an Env from `WORKON_HOME`
 
 ```shell
 $rmvirtualenv ENVNAME
 ```
 
-> 1.6 Duplicate an existing Env
+3.6 Duplicate an existing Env
 
 ```shell
 $ cpvirtualenv ENVNAME [TARGETENVNAME]
 ```
-> 1.7 Run a command in all ENV under `WORKON_HOME`
+3.7 Run a command in all ENV under `WORKON_HOME`
 
 ```shell
 $ allvirtualenv command with arguments
@@ -222,71 +225,63 @@ $ allvirtualenv command with arguments
 $ allvirtualenv pip install -U pip
 ```
 
-
-
 4.Controlling Active Env
 
-> 2.1 List or Change working Env
+4.1 List or Change working Env
 
 ```shell
 $ workon [(-c|--cd)|(-n|--no-cd)] [environment_name|"."]
 ```
 
-> 2.2 Deactivate
+4.2 Deactivate
 
 ```shell
 $ deactivate
 ```
 
-
-
 5.Navigating to an Env
 
-> 3.1 Change the CWD to `$VIRTUAL_ENV`
+5.1 Change the CWD to `$VIRTUAL_ENV`
 
 ```shell
 cdvirtualenv [subdir]
 ```
 
-> 3.2 Change the CWD to `site-packages` for `$VIRTUAL_ENV`
+5.2 Change the CWD to `site-packages` for `$VIRTUAL_ENV`
 
 ```shell
 cdsitepackages [subdir]
 ```
 
-> 3.3 Show the content of the `site-package` of the CAV(current-active virtualenv)
+5.3 Show the content of the `site-package` of the CAV(current-active virtualenv)
 
 ```shell
 lssitepackages
 ```
 
-
-
 6.Path Management
 
-> 4.1 Adds the specified directories to the Python path for the currently-active virtualenv.
+6.1 Adds the specified directories to the Python path for the currently-active virtualenv.
 
 ```shell
 $ add2virtualenv directory1 directory2 ...
 ```
 
-> 4.2 Controls whether the active virtualenv will access the packages in the global Python site-packages directory.
+6.2 Controls whether the active virtualenv will access the packages in the global Python site-packages directory.
 
 ```shell
 $ toggleglobalsitepackages [-q]
 ```
 
-
-
 7.Project Directory Management
 
-> 5.1 Create a Env in `WORKON_HOME` and Pro in `PROJECT_HOME`
+7.1 Create a Env in `WORKON_HOME` and Pro in `PROJECT_HOME`
 
 ```shell
 mkproject [-f|--force] [-t template] [virtualenv_options] ENVNAME
 ```
 
-> 5.2 Bind an existing Env to an existing Proj
+7.2 Bind an existing Env to an existing Proj
 
 ```shell
 $ cd /home/zfwang/Documents/ml
@@ -297,17 +292,15 @@ $ workon mlenv
 (mlenv)$ cd mlproj
 ```
 
-> 5.3 Change the CWD to one specified as the ProjDir for the active Virtual
+7.3 Change the CWD to one specified as the ProjDir for the active Virtual
 
 ```shell
 $ cdproject
 ```
 
-
-
 8.Managing Installed Packages
 
-> 6.1 Remove all of the installed third-party packages in the current virtualenv
+8.1 Remove all of the installed third-party packages in the current virtualenv
 
 ```shell
 $ wipeenv
