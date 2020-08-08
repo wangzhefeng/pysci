@@ -24,3 +24,5 @@ Welcome to pysci's documentation!
    python-schedule
    python-string
    py2so
+   python-scipy-optimize
+   python-integer-programming
