@@ -10,6 +10,8 @@ Welcome to pysci's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   pysci
+   interview
    python-class
    python-data
    python-data_validation

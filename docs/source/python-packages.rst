@@ -177,4 +177,3 @@ pip:
    # TPOT
    pip install tpot
 
-.. code:: python
