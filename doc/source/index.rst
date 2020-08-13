@@ -9,22 +9,27 @@ Welcome to pysci's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
-   pysci
-   interview
-   python-class
+   
+   python-string
    python-data
+   python-file
+   python-iter
+   python-list-dict-parse
+   python-class
+   python-decorators
+   python-exception
+   python-module
+   python-env
+   python-virtualenv
    python-data_validation
    python-database
-   python-decorators
    python-email
-   python-env
-   python-exception
    python-log
    python-packages
    python-re
    python-schedule
-   python-string
    py2so
    python-scipy-optimize
    python-integer-programming
+   pysci
+   interview

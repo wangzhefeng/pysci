@@ -1,6 +1,6 @@
 .. _header-n2:
 
-Python 错误(Errors)和异常(Exceptions)
+Python Exception
 =====================================
 
 1.异常层次结构

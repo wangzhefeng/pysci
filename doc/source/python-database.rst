@@ -1,6 +1,6 @@
 .. _header-n0:
 
-Python database
+Python Database
 ===============
 
 .. _header-n4:
