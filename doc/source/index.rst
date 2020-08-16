@@ -10,7 +10,6 @@ Welcome to pysci's documentation!
    :maxdepth: 2
    :caption: Contents:
    
-   python-string
    python-data
    python-file
    python-iter
