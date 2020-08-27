@@ -10,25 +10,33 @@ Welcome to pysci's documentation!
    :maxdepth: 2
    :caption: Contents:
    
+   python
+   python-science
+   python-system
    python-data
-   python-file
+   python-data-file
    python-iter
-   python-list-dict-parse
+   python-iter-list-dict-parse
    python-class
-   python-decorators
+   python-class-decorators
+   python-class-chain
+   python-class-descriptor
    python-exception
    python-module
    python-env
-   python-virtualenv
-   python-data_validation
-   python-database
-   python-email
-   python-log
-   python-packages
+   python-env-pip
+   python-env-virtualenv
+   python-datavalidation
    python-re
-   python-schedule
-   py2so
+   python-interview
    python-scipy-optimize
-   python-integer-programming
-   pysci
-   interview
+   python-scipy-pandas-operation
+   python-scipy-numpy-operation
+   python-scipy-integer-programming
+   python-tool-project
+   python-tool-log
+   python-tool-email
+   python-tool-py2so
+   python-tool-database
+   python-tool-schedule
+   

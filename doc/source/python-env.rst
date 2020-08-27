@@ -71,7 +71,7 @@ Python Env
 
       .. code-block:: shell
 
-         $ sudo pip3 install -U virtualenv         # system-wide install
+         $ sudo pip3 install -U virtualenv        # system-wide install
          $ sudo pip3 install -U virtualenvwrapper # system-wide install
 
 

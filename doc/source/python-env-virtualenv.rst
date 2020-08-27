@@ -1,6 +1,6 @@
 .. _header-n0:
 
-Python 项目管理
+Python 环境管理
 ===============
 
 -  ``virtualenv``
@@ -127,7 +127,7 @@ Python 项目管理
    # $ sudo pip3 install virtualenv
    $ sudo apt-get install virtualenv
 
-   # $ pip3 install virtualenvwrapper
+   # $ sudo pip3 install virtualenvwrapper
    $ sudo apt-get install virtualenvwrapper
 
 
@@ -142,7 +142,7 @@ Location of Environments and Project Directories
 
    export WORKON_HOME=~/Envs
    mkdir -p $WORKON_HOME
-   source /Users/zfwang/opt/anaconda3/bin/virtualenvwrapper.sh
+   # source /Users/zfwang/opt/anaconda3/bin/virtualenvwrapper.sh
 
 ``~/.zshrc`` 配置：
 
@@ -152,6 +152,16 @@ Location of Environments and Project Directories
    export WORKON_HOME=~/Envs
    export PATH=$PATH:$WORKON_HOME
    source /Users/zfwang/opt/anaconda3/bin/virtualenvwrapper.sh
+
+   # macOS
+   export WORKON_HOME=~/.virtualenv
+   export PATH=$PATH:$WORKON_HOME
+   export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+   export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+   # export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+   source /usr/local/bin/virtualenvwrapper.sh
+
 
 
 .. _header-n64:
