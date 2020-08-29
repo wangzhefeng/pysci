@@ -2,7 +2,7 @@
 Python 科学计算
 ========================
 
-1.Python 数据处理
+1. Python 数据处理
 ------------------------
 
 
@@ -10,7 +10,7 @@ Python 科学计算
 
 
 
-2.Python 建模
+2. Python 数据建模
 ------------------------
 
 
@@ -19,7 +19,7 @@ Python 科学计算
 
 
 
-3.Python 科学计算工具包
+3. Python 科学计算工具包
 ------------------------
 
 -  `SciPy <https://www.scipy.org/>`__
@@ -42,9 +42,9 @@ Python 科学计算
 
          -  `tornado <>`__
 
-      -  `Jupyter <>`__
+      -  `Jupyter <https://jupyter.org/>`__
 
-      -  `Cython <>`__
+      -  `Cython <http://docs.cython.org/en/latest/index.html>`__
 
       -  `Dask <>`__
 
@@ -94,6 +94,15 @@ Python 科学计算
 安装命令
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+Scipy:
+
+
+.. code-block:: shell
+
+   python -m pip install [--user] numpy scipy matplotlib ipython jupyter pandas sympy nose
+
+
 Numpy:
 
 .. code-block:: shell
@@ -130,15 +139,40 @@ sklearn:
    $ python3 -m pip freeze # to see all packages installed in the active virtualenv
    $ python3 -c "import sklearn; sklearn.show_versions()"
 
-seaborn:
-
-.. code:: shell
-
-   pip install seaborn
-
 
 scipy:
 
 .. code:: shell
 
    pip install scipy
+
+
+seaborn:
+
+.. code:: shell
+
+   pip install seaborn
+
+Jupyter:
+
+.. code-block:: shell
+
+    $ python -m pip install jupyter
+
+Jupyter Notebook:
+
+.. code-block:: shell
+
+    $ pip install notebook
+
+Jupyter Lab:
+
+.. code-block:: shell
+
+    $ pip install jupyterlab
+
+Voila:
+
+.. code-block:: shell
+
+    $ pip install voila

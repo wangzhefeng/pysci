@@ -178,9 +178,10 @@ Python 本身带有具有特定角色的内置装饰器——静态方法装饰�
 .. code-block:: python
 
    class C:
+
       @staticmethod
-      def meth(...):     # meth = staticmethod(meth)
-         ...
+      def meth(*args):     # meth = staticmethod(meth)
+         pass
    
    class C:
       @property
@@ -209,6 +210,7 @@ Python 本身带有具有特定角色的内置装饰器——静态方法装饰�
          # self.func(*args) fails! # C instance not in ars!
    
    class C:
+   
       @decorator
       def method(self, x, y):
          ...

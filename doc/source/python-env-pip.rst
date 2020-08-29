@@ -1,7 +1,6 @@
 
-
 Python pip
-===========================
+==============
 
 pip - The Python Package Installer
 
@@ -40,13 +39,13 @@ pip is the package install for Python. You can use pip to install packages from 
 
         $ python get-pip.py
 
-.. note:: 
+    .. note:: 
 
-    - ``get-pip.py`` 除了会安装 ``pip``，还会安装：
+        - ``get-pip.py`` 除了会安装 ``pip``，还会安装：
 
-        - ``setuptools``
+            - ``setuptools``
 
-        - ``wheel``
+            - ``wheel``
 
 3. ``get-pip.py`` 选项
 
@@ -92,114 +91,104 @@ See `Installing pip/setuptools/wheel with Linux Package Managers <https://packag
 
         C:/> python -m pip install -U pip
 
-
 2.安装 package
 ---------------------------------
 
 2.1 Install a package from PyPI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    $ pip install SomePackage
-
+        $ pip install SomePackage
 
 2.2 Install a package from PyPI or somewhere downloaded ``.whl`` file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    $ pip install SomePackage-1.0-py2.py3-none-any.whl
-
+        $ pip install SomePackage-1.0-py2.py3-none-any.whl
 
 2.3 Show what files were installed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    $ pip show --files SomePackage
+        $ pip show --files SomePackage
 
 2.4 List what package are outdated
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    $ pip list --outdated
+        $ pip list --outdated
 
 
 2.5 Upgrade a package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    pip install --upgrade SomePackage
+        $ pip install --upgrade SomePackage
 
 2.6 Uninstall a package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    $ pip uninstall SomePackage
+        $ pip uninstall SomePackage
 
 
-User Guide
+3.User Guide
 ------------------------------
 
-
-更改 PyPi pip 源
+3.1 更改 PyPi pip 源
 ~~~~~~~~~~~~~~~~~~~~~~
 
    将 pipy 的 pip 源更改为国内 pip 源
 
-
-国内 pip 源列表
+3.1.1 国内 pip 源列表
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
--  阿里云【较快】
+    -  阿里云【较快】
 
-`Simple Index <http://mirrors.aliyun.com/pypi/simple>`__
+        - `Simple Index <http://mirrors.aliyun.com/pypi/simple>`__
 
--  清华大学
+    -  清华大学
 
-`Simple Index <https://pypi.tuna.tsinghua.edu.cn/simple/>`__
+        - `Simple Index <https://pypi.tuna.tsinghua.edu.cn/simple/>`__
 
--  中国科学技术大学
+    -  中国科学技术大学
 
-`Simple Index <https://pypi.mirrors.ustc.edu.cn/simple/>`__
+        - `Simple Index <https://pypi.mirrors.ustc.edu.cn/simple/>`__
 
--  豆瓣【较快】
+    -  豆瓣【较快】
 
-`Simple Index <http://pypi.douban.com/simple/>`__
+        - `Simple Index <http://pypi.douban.com/simple/>`__
 
-临时更改 PyPi pip 源
-^^^^^^^^^^^^^^^^^^^^^^^^
+3.1.2 临时更改 PyPi pip 源
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code:: shell
+    .. code:: shell
 
-   pip3 install *** -i http://mirrors.aliyun.com/pypi/simple/
-   pip3 install *** -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+        $ pip3 install *** -i http://mirrors.aliyun.com/pypi/simple/
+        $ pip3 install *** -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 
+3.1.3 永久更改 PyPi pip 源
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+    .. code:: shell
 
-永久更改 PyPi pip 源
-^^^^^^^^^^^^^^^^^^^^^^^^
+        $ cd ~
+        $ mkdir .pip
+        $ cd .pip
+        $ vim pip.conf
 
-.. code:: shell
+        # [global]
+        # index-url = http://mirrors.aliyun.com/pypi/simple/
+        # [install]
+        # trusted-host = mirrors.aliyun.com
 
-   cd ~
-   mkdir .pip
-   cd .pip
-   vim pip.conf
-
-   [global]
-   index-url = http://mirrors.aliyun.com/pypi/simple/
-   [install]
-   trusted-host = mirrors.aliyun.com
-
-
-
-
-Reference Guide
+4.Reference Guide
 ------------------------------
 
-- `pip reference guide list <https://pip.pypa.io/en/stable/reference/>`_ 
+    - `pip reference guide list <https://pip.pypa.io/en/stable/reference/>`_ 

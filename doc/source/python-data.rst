@@ -5,7 +5,12 @@ Python Data
 
 .. _header-n3:
 
-Python String
+
+1.Python 数字
+--------------------
+
+
+2.Python String
 ------------------------
 
 .. _header-n5:
@@ -61,8 +66,17 @@ Python String
 
 .. _header-n8:
 
-Python 字典
------------
+
+3.Python 列表
+--------------------
+
+
+4.Python 元组
+--------------------
+
+
+5.Python 字典
+------------------
 
 .. _header-n9:
 

@@ -10,6 +10,9 @@ Welcome to pysci's documentation!
    :maxdepth: 2
    :caption: Contents:
    
+   python-env
+   python-env-pip
+   python-env-jupyter
    python
    python-science
    python-system
@@ -17,15 +20,12 @@ Welcome to pysci's documentation!
    python-data-file
    python-iter
    python-iter-list-dict-parse
+   python-module
    python-class
    python-class-decorators
    python-class-chain
    python-class-descriptor
    python-exception
-   python-module
-   python-env
-   python-env-pip
-   python-env-virtualenv
    python-datavalidation
    python-re
    python-interview
