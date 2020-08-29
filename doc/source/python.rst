@@ -17,15 +17,12 @@ Python 编程
 
     - Python 异常
 
-
 2. Python 高级编程
 -----------------------
 
     - Python 系统工具
 
-
-
 3. Python 第三方库
 -----------------------
 
-- cattr
+    - cattr
