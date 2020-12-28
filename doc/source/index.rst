@@ -12,6 +12,7 @@ Welcome to pysci's documentation!
    
    python-env
    python-env-pip
+   python-env-conda
    python-env-jupyter
    python
    python-science
