@@ -1,119 +1,122 @@
 
-
 Python Jupyter
 =======================
 
 1.Install Jupyter
 ------------------------
 
-相关库：
+    - 相关库
 
-    - jupyter 
+        - ``jupyter``
+        - ``notebook``
+        - ``jupyterlab``
+        - ``ipykernel``
+        - ``jupyter-client``
+        - ``jupyter-console``
+        - ``jupyter-core``
+        - ``jupyter-server``
+        - ``jupyterlab-pygments``
+        - ``jupyterlab-server``
+        - ``voila``
 
-    - jupyter-client
-
-    - jupyter-console
-
-    - jupyter-core
-
-    - jupyter-server
-
-    - jupyterlab
-
-    - jupyterlab-pygments
-
-    - jupyterlab-server
-
-
-
-1.1 Install
-~~~~~~~~~~~~~~~~~~~~~~
-
-
-Jupyter:
-
-.. code-block:: shell
-
-    $ python -m pip install jupyter
-
-Jupyter Notebook:
-
-.. code-block:: shell
-
-    $ pip install notebook
-
-Jupyter Lab:
-
-.. code-block:: shell
-
-    $ pip install jupyterlab
-
-Voila:
-
-.. code-block:: shell
-
-    $ pip install voila
-
-
-1.2 Jupyter kernel setting
+1.1 安装 Jupyter 相关库
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    - Jupyter
 
+        .. code-block:: shell
 
+            $ pip install jupyter
 
+    - Jupyter Notebook
 
-安装 ``ipykernel`` 在当前环境：
+        .. code-block:: shell
 
-.. code-block:: shell
+            $ pip install notebook
 
-    pip instll ipykernel
+    - Jupyter Lab
 
-查看 kernel:
+        .. code-block:: shell
 
-.. code-block:: shell
+            $ pip install jupyterlab
 
-    $ jupyter kernelspec list
+    - Voila
 
+        .. code-block:: shell
 
-将环境加入 Jupyter Lab:
+            $ pip install voila
 
-.. code-block:: shell
+1.2 Jupyter kernel 设置
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $ python -m ipykernel install --name env_name
+    - 安装 ``ipykernel`` 在当前环境：
 
+        .. code-block:: shell
 
-删除 kernel:
+            $ pip instll ipykernel
 
-.. code-block:: shell
+    - 查看 kernel
 
-    $ jupyter kernelspe remove python3
+        .. code-block:: shell
 
+            $ jupyter kernelspec list
 
+    - 将环境加入 Jupyter Lab
+
+        .. code-block:: shell
+            
+            $ workon pysci
+            $ python -m ipykernel install --prefix=/Users/zfwang/.virtualenv/pysci/ --name pysci
+            $ ipykernel install --name env_name --user
+
+    - 删除 kernel
+
+        .. code-block:: shell
+
+            $ jupyter kernelspec remove python3
 
 2.JupyterLab 1.0
 -------------------------
 
-.. code-block:: shell
+    - JupyterLab 帮助
 
-    $ jupyter lab -h
+        .. code-block:: shell
 
-登录 Jupyter Lab:
+            $ jupyter lab -h
 
-.. code-block:: shell
+    - 登录 JupyterLab
 
-    $ jupyter lab --port="8080" --ip="*" --notebook-dir="/path/..."
+        - ``--port``
+            - 指定端口号
+        - ``--ip``
+            - 指定 IP
+        - ``--notebook``
 
-配置 Jupyter Lab 密码：
+        .. code-block:: shell
 
-.. code-block:: shell
+            $ jupyter lab --port="8080" --ip="*" --notebook-dir="/path/..."
 
-    $ jupyter lab --generate-config
-    $ jupyter lab password
+    - 配置 JupyterLab 密码
+
+        .. code-block:: shell
+
+            $ jupyter lab --generate-config
+            $ jupyter lab password
+
+
+.. note:: 
+
+    - 可以使用 ``--port`` 参数指定端口号
+
+        - 部分云服务(如GCP)的实例默认不开放大多数网络端口，如果使用
+
+
 
 
 3.JupyterNotebook
 -------------------------
 
+    - 略
 
 4.Jupyter Console
 -------------------------
@@ -121,10 +124,11 @@ Voila:
 4.1 Jupyter Console Config help
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: shell
+    - 配置选项 help
 
-    # 配置选项 help
-    $ jupyter console -h
+        .. code-block:: shell
+
+            $ jupyter console -h
 
 The Jupyter terminal-based Console.
 
@@ -216,49 +220,45 @@ on full configurables, see '--help-all'.
 
 To see all available configurables, use `--help-all`
 
+
 Examples
 ^^^^^^^^^^^^
 
-.. code-block:: shell
+    .. code-block:: shell
 
-    jupyter console # start the ZMQ-based console
-    jupyter console --existing # connect to an existing ipython session
+        jupyter console # start the ZMQ-based console
+        jupyter console --existing # connect to an existing ipython session
 
 
 4.2 Jupyter Console Using
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-安装：
+    - 安装
 
-.. code-block:: shell
+        .. code-block:: shell
 
-    # install 
-    $ pip install jupyter-console
+            # install 
+            $ pip install jupyter-console
 
-使用：
+    - 使用
 
-.. code-block:: shell
+        .. code-block:: shell
 
-    # start
-    $ jupyter console
+            # start
+            $ jupyter console
 
-    # 设置 kernel
-    $ juptyter console --kernel=kernel_name
+            # 设置 kernel
+            $ juptyter console --kernel=kernel_name
 
-    # 查看可用 kernel
-    $ jupyter kernelspec list
+            # 查看可用 kernel
+            $ jupyter kernelspec list
 
-    # 连接一个启动的 kernel 
-    $ jupyter console --existing KERNEL_ID
-    $ jupyter console --existing
-
-
-
-
+            # 连接一个启动的 kernel 
+            $ jupyter console --existing KERNEL_ID
+            $ jupyter console --existing
 
 5.Jupyterhub
 -------------------------
-
 
 
 6.Voila
