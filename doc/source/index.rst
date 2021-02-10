@@ -41,4 +41,7 @@ Welcome to pysci's documentation!
    python-tool-database
    python-tool-schedule
    python-multithreading
-
+   python-algorithms
+   python-fastapi
+   decorate_model
+   UML_model
