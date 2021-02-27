@@ -1,410 +1,642 @@
 
-Python 多线程
-=======================
+Python 进程、线程
+==========================================
 
-
-
-1.程序、进程、线程、并发、并行、高并发
+1.进程、线程、并发、并行、高并发
 ------------------------------------------
 
     - `知乎解释 <https://www.zhihu.com/question/307100151/answer/894486042>`_ 
 
     - `简单解释 <http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html>`_ 
 
-1.1 进程(Process)
-~~~~~~~~~~~~~~~~~~~~~~~
+1.1 进程(Process)、线程(Threading)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.1.1 传统意义的进程
-^^^^^^^^^^^^^^^^^^^^^^^
+   现代操作系统都是支持多任务的操作系统。什么叫“多任务”呢？简单地说，就是操作系统可以同时运行多个任务。
 
-.. note:: wiki 进程解释：
-    
-    - In computing, a process is the instance of a computer program that is being executed by one or many threads.
+   - 单核 CPU 多任务模式
+      
+      - 现在，多核 CPU 已经非常普及了，但是，即使过去的单核 CPU，也可以执行多任务。由于 CPU 执行代码都是顺序执行的，因此，单核 CPU 执行多任务
+        就是操作系统轮流让各个任务交替执行，任务1执行0.01秒，切换到任务2，任务2执行0.01秒，再切换到任务3，执行0.01秒……这样反复执行下去。
+        表面上看，每个任务都是交替执行的，但是，由于 CPU 的执行速度实在是太快了，我们感觉就像所有任务都在同时执行一样。
 
-假如你想做一件事情，为了解决这个问题，你先构想出来假如你自己一个人做，整个过程第一步干什么，第二步干什么等等。
-这个干活的过程，可以被称作一个 **进程(Process)**。或者你可以理解为 “一个做事的办法/步骤/方案”。
+   - 多核 CPU 多任务模式
+      
+      - 真正的并行执行多任务只能在多核 CPU 上实现，但是，由于任务数量远远多于CPU的核心数量，所以，
+        操作系统也会自动把很多任务轮流调度到每个核心上执行
 
-进程的英文 Process 本意就是 “过程” 的意思，是一个抽象的概念。这个活有没有真的干不重要，重要的是你已经预先想好了
-这个活该怎么干，有了一个可行的思路。
+   - 进程、线程
+      
+      - 对于操作系统来说，一个任务就是一个进程(Process)
 
-.. note::
+      - 有些进程还不止同时干一件事，在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，把进程内的这些“子任务”称为线程(Thread)
 
-    这里 **进程** 仅仅是描述这个方案的，至于这个方案是在脑海里，还是已经被执行了，是不重要的。
+      - 由于每个进程至少要干一件事，所以，一个进程至少有一个线程。多线程的执行方式和多进程是一样的，也是由操作系统在多个线程之间快速切换，
+        让每个线程都短暂地交替运行，看起来就像同时执行一样。当然，真正地同时执行多线程需要多核CPU才可能实现
 
-1.1.2 程序进程
-^^^^^^^^^^^^^^^^^^^^^^^
+   - Python 既支持多进程，又支持多线程
 
-程序中的进程概念是指“程序在操作系统中运行的实例”。所谓 “实例” 是指同一个程序可以同时在操作系统里实际的运行。
+      - 多进程模式
 
-为了避免混淆，我在下文中将操作系统的这个进程概念称为 **OS进程**。而对上一节里面讲的“想办法”的进程称为**P进程**。
+         - 一种是启动多个进程，每个进程虽然只有一个线程，但多个进程可以一块执行多个任务
 
-    - **OS进程** 到底怎么实现呢？铺路的工作真的开干时，要不断记录买了什么料，已经花了多少钱，哪一块已经铺好了，
-      哪一块刚铺完沥青得晾着等等。这些信息只有工作真的开干才会有。**OS进程** 也是一样，因此比如 Linux 将进程实现为 
-      “task_struct"，里面记录了CPU要完成这个工作的一整套数据。比如一个事情A，CPU没做完，被程序员要求做另外
-      一件事情B。就得找个地方记录做了一半的A的那些数据，以便于 CPU 回过头来再做A时能够继续。再次强调下，
-      **P进程** 和 **OS进程** 并不是一个意思，尽管会有一些关联。所以在阅读各种资料时一定要根据上下文分清楚进程到
-      底是什么意思。总结如下：
+      - 多线程模式
 
-        - **P进程** 指的是如何想明白做一件事情的过程。他用来帮助你理清做事的思路。这个事情做与没做，
-          对于 **P进程** 这个概念不重要
+         - 一种方法是启动一个进程，在一个进程内启动多个线程，这样，多个线程也可以一块执行多个任务
 
-        - **OS进程** 是指程序真的运行起来的实例，可以被实现为存放调度给CPU的任务和状态的数据结构
+      - 多进程 + 多线程模式
 
-1.2 程序
-~~~~~~~~~~~~~~~~~
+         - 第三种方法，就是启动多个进程，每个进程再启动多个线程，这样同时执行的任务就更多了，当然这种模型更复杂，实际很少采用
 
-把上面的 “一个做事的办法/步骤/方案” 用纸写出来就得到了一个 **程序**，在软件中也是如此。
+1.2 并发
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.3 线程(Threading)
-~~~~~~~~~~~~~~~~~~~~~~~
 
-1.3.1 线程
-^^^^^^^^^^^^^^^^^^^^^^^
+1.3 并行
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: wiki 进程解释：
-    
-    - In computing, a process is the instance of a computer program that is being executed by one or many threads.
 
-上面 wiki 对进程的定义指出一个 **OS进程** 是由一个到多个 **线程** 组成。这里的 **线程(Thread)** 是一个抽象概念。
+1.4 高并发
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-但在Linux中，线程是被实现为“轻量级进程”的。也就是说在Linux中的进程和线程实现的本质是一样的。
-只不过在以下2点上有显著区别：
+2.Python 多进程
+------------------------------------------
 
-    - 在资源消耗上进程的消耗多，线程消耗相对少，以及；
-    
-    - 内存空间上有一些不同：进程的虚拟内存彼此隔离，而线程则共享同一虚拟内存空间有些不同。
+在使用 ``multiprocessing`` 库实现多进程之前，我们先来了解一下操作系统相关的知识。
 
-但Linux中 OS进程和线程都用作任务调度单位。因此，Linux这种实现方式和理论上的概念不是很吻合，
-但是大量的程序已经跑在这个模式上了。而且大家早就已经习惯了。其他操作系统对 OS进程和线程的实现会有所不同。
-如果碰到了不要惊讶。
+   - Unix/Linux 实现多进程
 
-1.3.2 多线程
-^^^^^^^^^^^^^^^^^^^^^^^
+      - Unix/Linux 操作系统提供了一个 ``fork()`` 系统调用，它非常特殊。普通的函数调用，调用一次，返回一次，
+        但是 ``fork()`` 调用一次，返回两次，因为操作系统自动把当前父进程复制了一份子进程，然后，
+        分别在父进程和子进程内返回.
 
-多线程类似于同时执行多个不同程序
+      - 子进程永远返回 0，而父进程返回子进程的 ID。这样，一个父进程可以 fork 出很多子进程，所以，
+        父进程要记下每个子进程的 ID，而子进程只需要调用 ``getppid()`` 就可以拿到父进程的 ID.
 
-- 多线程运行有如下优点：
+      - 有了 fork 调用，一个进程在接到新任务时就可以复制出一个子进程来处理新任务，常见的 Apache 服务器就是由父进程监听端口，
+        每当有新的 http 请求时，就 fork 出子进程来处理新的 http 请求.
 
-    - 使用线程可以把占据长时间的程序中的任务放到后台去处理
-    
-    - 用户界面可以更加吸引人。比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度。
-      程序的运行速度可能加快
-    
-    - 在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。在这种情况下我们可以释放
-      一些珍贵的资源如内存占用等等
+      - Python 的 ``os`` 模块封装了常见的系统调用，其中就包括 ``fork``，可以在 Python 程序中轻松创建子进程.
 
-- 线程运行原理
+         .. code-block:: python
 
-    - 每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，
-      由应用程序提供多个线程执行控制。
+            import os
+            print("Process (%s) start..." % os.getpid())
+            # Only works on Unix/Linux/Mac
+            pid = os.fock()
+            if pid == 0:
+               print(f"I am child process ({os.getpid()}) and my parent is {os.getppid()}.")
+            else:
+               print(f"I ({os.getpid()}) just created a child process ({pid}).")
 
-    - 每个线程都有他自己的一组 CPU 寄存器，称为线程的上下文，该上下文反映了线程上次运行该线程的 CPU 寄存器的状态。
+   - Windows的多进程
+      
+      - 由于 Windows 没有 fork 调用，而如果我们需要在 Windows 上用 Python 编写多进程的程序，就需要使用到 ``multiprocessing`` 模块
 
-    - **指令指针** 和 **堆栈指针寄存器** 是线程上下文中两个最重要的寄存器，线程总是在进程得到上下文中运行的，
-      这些地址都用于标志拥有线程的进程地址空间中的内存。
+2.1 multiprocessing--基于进程的并行
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        - 线程可以被抢占(中断)
-        - 在其他线程正在运行时，线程可以暂时搁置(也称为睡眠), 这就是线程的退让
+2.1.1 概述
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-线程可以分为:
+   由于 Python 是跨平台的，自然也应该提供一个跨平台的多进程支持。``multiprocessing`` 模块就是跨平台版本的多进程模块。
+   ``multiprocessing`` 模块提供了一个 ``Process`` 类来代表一个进程对象。
 
-    - 内核线程：由操作系统内核创建和撤销
+   .. code-block:: python
 
-    - 用户线程：不需要内核支持而在用户程序中实现的线程
+      from multiprocessing import Process
+      import os
 
+      # 子进程要执行的代码
+      def run_proc(name):
+         print("Run child process %s (%s)..." % (name, os.getpid()))
+      
+      if __name__ == "__main__":
+         print("Parent process %s." % os.getpid())
+         p = Process(target = run_proc, args = ("test",))
+         print("Child process will start.")
+         p.start()
+         p.join()
+         print("Child process end.")
+
+2.1.2 Process 类
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   在 ``multiprocessing`` 中，通过创建一个 Process 对象然后调用它的 ``start()`` 方法来生成进程。
+   ``Process`` 和 ``threading.Thread API`` 相同。一个简单的多进程程序示例是：
+
+   .. code-block:: python
+
+      from multiprocessing import Process
+
+      def f(name):
+         print("hello", name)
+      
+      if __name__ == "__main__":
+         p = Process(target = f, args = ("bob",))
+         p.start()
+         p.join()
 
-1.4 并发
-~~~~~~~~~~~~~~~~~
+   要显示所涉及的各个进程 ID, 这是一个扩展示例：
 
-【并发】（Concurrency）是由【P进程】引申出来的抽象概念。
+   .. code-block:: python
 
-上面说到了你可以假设自己一个人按照一定的步骤来铺路，一个人从头干到尾，这是一个“串行”的【P进程】。
+      from multiprocessing import Process
+      import os
 
-但你也可以假设有2个人铺路。比如你可以按照长度分两半，一人铺500m * 50m；也可以按宽度划分，一人铺1000m * 25m；你还可以说让一个人负责铺全部路面的前5个步骤，另外一个人负责铺路面的余下5个步骤。然后你可以进一步想，假如不是雇2个人，而是雇20个人概如何分工呢？你可以混搭按长度，宽度，步骤等各种方式进行拆分。你甚至可以考虑这20个人不是完全一样的，有的能力强，有的能力弱，可以适当的调整工作量的比例等等。
+      def info(title):
+         print(title)
+         print("module name:", __name__)
+         print("parent process:", os.getppid())
+         print("process id:", os.getpid())
+      
+      def f(name):
+         info("function f")
+         print("hello", name)
+      
+      if __name__ == "__main__":
+         info("main line")
+         p = Process(target = f, args = ("bob",))
+         p.start()
+         p.join()
 
-不管怎样拆，都意味着你得到了【并发】的【P进程】。换成说人话就是，你有一套方案，可以让多个人一起把事情做的更高效。注意是“可以“让事情更高效，而不是“必然“让事情更高效。是不是更高效要看到底是怎么执行的，后边会讲。
+2.1.3 Pool
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-举个写代码的例子，你有一个很长很长的数组，目标是把每一个数都*2。一个并发的做法就是把数组拆为很多个小段，然后每个小段的元素依次自己*2。这样的程序写出来就是一个【并发】的【程序】。这个程序如果运行起来就是【并发】的【OS进程】。
+   如果要启动大量的子进程，可以用进程池的方式批量创建子进程.
 
-这时就会出现一个问题，当你想把一个【并发】的【P进程】写成程序时，你怎么用编程语言告诉操作系统你的程序的一些步骤是【并发】的。更确切地说，你需要一个写法（可能是语法，也可能是函数库）表达：
+   .. code-block:: python
 
-    - 几个任务是【并发】的
+      from multiprocessing import Pool
+      import os, time, random
 
-    - 【并发】的任务之间是怎么交互协作的
+      def long_time_task(name):
+         print("Run task %s (%s)..." % ())
 
-为了解决这两个问题，人们总结了一些方法，并将其称为“并发模型”。比如：
+2.1.4 子进程
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    - Fork & Join模型（大任务拆解为小任务并发的跑，结果再拼起来）
 
-    - Actor模型（干活的步骤之间直接发消息）
 
-    - CSP模型（干活的步骤之间订阅通话的频道来协作）
+2.1.5 进程间通信
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    - 线程&锁模型（干活的人共享一个小本本，用来协作。注意小本本不能改乱套了，所以得加锁）
+Process 之间肯定是需要通信的，操作系统提供了很多机制来实现进程间的通信。Python 的 multiprocessing 模块包装了底层机制，
+提供了 Queue、Pipes 等多种方式来交换数据。
 
-    - …… 
+以 Queue 为例，在父进程中创建两个子进程，一个往 Queue 里写数据，一个从 Queue 里读数据.
 
-以Java中的线程为例，大家想表达【并发】就启动新的Thread（或者某种等价操作，如利用线程池）；想让Thread之间交互，就要依靠共享内容。但是【并发】的Thread如果同时修改同一份数据就有可能出错（被称为竞争问题），为了解决这个问题就要引入锁（Lock，或者一些高级的同步工具，如CountdownLatch，Semaphore）。
+   .. code-block:: python
 
-特别强调下，Java的线程是表达并发的概念的类。这个类在绝大部分操作系统上使用操作系统内核中的【线程】实现。二者之间还是有一些细微的差异。即用开发者用Java Thread写代码表达思路，和操作系统调度线程执行是两个层面的事情。请努力认识到这一点。
+      from multiprocessing import Process, Queue
+      import os, time, random
 
-再比如Erlang是基于Actor的并发模型（其实这是原教旨主义的OO）。那么就是每个参与【并发】的任务称为Process（又一个进程……，和【P进程】以及【OS进程都不太一样】，叫【E进程】好了，Erlang中的"进程“）。【E进程】之间通过消息来协作。每个【E进程】要不是在处理消息，要不就是在等新的消息。
+      # 写数据进程执行的代码:
+      def write(q):
+         print('Process to write: %s' % os.getpid())
+         for value in ['A', 'B', 'C']:
+            print('Put %s to queue...' % value)
+            q.put(value)
+            time.sleep(random.random())
 
-如果你用go，那么表达并发的工具就是goroutine，goroutine之间协作要用channel。（当然也可以用Sync包加锁，不展开）。
+      # 读数据进程执行的代码:
+      def read(q):
+         print('Process to read: %s' % os.getpid())
+         while True:
+            value = q.get(True)
+            print('Get %s from queue.' % value)
 
-对于并发模型《7周7并发模型》这本书讲的非常好。推荐阅读。书中展示了七种最经典的并发模型和大量的编码实例。
+      if __name__=='__main__':
+         # 父进程创建Queue，并传给各个子进程：
+         q = Queue()
+         pw = Process(target=write, args=(q,))
+         pr = Process(target=read, args=(q,))
+         # 启动子进程pw，写入:
+         pw.start()
+         # 启动子进程pr，读取:
+         pr.start()
+         # 等待pw结束:
+         pw.join()
+         # pr进程里是死循环，无法等待其结束，只能强行终止:
+         pr.terminate()
 
-1.5 并行
-~~~~~~~~~~~~~~~~~
+   .. code-block:: 
 
-现在我们已经有了一个【并发】的想法，然后进入执行层面。
+      Process to write: 50563
+      Put A to queue...
+      Process to read: 50564
+      Get A from queue.
+      Put B to queue...
+      Get B from queue.
+      Put C to queue...
+      Get C from queue.
 
-回到上面铺路的例子，你虽然假设有20个人可以一起干活。但你不一定真的能雇得到20个人。假如说你实际上最终只雇到1个人。
-但你有一个为20个人一起干活设计的方法。能不能用呢？当然能，只要让这个人先干第1人份的活，再干第2人份的……
 
-但如果你真的雇了10个人，就可以很容易的让第1个人干第1人份和第2人份的活，第2个人干第3和第4人份的活…… 
-而这10个人同时在工地上干活，就是【并行】（Parallelism）。
 
-在软件系统中，【程序】是否能【并行】运行，要看物理上有多少个CPU核心可以同时干活（或者再扩展一下，
-有多少台可用的物理主机）。
 
-比如你写了个Java程序，同时启动了4个线程，但CPU只有单核，那么同一时刻只有一个线程在运行。
-如果有4个CPU核心，那么可以做到4个线程完全【并行】运行。如果有2个核心，那么就处于一种中间态。
-比如你可以用“并发度=4“，”并行度=2“形容这种情况。
 
 
 
-1.6 高并发
-~~~~~~~~~~~~~~~~~
 
+3.Python 多线程
+---------------------------------------------
 
-2.Python 线程、线程模块
-------------------------
+   Python 中使用线程有两种方式：
 
-Python 中使用线程有两种方式：
+      - 函数
 
-    - 函数
+      - 用类来包装线程对象
 
-    - 用类来包装线程对象
+   Python3 线程中常用的两个模块为：
 
-Python3 线程中常用的两个模块为：
+      - ``_thread``
 
-    - ``_thread``
+         - ``_thread`` 模块提供了低级别的、原始的线程以及一个简单的锁，它相比 ``threading`` 模块的功能还是比较有限的。
 
-        - ``_thread`` 模块提供了低级别的、原始的线程以及一个简单的锁，它相比 ``threading`` 模块的功能还是比较有限的。
+      - ``threading`` (推荐使用)
 
-    - ``threading`` (推荐使用)
+         - ``threading`` 模块除了包含 ``_thread`` 模块中的所有方法之外，还提供了其他方法：
 
-        - ``threading`` 模块除了包含 ``_thread`` 模块中的所有方法之外，还提供了其他方法：
+               - ``threading.currentThread()``: 返回当前的线程变量
 
-            - ``threading.currentThread()``: 返回当前的线程变量
+               - ``threading.enumerate()``: 返回一个包含正在运行的线程的 list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程
 
-            - ``threading.enumerate()``: 返回一个包含正在运行的线程的 list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程
+               - ``threading.activeCount()``: 返回正在运行的线程数量，与 ``len(threading.enumerate())`` 有相同的结果
+      
+      - ``Thread`` 类
 
-            - ``threading.activeCount()``: 返回正在运行的线程数量，与 ``len(threading.enumerate())`` 有相同的结果
-    
-    - ``Thread`` 类
+         - run(): 用以表示线程活动的方法
+         - start(): 启动线程活动
+         - join(): 等待至线程终止。这阻塞调用线程直至线程的 join() 方法被调用终止、正常退出或者抛出未处理的异常，或者是可选的超时发生
+         - isAlive(): 返回线程是否是活动的
+         - getName(): 返回线程名
+         - setName(): 设置线程名
 
-        - run(): 用以表示线程活动的方法
-        - start(): 启动线程活动
-        - join(): 等待至线程终止。这阻塞调用线程直至线程的 join() 方法被调用终止、正常退出或者抛出未处理的异常，或者是可选的超时发生
-        - isAlive(): 返回线程是否是活动的
-        - getName(): 返回线程名
-        - setName(): 设置线程名
+   .. note:: 
+
+      ``thread`` 模块已被废弃。用户可以使用 ``threading`` 模块代替。所以，在 Python3 中不能再使用 ``thread`` 模块。
+      为了兼容性，Python3 将 ``thread`` 重命名为 "_thread"。
+
+3.1 函数式: _thread
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   函数式：调用 ``_thread`` 模块中的 ``start_new_thread`` 函数来产生线程
+
+   - 语法
+
+      .. code-block:: 
+         
+         _thread.start_new_thread(function, args[, kwargs])
+
+      - 其中:
+
+         - ``function``: 线程函数
+
+         - ``args``: 传递给线程函数的参数，必须是个 tuble 类型
+
+         - ``kwargs``: 可选参数
+
+   - 示例(ctrl-c 退出)
+
+      .. code-block:: python
+      
+         #!/usr/bin/python3
+
+         import _thread
+         import time
+
+         # 为线程定义一个函数
+         def print_time(threadName, delay):
+               count = 0
+               while count < 5:
+                  time.sleep(delay)
+                  count += 1
+                  print("%s: %s" % (threadName, time.ctime(time.time())))
+               
+         # 创建两个线程
+         try:
+               _thread.start_new_thread(print_time, ("Thread-1", 2))
+               _thread.start_new_thread(print_time, ("Thread-2", 4))
+         except:
+               print("Error: 无法启动线程")
+         
+         while 1:
+               pass
+
+   执行结果如下：
+
+   .. code-block:: 
+
+      Thread-1: Wed Apr  6 11:36:31 2016
+      Thread-1: Wed Apr  6 11:36:33 2016
+      Thread-2: Wed Apr  6 11:36:33 2016
+      Thread-1: Wed Apr  6 11:36:35 2016
+      Thread-1: Wed Apr  6 11:36:37 2016
+      Thread-2: Wed Apr  6 11:36:37 2016
+      Thread-1: Wed Apr  6 11:36:39 2016
+      Thread-2: Wed Apr  6 11:36:41 2016
+      Thread-2: Wed Apr  6 11:36:45 2016
+      Thread-2: Wed Apr  6 11:36:49 2016
+
+7.IO 编程
+------------------------------------------------
+
+7.1 IO 编程
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **IO**：
+
+    - IO 在计算机中指 Input/Output，也就是输入和输出
+    - 由于程序和运行时数据是在内存中驻留，由 CPU 这个超快的计算核心来执行，涉及到数据交换的地方通常是磁盘、网络等，
+      就需要 IO 接口
+
+- **Steam**：
+
+    - IO 编程中，Stream(流)是一个很重要的概念，可以把流想象成一个水管，数据就是水管里的水，但是只能单向流动，
+      Input Stream 就是数据从外面(磁盘、网络)流进内存，Output Stream 就是数据从内存流到外面去
+
+- **同步/异步 IO**：
+
+    - 由于 CPU 和内存的速度远远高于外设的速度，所以在 IO 编程中，就存在速度严重不匹配的问题
+    - 举个例子：比如要把 100M 的数据写入磁盘，CPU 输出 100M 的数据只需要 0.01s，可是磁盘接收这 100M 数据可能需要 10s，怎么办呢？有两种办法：
+
+        - (1)CPU 等着，也就是程序暂停执行后续代码，等 100M 的数据在 10s 后写入磁盘，再接着往下执行，这种模式成为 **同步 IO**
+        - (2)CPU 不等待，只是告诉磁盘，“您老慢慢写，不着急，我接着干别的事去了”，于是，后续代码可以立刻接着执行，这种模式称为 **异步 IO**
+
+    - 同步和异步 IO 的区别就在于是否等待 IO 执行的结果。很明显使用异步 IO 来编写程序性能会远远高于同步 IO，
+      但是异步 IO 的缺点是编程复杂，异步 IO 通知的方式有两种：
+
+        - 回调模式
+        - 轮询模式
+
+    - 操作 IO 的能力都是由操作系统提供的，每一种编程语言都会把操作系统提供的低级 C 接口封装起来方便使用，Python 也不例外
+
+7.2 异步 IO
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   - CPU 的速度远远快于磁盘、网络等 IO，在一个线程中，CPU 执行代码的速度极快，
+     然而，一旦遇到 IO 操作，如读写文件、发送网络数据时，就需要等待 IO 操作完成，
+     才能进行下一步操作。这种情况称为同步 IO。
+
+   - 在 IO 操作的过程中，当前线程被挂起，而其他需要 CPU 执行的代码就无法被当前线程执行了。
+     因为一个 IO 操作就阻塞了当前线程，导致其他代码无法执行，所以我们必须使用多线程或者多进程来并发执行代码，
+     为多个用户服务，每个用户都会分配一个线程，如果遇到 IO 导致线程被挂起，其他用户的线程不受影响。
+
+   - 多线程和多进程的模型虽然解决了并发问题，但是系统不能无上限地增加线程。由于系统切换线程的开销也很大，
+     所以，一旦线程数量过多，CPU 的时间就花在线程切换上了，真正运行代码的时间就少了，结果导致性能严重下降。
+
+   - 针对 CPU 高速执行能力和 IO 设备的龟速严重不匹配问题，有两种方式可以解决：
+      
+      - 多线程、多进程
+      - 异步 IO
+         
+         - 当代码需要执行一个耗时的 IO 操作时，它只发出 IO 指令，并不等待 IO 结果，然后就去执行其他代码了，
+           一段时间后，当 IO 返回结果时，再通知 CPU 进行处理
+
+         - 异步 IO 模型需要一个消息循环，在消息循环中，主线程不断地重复 ``读取消息--处理消息`` 这一过程
+
+   - 消息模型是如何解决同步 IO 必须等待 IO 操作这一问题的呢？当遇到 IO 操作时，代码只负责发出 IO 请求，
+     不等待 IO 结果，然后直接结束本轮消息处理，进入下一轮消息处理过程。当 IO 操作完成后，将收到一条“IO 完成”的消息，
+     处理该消息时就可以直接获取 IO 操作结果。在“发出 IO 请求”到收到“IO 完成”的这段时间里，同步 IO 模型下，
+     主线程只能挂起，但异步 IO 模型下，主线程并没有休息，而是在消息循环中继续处理其他消息。这样，在异步 IO 模型下，
+     一个线程就可以同时处理多个 IO 请求，并且没有切换线程的操作。对于大多数 IO 密集型的应用程序，
+     使用异步 IO 将大大提升系统的多任务处理能力。
+
+.. note:: 
+
+   消息模型其实早在应用在桌面应用程序中了。一个GUI程序的主线程就负责不停地读取消息并处理消息。
+   所有的键盘、鼠标等消息都被发送到GUI程序的消息队列中，然后由GUI程序的主线程处理。
+
+   由于GUI线程处理键盘、鼠标等消息的速度非常快，所以用户感觉不到延迟。某些时候，
+   GUI线程在一个消息处理的过程中遇到问题导致一次消息处理时间过长，此时，用户会感觉到整个GUI程序停止响应了，
+   敲键盘、点鼠标都没有反应。这种情况说明在消息模型中，处理一个消息必须非常迅速，否则，主线程将无法及时处理消息队列中的其他消息，
+   导致程序看上去停止响应。
 
 
 .. note:: 
 
-    ``thread`` 模块已被废弃。用户可以使用 ``threading`` 模块代替。所以，在 Python3 中不能再使用 ``thread`` 模块。
-    为了兼容性，Python3 将 ``thread`` 重命名为 "_thread"。
+   老张爱喝茶，废话不说，煮开水。 出场人物：老张，水壶两把(普通水壶，简称水壶；会响的水壶，简称响水壶)。 
 
+      - 1.老张把水壶放到火上，立等水开
+         - 【同步阻塞】老张觉得自己有点傻
+      - 2.老张把水壶放到火上，去客厅看电视，时不时去厨房看看水开没有
+         - 【同步非阻塞】老张还是觉得自己有点傻，于是变高端了，买了把会响笛的那种水壶。水开之后，能大声发出嘀~~~~的噪音
+      - 3.老张把响水壶放到火上，立等水开
+         - 【异步阻塞)】老张觉得这样傻等意义不大
+      - 4.老张把响水壶放到火上，去客厅看电视，水壶响之前不再去看它了，响了再去拿壶
+         - 【异步非阻塞】老张觉得自己聪明了
 
-2.1 函数式: _thread
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+   .. important:: 
+   
+      - 所谓同步异步，只是对于水壶而言:
+      
+         - 普通水壶，同步
+         - 响水壶，异步
+      
+      虽然都能干活，但响水壶可以在自己完工之后，提示老张水开了。这是普通水壶所不能及的。同步只能让调用者去轮询自己(情况2中)，造成老张效率的低下。
+      
+      - 所谓阻塞非阻塞，仅仅对于老张而言:
+      
+         - 立等的老张，阻塞
+         - 看电视的老张，非阻塞
+      
+      情况 1 和情况 3 中老张就是阻塞的，媳妇喊他都不知道。虽然 3 中响水壶是异步的，可对于立等的老张没有太大的意义。
+      所以一般异步是配合非阻塞使用的，这样才能发挥异步的效用。
 
-函数式：调用 ``_thread`` 模块中的 ``start_new_thread`` 函数来产生线程
 
-- 语法
+7.3 协程
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    .. code-block:: 
-        
-        _thread.start_new_thread(function, args[, kwargs])
+- 协程，又称微线程、迁程、Coroutine。
 
-    - 其中:
+   - 协程的概念很早就提出来了，但知道最近几年才在某些语言(如 Lua)中得到广泛应用。
 
-        - ``function``: 线程函数
+- 子程序，或者称为函数，在所有语言中都是层级调用的
 
-        - ``args``: 传递给线程函数的参数，必须是个 tuble 类型
+   - 子程序调用是通过栈实现的，一个线程就是执行一个子程序
 
-        - ``kwargs``: 可选参数
+子程序调用总是一个入口，一次返回，调用顺序是明确的，而协程的调用和子程序不同。
+协程看上去也是子程序，但执行过程中，在子程序内部可中断，然后转而执行别的子程序，在适当的时候再返回来接着执行。
 
-- 示例(ctrl-c 退出)
+- 协程最大的优势就是极高的执行效率。
+   
+   - 因为子程序切换不是线程切换，而是由程序自身控制，因此，没有线程切换的开销，和多线程比，线程数量越多，协程的性能优势就越明显。
 
-    .. code-block:: python
-    
-        #!/usr/bin/python3
+   - 第二大优势就是不需要多线程的锁机制，因为只有一个线程，也不存在同时写变量冲突，在协程中控制共享资源不加锁，只需要判断状态就好了，
+     所以执行效率比多线程高很多。
 
-        import _thread
-        import time
+因为协程是一个线程执行，那怎么利用多核CPU呢？最简单的方法是多进程+协程，既充分利用多核，又充分发挥协程的高效率，可获得极高的性能。
 
-        # 为线程定义一个函数
-        def print_time(threadName, delay):
-            count = 0
-            while count < 5:
-                time.sleep(delay)
-                count += 1
-                print("%s: %s" % (threadName, time.ctime(time.time())))
-            
-        # 创建两个线程
-        try:
-            _thread.start_new_thread(print_time, ("Thread-1", 2))
-            _thread.start_new_thread(print_time, ("Thread-2", 4))
-        except:
-            print("Error: 无法启动线程")
-        
-        while 1:
-            pass
+Python 对协程的支持是通过 generator 实现的，在 generator 中，不但可以通过 ``for`` 循环来迭代，
+还可以不断调用 ``next()`` 函数获取由 ``yield`` 语句返回的下一个值。但是 Python 的 ``yield`` 不但可以返回一个值，
+它还可以接收调用者发出的参数
 
-执行结果如下：
 
-.. code-block:: 
+7.4 asyncio、async/await、aiohttp
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Thread-1: Wed Apr  6 11:36:31 2016
-    Thread-1: Wed Apr  6 11:36:33 2016
-    Thread-2: Wed Apr  6 11:36:33 2016
-    Thread-1: Wed Apr  6 11:36:35 2016
-    Thread-1: Wed Apr  6 11:36:37 2016
-    Thread-2: Wed Apr  6 11:36:37 2016
-    Thread-1: Wed Apr  6 11:36:39 2016
-    Thread-2: Wed Apr  6 11:36:41 2016
-    Thread-2: Wed Apr  6 11:36:45 2016
-    Thread-2: Wed Apr  6 11:36:49 2016
+7.4.1 asyncio
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+asyncio 是 Python3.4 一如的标准库，直接内置了对异步 IO 的支持。asyncio 的编程模型就是一个消息循环。
+从 asyncio 模块中直接获取一个 EventLoop 的引用，然后把需要执行的协程扔到 EventLoop 中执行，
+就实现了异步 IO.
 
+   - asyncio 提供了完善的异步 IO 支持
+   - 异步 IO 操作需要在 coroutine 中通过 yield from 完成
+   - 多个 coroutine 可以封装成一组 Task 然后并发执行
 
-2.2 
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 示例 1：用asyncio实现Hello world代码如下
 
+   .. code-block:: python
 
+      import asyncio
 
+      @asyncio.coroutine
+      def hello():
+         print("Hello, world!")
+         # 异步调用 asyncio.sleep(1)
+         r = yield from asyncio.sleep(1)
+         print("Hello, again!")
 
+      # 获取 EventLoop
+      loop = asyncio.get_event_loop()
+      # 执行 coroutine
+      loop.run_until_complete(hello())
+      loop.close()
 
 
+   .. note:: 
 
+      @asyncio.coroutine把一个generator标记为coroutine类型，然后，我们就把这个coroutine扔到EventLoop中执行。
 
+      hello()会首先打印出Hello world!，然后，yield from语法可以让我们方便地调用另一个generator。
+      由于asyncio.sleep()也是一个coroutine，所以线程不会等待asyncio.sleep()，而是直接中断并执行下一个消息循环。
+      当asyncio.sleep()返回时，线程就可以从yield from拿到返回值(此处是None)，然后接着执行下一行语句。
 
+      把asyncio.sleep(1)看成是一个耗时1秒的IO操作，在此期间，主线程并未等待，而是去执行EventLoop中其他可以执行的coroutine了，
+      因此可以实现并发执行。
 
+- 示例 2：用Task封装两个 coroutine
 
+   .. code-block:: python
 
-3.创建 Python 线程
-------------------------
+      import threading
+      import asyncio
 
+      @asyncio.coroutine
+      def hello():
+         print("Hello, world! (%s)" % threading.currentThread())
+         yield from asyncio.sleep(1)
+         print("Hello again! (%s)" % threading.currentThread())
+      
+      loop = asyncio.get_event_loop()
+      tasks = [hello(), hello()]
+      loop.run_until_complete(asyncio.wait(tasks))
+      loop.close()
 
+   .. code-block:: 
 
-4.线程同步
-------------------------
+         Hello world! (<_MainThread(MainThread, started 140735195337472)>)
+         Hello world! (<_MainThread(MainThread, started 140735195337472)>)
+         (暂停约1秒)
+         Hello again! (<_MainThread(MainThread, started 140735195337472)>)
+         Hello again! (<_MainThread(MainThread, started 140735195337472)>)
 
+   .. note:: 
+      
+      - 由打印的当前线程名称可以看出，两个coroutine是由同一个线程并发执行的。
 
+      - 如果把asyncio.sleep()换成真正的IO操作，则多个coroutine就可以由一个线程并发执行。
 
-5.线程优先级队列(Queue)
-------------------------
+7.4.2 async/await
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+用 asyncio 提供的 @asyncio.coroutine 可以把一个 generator 标记为 coroutine 类型，然后在 coroutine 内部用 yield from 调用另一个 coroutine 实现异步操作。
 
-6.Python 多进程 multiprocessing 模块
-------------------------------------------------
+为了简化并更好地标识异步 IO，从 Python3.5 开始引入了新的语法 async 和 await，可以让 coroutine 的代码更简洁易读。
 
-在使用multiprocessing库实现多进程之前，我们先来了解一下操作系统相关的知识。
+请注意，async 和 await 是针对 coroutine 的新语法，要使用新的语法，只需要两步简单的替换：
 
-- Unix/Linux实现多进程
-
-    - Unix/Linux操作系统提供了一个 ``fork()`` 系统调用，它非常特殊。普通的函数调用，调用一次，返回一次，
-      但是 ``fork()`` 调用一次，返回两次，因为操作系统自动把当前父进程复制了一份子进程，然后，
-      分别在父进程和子进程内返回。
-
-    - 子进程永远返回 0，而父进程返回子进程的 ID。这样，一个父进程可以 fork 出很多子进程，所以，
-      父进程要记下每个子进程的 ID，而子进程只需要调用 ``getppid()`` 就可以拿到父进程的 ID。
-
-    - Python 的 ``os`` 模块封装了常见的系统调用，其中就包括 ``fork``，可以在 Python 程序中轻松创建子进程.
-
-- Windows的多进程
-    
-    - 由于Windows没有 fork 调用，而如果我们需要在 Windows 上用 Python 编写多进程的程序。
-      我们就需要使用到 ``multiprocessing`` 模块。
-
-
-.. code-block:: python
-
-    from multiprocessing import Pool
-
-    pool = Pool(cpu)
-    for i in iters:
-        pass
-    pool.close()
-    pool.join()
-
-6.1 multiprocessing -- 基于进程的并行
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-6.1.1 概述
-^^^^^^^^^^^^^^
-
-multiprocessing 是一个支持使用与 threading 模块类似的 API 来产生进程的包。 
-multiprocessing 包同时提供了本地和远程并发操作，通过使用子进程而非线程有效地绕过了 全局解释器锁。 
-因此，multiprocessing 模块允许程序员充分利用给定机器上的多个处理器。 
-它在 Unix 和 Windows 上均可运行。
-
-multiprocessing 模块还引入了在 threading 模块中没有的API。一个主要的例子就是 Pool 对象，
-它提供了一种快捷的方法，赋予函数并行化处理一系列输入值的能力，可以将输入数据分配给不同进程处理（数据并行）。
-下面的例子演示了在模块中定义此类函数的常见做法，以便子进程可以成功导入该模块。这个数据并行的基本例子使用了 Pool ，
-
-.. code-block:: python
-
-    >>> from multiprocessing import Pool
-    >>> def f(x):
-    ...     return x * x
-    
-    >>> if __name__ == "__main__":
-    ...     with Pool(5) as p:
-    ...         print(p.map(f, [1, 2, 3]))
-    >>> [1, 4, 9]
-
-6.1.2 Process 类
-^^^^^^^^^^^^^^^^^^^^
-
-在 ``multiprocessing`` 中，通过创建一个 Process 对象然后调用它的 ``start()`` 方法来生成进程。Process 和 threading.Thread API 
-相同。一个简单的多进程程序示例是：
-
-.. code-block:: python
-
-    from multiprocessing import Process
-
-    def f(name):
-        print("hello", name)
-    
-    if __name__ == "__main__":
-        p = Process(target = f, args = ("bob",))
-        p.start()
-        p.join()
-
-要显示所涉及的各个进程 ID, 这是一个扩展示例：
-
-.. code-block:: python
-
-    from multiprocessing import Process
-    import os
-
-    def info(title):
-        print(title)
-        print("module name:", __name__)
-        print("parent process:", os.getppid())
-        print("process id:", os.getpid())
-    
-    def f(name):
-        info("function f")
-        print("hello", name)
-    
-    if __name__ == "__main__":
-        info("main line")
-        p = Process(target = f, args = ("bob",))
-        p.start()
-        p.join()
+   - (1)把 @asyncio.coroutine 替换为 async
+   - (2)把 yield from 替换为 await
+
+- 示例：
+
+   .. code-block:: python
+
+      @asyncio.coroutine
+      def hello():
+         print("Hello world!")
+         r = yield from asyncio.sleep(1)
+         print("Hello again!")
+
+
+   .. code-block:: python
+
+      async def hello():
+         print("Hello world!")
+         r = await asyncio.sleep(1)
+         print("Hello again!")
+
+7.4.3 aiohttp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``asyncio`` 可以实现单线程并发 IO 操作。如果仅用在客户端，发挥的威力不大。如果把 ``asyncio`` 用在服务器端，例如 Web 服务器，
+由于 HTTP 连接就是 IO 操作，因此可以用单线程 + ``coroutine`` 实现多用户的高并发支持。
+
+``asyncio`` 实现了 TCP、UDP、SSL 等协议，``aiohttp`` 则是基于 ``asyncio`` 实现的 HTTP 框架。
+
+- ``aiohttp`` 安装
+
+   .. code-block:: shell
+
+      $ pip install aiohttp
+
+- ``aiohttp`` 使用：编写一个 HTTP 服务器，分别处理以下 URL:
+
+   - ``/``
+
+      - 首页返回 ``b'<h1>Index</h1>'``
+
+   - ``/hello/{name}``
+
+      - 根据 URL 参数返回文本 ``hello, %s!``
+
+
+   - 代码
+
+      .. code-block:: python
+
+         import asyncio
+         from aiohttp import web
+         import async
+
+         async def index(request):
+            await asyncio.sleep(0.5)
+            return web.Response(body = b"<h1>Index</h1>")
+         
+         async def hello(request):
+            await asyncio.sleep(0.5)
+            text = f"<h1>hello, {request.match_info["name"]}!</h1>"
+            return web.Response(body = text.encode("utf-8"))
+         
+         async def init(loop):
+            app = web.Application(loop = loop)
+            app.router.add_router("GET", "/", index)
+            app.router.add_router("GET", "/hello/{name}", hello)
+            srv = await loop.create_server(app.make_handler(), "127.0.0.1", 8000)
+            print("Server started at http://127.0.0.1:8000...")
+            return srv
+
+         loop = asyncio.get_event_loop()
+         loop.run_until_complete(init(loop))
+         loop.run_forever()
+
+   .. note:: 
+
+      - 注意:
+      
+         - ``aiohttp`` 的初始化函数 ``init()`` 也是一个 ``coroutine``
+         - ``loop.create_server()`` 则利用 ``asyncio`` 创建 TCP 服务。
+

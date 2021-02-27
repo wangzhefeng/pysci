@@ -33,7 +33,6 @@ Welcome to pysci's documentation!
    python-scipy-optimize
    python-scipy-pandas-operation
    python-scipy-numpy-operation
-   python-scipy-integer-programming
    python-tool-project
    python-tool-log
    python-tool-email
