@@ -44,3 +44,4 @@ Welcome to pysci's documentation!
    python-fastapi
    decorate_model
    UML_model
+   python-lib-shutile

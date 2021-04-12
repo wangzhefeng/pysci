@@ -713,23 +713,23 @@ virtualenv
 2.4 ``requirements.txt``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Method 1:
+   - Method 1:
 
-.. code:: shell
+      .. code:: shell
 
-   # 生成 requirements.txt
-   pip freeze --local > requirements.txt
+         # 生成 requirements.txt
+         pip freeze --local > requirements.txt
 
-   # 安装 requirements.txt
-   pip install -r requirements.txt
+         # 安装 requirements.txt
+         pip install -r requirements.txt
 
 
-Method 2:
+   - Method 2:
 
-.. code:: shell
+      .. code:: shell
 
-   pip install pipreqs
+         pip install pipreqs
 
-.. code:: python
+      .. code:: python
 
-   pipreqs ./ encoding=utf-8
+         pipreqs ./ encoding=utf-8
