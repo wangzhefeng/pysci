@@ -29,7 +29,6 @@ Welcome to pysci's documentation!
    python-exception
    python-datavalidation
    python-re
-   python-interview
    python-scipy-optimize
    python-scipy-pandas-operation
    python-scipy-numpy-operation
@@ -41,7 +40,7 @@ Welcome to pysci's documentation!
    python-tool-schedule
    python-multithreading
    python-algorithms
-   python-fastapi
    decorate_model
    UML_model
    python-lib-shutile
+   python-interview
