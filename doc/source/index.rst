@@ -8,39 +8,93 @@ Welcome to pysci's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contents
    
-   python-env
-   python-env-pip
-   python-env-conda
-   python-env-jupyter
    python
-   python-science
-   python-system
-   python-data
-   python-data-file
-   python-iter
-   python-iter-list-dict-parse
-   python-module
-   python-class
-   python-class-decorators
-   python-class-chain
-   python-class-descriptor
-   python-exception
-   python-datavalidation
-   python-re
-   python-scipy-optimize
-   python-scipy-pandas-operation
-   python-scipy-numpy-operation
-   python-tool-project
-   python-tool-log
-   python-tool-email
-   python-tool-py2so
-   python-tool-database
-   python-tool-schedule
-   python-multithreading
-   python-algorithms
-   decorate_model
-   UML_model
-   python-lib-shutile
-   python-interview
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-env
+
+   python-env/python-env
+   python-env/python-env-pip
+   python-env/python-env-conda
+   python-env/python-env-jupyter
+   
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: python-data
+
+   python-data/python-data
+   python-data/python-data-file
+   python-data/python-data-algorithms
+   python-data/python-module
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-iter
+
+   python-iter/python-iter
+   python-iter/python-iter-list-dict-parse
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-class
+   
+   python-class/python-class
+   python-class/python-class-decorators
+   python-class/python-class-chain
+   python-class/python-class-descriptor
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-exception
+
+   python-exception/python-exception
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-scipy
+
+   python-scipy/python-science
+   python-scipy/python-scipy-optimize
+   python-scipy/python-scipy-pandas-operation
+   python-scipy/python-scipy-numpy-operation
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-tool
+
+   python-tool/python-tool-project
+   python-tool/python-tool-log
+   python-tool/python-tool-email
+   python-tool/python-tool-py2so
+   python-tool/python-tool-database
+   python-tool/python-tool-schedule
+   python-tool/python-interview
+   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-model
+
+   python-model/decorate_model
+   python-model/UML_model
+   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: python-library
+
+   python-library/python-lib-datavalidation
+   python-library/python-lib-re
+   python-library/python-lib-shutile
+   python-library/python-lib-system
+   python-library/python-lib-multithreading

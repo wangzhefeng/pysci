@@ -60,31 +60,31 @@ UML, Unified Modeling Language, 统一建模语言，它是由一整套图组成
 - 泛化(Generalization)
    - 泛化是一种继承关系，表示一般与特殊的关系，它指定了子类如何特化父类的所有特征和行为
 
-.. image:: ./images/generalization.png
+.. image:: ../images/generalization.png
 
 - 实现(Realization)
    - 实现是一种类与接口的关系，表示类是接口所有特征和行为的实现
 
-.. image:: ./images/realization.png
+.. image:: ../images/realization.png
 
 - 组合(Composition)
    - 组合表示整体与部分的关系，但部分离开整体后无法单独存在。因此，组合与聚合相比是一种更强的关系
 
-.. image:: ./images/composition.png
+.. image:: ../images/composition.png
 
 - 聚合(Aggregation)
    - 聚合是整体与部分的关系，部分可以离开整体而单独存在
 
-.. image:: ./images/aggregation.png
+.. image:: ../images/aggregation.png
 
 - 关联(Association)
    - 关联是一种拥有关系，它使一个类知道另一个类的属性和方法。关联可以是双向的，也可以是单向的
 
-.. image:: ./images/association.png
+.. image:: ../images/association.png
 
 - 依赖(Dependency)
    - 依赖是一种使用的关系，即一个类的实现需要另一个类的协助，所以尽量不要使用双向的互相依赖
 
-.. image:: ./images/dependency.png
+.. image:: ../images/dependency.png
 
 

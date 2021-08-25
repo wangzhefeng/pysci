@@ -64,7 +64,7 @@ source_encoding = 'utf-8-sig'
 master_doc = 'index'
 
 # General information about the project.
-project = u'pysci'
+project = u'python'
 copyright = u'2020, wangzf'
 author = u'wangzf'
 
@@ -158,7 +158,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = u'test vtest'
+# html_title = u'python vtest'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -253,7 +253,7 @@ html_search_options = {'type': 'default'}
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'pysci'
+htmlhelp_basename = 'python'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -279,8 +279,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'test.tex', u'test Documentation',
-     u'test', 'manual'),
+    (master_doc, 'python.tex', u'python Documentation',
+     u'python', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -319,7 +319,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'test', u'test Documentation',
+    (master_doc, 'python', u'python Documentation',
      [author], 1)
 ]
 
@@ -334,8 +334,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 # texinfo_documents = [
-#     (master_doc, 'test', u'test Documentation',
-#      author, 'test', 'One line description of project.',
+#     (master_doc, 'python', u'python Documentation',
+#      author, 'python', 'One line description of project.',
 #      'Miscellaneous'),
 # ]
 
