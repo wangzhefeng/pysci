@@ -651,17 +651,220 @@ Python 装饰器
 3.2 状态信息保持选项
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+   - 函数装饰器有各种选项来保持装饰的时候所提供的状态信息，以便在实际函数调用过程中使用。
+     它们通常需要支持多个装饰 的对象以及多个调用，但是，有多种方法来实现这些目标:实例属性、
+     全局变量、非局 部变量和函数属性，都可以用于保持状态。
+
+3.2.1 类实例属性
+^^^^^^^^^^^^^^^^^^^^^^^
+
+   - 示例 1：
+
+      - 这里是前面示例的一个扩展版本，其中添加了对关键字参数的支持，并且返回包装函数的结果，以支持更多的用例
+      - 这里的代码使用类实例属性来显式地保存状态，包装的函数和调用计数器都是针对每个实例的信息--每个装饰都有自己的拷贝
+
+      .. code-block:: python
+
+         class tracer:
+            def __init__(self, func):
+               self.calls = 0
+               self.func = func
+            def __call__(self, *args, **kwargs):
+               self.calls += 1
+               print(f"call {self.calls} to {self.func.__name__}")
+               return self.func(*args, **kwargs)
+         
+         @tracer
+         def spam(a, b, c):   # Same as: spam = tracer(spam)
+            print(a + b + c)  # Triggers tracer.__init__
+         
+         @tracer
+         def eggs(x, y):      # Same as: eggs = tracer(eggs)
+            print(x ** y)     # Wraps eggs in a tracer object
+
+         spam(1, 2, 3)        # Really calls tracer instanc: runs trace.__call__
+         spam(a = 4, b = 5, c = 6)
+
+         eggs(2, 16)    # Really calls tracer instance, self.func is eggs
+         eggs(4, y = 4) # self.calls is pre-function here
+
+3.2.2 封闭作用域和全局作用域
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: python
+
+      calls = 0
+      def tracer(func):
+         def wrapper(*args, **kwargs):
+            global calls
+            calls += 1
+            print(f"call {calls} to {func.__name__}")
+            return func(*args, **kwargs)
+         return wrapper
+      
+      @tracer
+      def spam(a, b, c):   # Same as: spam = tracer(spam)
+         print(a + b + c)
+      
+      @tracer
+      def eggs(x, y):      # Same as: eggs = tracer(eggs)
+         print(x ** y)
+
+      spam(1, 2, 3)             # Really calls wrapper, bound to func
+      spam(a = 4, b = 5, c = 6) # wrapper calls spam
+
+      eggs(2, 16)    # Really calls wrapper, bound to eggs
+      eggs(4, y = 4) # Global calls is not pre-function here!
+
+
+
+3.2.3 封闭作用域和 nonlocal
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   .. code-block:: python
+
+      def tracer(func):
+         calls = 0
+         def wrapper(*args, **kwargs):
+            nonlocal calls
+            calls += 1
+            print(f"call {calls} to {func.__name__}")
+            return func(*args, **kwargs)
+         return wrapper
+
+      @tracer
+      def spam(a, b, c):   # Same as: spam = tracer(spam)
+         print(a + b + c)
+      
+      @tracer
+      def eggs(x, y):      # Same as: eggs = tracer(eggs)
+         print(x ** y)
+
+      spam(1, 2, 3)             # Really calls wrapper, bound to func
+      spam(a = 4, b = 5, c = 6) # wrapper calls spam
+
+      eggs(2, 16)    # Really calls wrapper, bound to eggs
+      eggs(4, y = 4) # Nonlocal calls is not pre-function here!
+
+
+3.2.4 函数属性
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+3.3 类错误之一: 装饰类方法
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+3.4 计时调用
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+3.5 添加装饰器参数
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 4.编写类装饰器
--------------------
+-------------------------------
+
+   尽管类似于函数装饰器的概念，但类装饰器应用于类——它们可以用于管理类自身，或者用来拦截实例创建调用以管理实例。
+   和函数装饰器一样，类装饰器其实只是可选的语法糖，尽管很多人相信，它们使程序员的意图更为明显并且能使不正确的调用最小化。
 
 4.1 单体类
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 4.2 跟踪对象接口
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+4.3 类错误之二: 保持多个实例
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+4.4 装饰器与管理函数的关系
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+4.5 为什么使用装饰器
+
 
 5.直接管理函数和类
 -------------------
 
-6.示例
--------------------
+6.示例——"私有"和"公有"属性
+------------------------------
+
+
+7.示例——验证函数参数
+------------------------------
+
+   - 开发一个函数装饰器，它自动测试传递给一个函数或方法的参数是否在有效的数值范围内。它设计用来在任何开发或产品阶段使用，
+     并且它可以用作类似任务的一个模板
+
+7.1 目标
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- 示例 1(不好用)：
+
+   .. code-block:: python
+
+      class Person:
+         """
+         根据一个传入的百分比用来给表示人的对象涨工资
+         """
+         def giveRaise(self, percent):
+            self.pay = int(self.pay * (1 + percent))
+
+- 示例 2(不好用)：
+
+   .. code-block:: python
+
+      class Person:
+         """
+         根据一个传入的百分比用来给表示人的对象涨工资
+         """
+         def giveRaise(self, percent):
+            if percent < 0.0 or percent > 1.0:
+               raise TypeError('percent invalid')
+            self.pay = int(self.pay * (1 + percent))
+
+- 示例 3(不好用)：
+
+   .. code-block:: python
+   
+      class Person:
+         """
+         根据一个传入的百分比用来给表示人的对象涨工资
+         """
+         def giveRaise(self, percent):
+            assert percent >= 0.0 and percent <= 1.0, "percent invalid"
+            self.pay = int(self.pay * (1 + percent))
+
+- 示例 4：
+
+   - 开发一个通用的工具来自动为我们执行范围测试， 针对我们现在或将来要编写的任何函数或方法的参数。装饰器方法使得这明确而方便。
+     在装饰器中隔离验证逻辑，这简化了客户类和未来的维护。注意，我们这里的目标和前面编写的属性验证不同。这里，
+     我们想要验证传入的函数参数的值，而不是设置的属性的值。
+
+   .. code-block:: python
+
+      class Person:
+         """
+         根据一个传入的百分比用来给表示人的对象涨工资
+         """
+         @rangetest(percent = (0.0, 1.0)) # Use decorator to validate
+         def giveRaise(self, percent):
+            self.pay = int(self.pay * (1 + percent))
+
+
+7.2 针对位置参数的一个基本范围测试装饰器
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+7.3 针对关键字和默认泛化
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
