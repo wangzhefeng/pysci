@@ -25,8 +25,6 @@ Python 装饰器
    result = addition_func(4)
    print(result)
 
-
-
 1.什么是装饰器
 -------------------
 
@@ -609,18 +607,14 @@ Python 装饰器
          print(a + b + c) # Wraps spam in a decorator object
 
       from decorator1 import spam
-
       >>> spam(1, 2, 3)
       call 1 to spam
       6
-
       >>> spam("a", "b", "c")
       call 2 to spam
       abc
-
       >>> spam.calls
       2
-
       >>> spam
       <decorator1.tracer object at 0x02D9A730>
 
@@ -628,9 +622,9 @@ Python 装饰器
      以便添加一个逻辑层来统计和打印每次调用。注意，调用的总数如何作为装饰的函数的一个属性显示——装饰的时候，
      spam 实际上是 tracer 类的一个实例(对于进行类型检查的程序，可能还会衍生一次查找，但是通常是有益的)。
 
-
    .. code-block:: python
-   
+
+      # 下面的非装饰器代码与上面的代码对等
       calls = 0
       def tracer(func, *args):
          global calls
@@ -643,7 +637,6 @@ Python 装饰器
 
       >>> spam(1, 2, 3)
       1, 2, 3
-
       >>> tracer(spam, 1, 2, 3)
       call 1 to spam
       1, 2, 3
@@ -652,8 +645,8 @@ Python 装饰器
 ~~~~~~~~~~~~~~~~~~~~~~~
 
    - 函数装饰器有各种选项来保持装饰的时候所提供的状态信息，以便在实际函数调用过程中使用。
-     它们通常需要支持多个装饰 的对象以及多个调用，但是，有多种方法来实现这些目标:实例属性、
-     全局变量、非局 部变量和函数属性，都可以用于保持状态。
+     它们通常需要支持多个装饰的对象以及多个调用，但是，有多种方法来实现这些目标:实例属性、
+     全局变量、非局部变量和函数属性，都可以用于保持状态。
 
 3.2.1 类实例属性
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -716,8 +709,6 @@ Python 装饰器
       eggs(2, 16)    # Really calls wrapper, bound to eggs
       eggs(4, y = 4) # Global calls is not pre-function here!
 
-
-
 3.2.3 封闭作用域和 nonlocal
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -746,14 +737,65 @@ Python 装饰器
       eggs(2, 16)    # Really calls wrapper, bound to eggs
       eggs(4, y = 4) # Nonlocal calls is not pre-function here!
 
-
 3.2.4 函数属性
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+   .. code-block:: python
 
+      def tracer(func):                   # State via enclosing scope and func attr
+         def wrapper(*args, **kwargs):    # calls is per-function, not global
+            wrapper.calls += 1
+            print(f"call {wrapper.calls} to {func.__name__}")
+            return func(*args, **kwargs)
+         wrapper.calls = 0
+         return wrapper
 
 3.3 类错误之一: 装饰类方法
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- 基于类的跟踪装饰器
+
+   .. code-block:: python
+
+      class tracer:
+         def __init__(self, func):
+            self.calls = 0
+            self.func = func
+         def __call__(self, *args, **kwargs):
+            self.calls += 1
+            print(f"call {self.calls} to {self.func.__name__}")
+            return self.func(*args, **kwargs)
+
+   - 对于简单函数的装饰是生效的
+
+      .. code-block:: python
+
+         @tracer
+         def spam(a, b, c):
+            print(a, b, c)
+
+         spam(1, 2, 3)
+         spam(a = 4, b = 5, c = 6)
+
+   - 对于类方法的装饰失效了
+
+      .. code-block:: python
+
+         class Person:
+            def __init__(self, name, pay):
+               self.name = name
+               self.pay = pay
+            
+            @tracer
+            def giveRaise(self, percent):
+               self.pay *= (1.0 + percent)
+            
+            @tracer
+            def lastName(self):
+               return self.name.split()[-1]
+         
+         bob = Person("Bob Smith", 50000) # tracer remembers method funcs
+         bob.giveRaise(0.25)
 
 
 
@@ -789,10 +831,16 @@ Python 装饰器
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 4.5 为什么使用装饰器
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 
 5.直接管理函数和类
 -------------------
+
+   上面大多数示例都是设计来拦截函数和实例创建调用。尽管这对于装饰器来说很典型，它们并不限于这一角色。
+   因为装饰器通过装饰器代码来运行新的函数和类，从而有效地工作，它们也可以用来管理函数和类本身，
+   而不只是对它们随后的调用。
 
 6.示例——"私有"和"公有"属性
 ------------------------------
@@ -864,7 +912,12 @@ Python 装饰器
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
 7.3 针对关键字和默认泛化
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
+
+7.4 实现细节
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-# class 3
 
 """
@@ -118,5 +117,3 @@ if __name__ == "__main__":
 
     f = Fetcher()
     f.process("http://notfound.com")
-
-    
