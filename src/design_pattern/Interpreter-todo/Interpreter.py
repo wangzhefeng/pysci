@@ -119,7 +119,7 @@ def testCalculator():
     newExp, expressionMap = getMapValue(expStr)
     calculator = Calculator(newExp)
     result = calculator.run(expressionMap)
-    print("运算结果为：" + expStr + "=" + str(result))
+    print("运算结果为：" + expStr + " = " + str(result))
 
 
 def getMapValue(expStr):
@@ -143,3 +143,7 @@ def getMapValue(expStr):
     var = var.strip()
     expressionMap[key] = float(var)
     return newExp, expressionMap
+
+
+if __name__ == "__main__":
+    testCalculator()
