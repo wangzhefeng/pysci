@@ -1,38 +1,36 @@
+import multiprocessing
 import os
 from multiprocessing import Pool
 from multiprocessing import Process
 
+print("当前进程ID:", os.getpid())
 
-def square_f(x):
-    return x * x
 
-def name_f(name):
-    print("hello", name)
+def action(name, *add):
+    """
+    定义一个函数，准备作为新进程的 target 参数
 
-def info(title):
-    print(title)
-    print("module name:", __name__)
-    print("parent process:", os.getppid())
-    print("process id:", os.getpid())
-
-def f(name):
-    info("function f")
-    print("hello", name)
+    Args:
+        name ([type]): [description]
+    """
+    print(name)
+    for arc in add:
+        print(f"{arc} -- 当前进程 {os.getpid()}")
 
 
 
 
 if __name__ == "__main__":
-    with Pool(5) as p:
-        print(p.map(square_f, [1, 2, 3]))
-
-    # Process class
-    p = Process(target = name_f, args = ("bob",))
-    p.start()
-    p.join()
-
-    # Process class
-    info("main line")
-    p = Process(target = f, args = ("bob",))
-    p.start()
-    p.join()
+    #定义为进程方法传入的参数
+    my_tuple = (
+        "http://c.biancheng.net/python/",
+        "http://c.biancheng.net/shell/",
+        "http://c.biancheng.net/java/"
+    )
+    # 创建子进程，执行 action 函数
+    my_process = Process(target = action, args = ("my_process 进程", *my_tuple))
+    # 启动子进程
+    my_process.start()
+    # 主进程执行该函数
+    action("主进程", *my_tuple)
+    print("CPU 核心数量: ", str(multiprocessing.cpu_count()))

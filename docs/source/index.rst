@@ -31,6 +31,7 @@ Welcome to pysci's documentation!
    python-data/python-data-file
    python-data/python-data-algorithms
    python-data/python-module
+   python-data/python-data-validation
 
 
 .. toctree::
@@ -77,7 +78,6 @@ Welcome to pysci's documentation!
    python-tool/python-tool-email
    python-tool/python-tool-py2so
    python-tool/python-tool-database
-   python-tool/python-tool-schedule
    python-tool/python-interview
    
 

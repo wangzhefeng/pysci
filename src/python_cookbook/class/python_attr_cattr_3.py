@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-# class 3
+# -*- coding: utf-8 -*-
 
 
+# class 3
 from attr import attrs, attrib, fields, validators
 from cattr import structure, unstructure
 from typing import List
