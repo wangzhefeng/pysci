@@ -1,172 +1,142 @@
-.. _header-n0:
 
 Python 编译
 ===============
 
-.. _header-n3:
+1.系统环境
+--------------------------------
 
-内容列表
---------
+   - 系统环境: Ubuntu 19.04
+   - Python 环境：Python 3.7.5
 
--  `系统环境 <#header-n15>`__
+2.安装Python依赖库
+--------------------------------
 
--  `安装Python依赖库 <#header-n21>`__
+   .. code:: shell
 
--  `写一个测试 demo <#header-n23>`__
+      $ sudo apt install python3-dev gcc
+      $ pip3 install cython
 
--  `对脚本进行编译 <#header-n54>`__
+3.写一个测试 demo
+--------------------------------
 
--  `运行加密后的文件 <#header-n61>`__
+新建加密脚本和测试脚本：
 
-.. _header-n15:
+   - ``python_test`` 项目目录
+   - ``test.py`` 待编译的 ``.py`` 脚本
+   - ``so_test.py`` 对 ``test.py`` 进行调用的脚本
+   - ``setup.py`` 对 ``test.py`` 执行编译的脚本
 
-系统环境
---------
+   .. code:: shell
 
--  系统环境: Ubuntu 19.04
+      $ mkdir python_test
+      $ cd python_test
+      $ touch test.py
+      $ touch so_test.py
+      $ touch setup.py
 
--  Python 环境：Python 3.7.5
+编译前项目目录：
 
-.. _header-n21:
+   .. code:: 
 
-安装Python依赖库
-----------------
+      python_test
+      ├── setup.py
+      ├── so_test.py
+      └── test.py
 
-.. code:: shell
+编写测试脚本：
 
-   $ sudo apt install python3-dev gcc
-   $ pip3 install cython
+   -  待编译 ``.py`` 脚本
 
-.. _header-n23:
+      .. code:: python
 
-写一个测试 demo
----------------
+         # test.py
 
-**新建加密脚本和测试脚本：**
+         import datetime
 
--  ``python_test`` 项目目录
+         class Today():
+            def get_time(self):
+               print(datetime.datetime.now())
 
--  ``test.py`` 待编译的 ``.py`` 脚本
+            def say(self):
+               print("Hello World!")
 
--  ``so_test.py`` 对 ``test.py`` 进行调用的脚本
+   -  对 ``test.py`` 进行调用的脚本
 
--  ``setup.py`` 对 ``test.py`` 执行编译的脚本
+      .. code:: python
 
-.. code:: shell
+         # so_test.py
 
-   $ mkdir python_test
-   $ cd python_test
-   $ touch test.py
-   $ touch so_test.py
-   $ touch setup.py
+         from test import Today
 
-**编译前项目目录：**
+         t = Today()
+         t.get_time()
+         t.say()
 
-.. code:: 
+   -  对 ``test.py`` 执行编译的脚本
 
-   python_test
-   ├── setup.py
-   ├── so_test.py
-   └── test.py
+      .. code:: python
 
-**编写测试脚本：**
+         # setup.py
 
--  待编译 ``.py`` 脚本
+         from distutils.core import setup
+         from Cython.Build import cythonize
 
-.. code:: python
+         setup(ext_modules = cythonize(["test.py",]))
 
-   # test.py
+编译前测试：
 
-   import datetime
+   .. code:: shell
 
-   class Today():
-       def get_time(self):
-           print(datetime.datetime.now())
+      $ python3 so_test.py
 
-       def say(self):
-           print("Hello World!")
+编译前测试输出结果：
 
--  对 ``test.py`` 进行调用的脚本
+   .. code:: 
 
-.. code:: python
+      2020-04-10 11:10:41.940473
+      Hello World!
 
-   # so_test.py
+3.对脚本进行编译
+----------------------------
 
-   from test import Today
+编译：
 
-   t = Today()
-   t.get_time()
-   t.say()
+   .. code:: shell
 
--  对 ``test.py`` 执行编译的脚本
+      $ cd ./python_test
+      $ python3 setup.py build_ext
 
-.. code:: python
+编译后项目目录:
 
-   # setup.py
+   .. code:: 
 
-   from distutils.core import setup
-   from Cython.Build import cythonize
+      python_test
+      ├── build
+      │   ├── lib.linux-x86_64-3.7
+      │   │   └── test.cpython-37m-x86_64-linux-gnu.so
+      │   └── temp.linux-x86_64-3.7
+      │       └── test.o
+      ├── setup.py
+      ├── so_test.py
+      ├── test.c
+      └── test.py
 
-   setup(ext_modules = cythonize(["test.py",]))
+   其中 ``test.cpython-37m-x86_64-linux-gnu.so`` 即为编译好的 ``.so`` 文件
 
-**编译前测试：**
+4.运行加密后的文件
+--------------------------------
 
-.. code:: shell
+   - 编译后测试
 
-   $ python3 so_test.py
+      .. code:: shell
 
-**编译前测试输出结果：**
+         $ mv ./bulid/lib.lib.linux-x86_64-3.7/test.cython-37m-x86_64-linux-gnu.so .
+         $ rm -rf test.py
+         $ python3 so_test.py
 
-.. code:: 
+   - 编译后测试输出结果
 
-   2020-04-10 11:10:41.940473
-   Hello World!
+      .. code:: 
 
-.. _header-n54:
-
-对脚本进行编译
---------------
-
-**编译：**
-
-.. code:: shell
-
-   $ cd ./python_test
-   $ python3 setup.py build_ext
-
-**编译后项目目录:**
-
-.. code:: 
-
-   python_test
-   ├── build
-   │   ├── lib.linux-x86_64-3.7
-   │   │   └── test.cpython-37m-x86_64-linux-gnu.so
-   │   └── temp.linux-x86_64-3.7
-   │       └── test.o
-   ├── setup.py
-   ├── so_test.py
-   ├── test.c
-   └── test.py
-
-其中 ``test.cpython-37m-x86_64-linux-gnu.so`` 即为编译好的 ``.so`` 文件
-
-.. _header-n61:
-
-运行加密后的文件
-----------------
-
-**编译后测试：**
-
-.. code:: shell
-
-   $ mv ./bulid/lib.lib.linux-x86_64-3.7/test.cython-37m-x86_64-linux-gnu.so .
-   $ rm -rf test.py
-   $ python3 so_test.py
-
-**编译后测试输出结果：**
-
-.. code:: 
-
-   2020-04-10 11:10:43.940473
-   Hello World!
+         2020-04-10 11:10:43.940473
+         Hello World!
