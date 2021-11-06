@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 
 # 引入 ABCMeta 和 abstractmethod 来定义抽象类和抽象方法

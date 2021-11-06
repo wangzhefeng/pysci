@@ -8,7 +8,7 @@ Python log
 
     .. code:: python
 
-        #!/usr/bin/env python
+        
         # -*- coding: utf-8 -*-
 
 
@@ -100,7 +100,7 @@ Python log
 
     .. code:: python
 
-        #!/usr/bin/env python
+        
         # -*- coding: utf-8 -*-
 
         from loguru import logger

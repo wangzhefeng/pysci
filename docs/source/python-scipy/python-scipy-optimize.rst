@@ -214,7 +214,7 @@ APIs 说明
 
 .. code:: python
 
-   #!/usr/bin/env python
+   
    # -*- coding: utf-8 -*-
 
    import logging
@@ -262,7 +262,7 @@ APIs 说明
 
 .. code:: python
 
-   #!/usr/bin/env python
+   
    # -*- coding: utf-8 -*-
 
    from scipy.optimize import minimize
@@ -417,7 +417,7 @@ APIs 说明
 
 .. code:: python
 
-   #!/usr/bin/env python
+   
    # -*- coding: utf-8 -*-
 
    from scipy import optimize as op

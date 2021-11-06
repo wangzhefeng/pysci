@@ -9,7 +9,7 @@ Numpy 高级技巧
 
 .. code-block:: python
 
-    #!/usr/bin/env python
+    
     # -*- coding: utf-8 -*-
 
 
