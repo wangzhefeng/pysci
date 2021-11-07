@@ -507,6 +507,66 @@ def test111():
     print(son7.add())
     print(son7.compare())
 
+# **********************************************
+# 12.多继承与 super() 用法
+# **********************************************
+class A:
+    """
+    经典类，支持多继承
+    """
+    def __init__(self) -> None:
+        print("A")
+    
+
+class B(A):
+    """
+    B 继承 A
+
+    Args:
+        A ([type]): [description]
+    """
+    def __init__(self) -> None:
+        """
+        B 类调用 A 的构造函数方法
+        """
+        A.__init__(self)
+        print("B")
+
+
+class C(B, A):
+    """
+    C 继承 B, A
+
+    Args:
+        B ([type]): [description]
+        A ([type]): [description]
+    """
+    def __init__(self):
+        """
+        C 调用 A, B 的 构造函数方法
+        """
+        A.__init__(self)
+        B.__init__(self) # 会调用 A 的 __init__ 两次
+        print("C")
+
+
+class NewA:
+    def __init__(self) -> None:
+        print("NewA")
+
+
+class NewB(NewA):
+    def __init__(self) -> None:
+        super(NewB, self).__init__()
+        print("NewB")
+
+
+class NewC(NewB, NewA):
+    def __init__(self) -> None:
+        super(NewC, self).__init__()
+        print("NewC")
+
+
 
 
 # 测试代码 main 方法
