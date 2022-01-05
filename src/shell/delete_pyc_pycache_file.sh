@@ -16,7 +16,7 @@
 
 
 # 删除全部 __pycache__, .pyc 文件
-sudo find . -type f -name "*.py[co]" -delete -or -type d -name "__pycache__" -delete
+sudo find . -type f -name "*.py[co]" -delete -or -type d -name "__pycache__" -delete 
 
 
 # ----------------------------------------------
