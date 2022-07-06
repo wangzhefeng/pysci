@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 
@@ -8,6 +7,8 @@ from Cython.Build import cythonize
 
 setup(
     name = "Hello world app",
-    ext_modules = cythonize("test.py"),
+    ext_modules = cythonize(
+        "test.py"
+    ),
 )
 
