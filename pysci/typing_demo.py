@@ -17,10 +17,6 @@ import os
 import sys
 
 
-# global variable
-GLOBAL_VARIABLE = None
-
-
 def variables():
     age: int = 1
     

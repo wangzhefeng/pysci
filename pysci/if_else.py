@@ -17,10 +17,9 @@ import os
 import sys
 
 
-# global variable
-GLOBAL_VARIABLE = None
-
-
+# ----------------------------
+# version 1
+# ----------------------------
 def get_discount(level):
     if level == 1:
         "大量计算代码"
@@ -41,6 +40,9 @@ def get_discount(level):
     return discount
 
 
+# ----------------------------
+# version 2
+# ----------------------------
 def parse_level_1():
     "大量计算代码"
     discount = 0.1
@@ -81,6 +83,7 @@ def parse_level_6():
     "大量计算代码"
     discount = 3 + 2 - 5 * 0.1
     return discount
+
 
 discount_map = {
     1: parse_level_1(),
