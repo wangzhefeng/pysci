@@ -1,0 +1,12 @@
+
+# -*- coding: utf-8 -*-
+
+__author__ = "wangzhefeng"
+
+
+from initdata import db
+import pickle
+
+dbfile = open('people-pickle', 'wb')
+pickle.dump(db, dbfile)
+dbfile.close()
