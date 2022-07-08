@@ -108,7 +108,7 @@ class Logger:
 
     def warn(self, message, color = FOREGROUND_YELLOW):
         # set_color(color)
-        self.logger.warn(message)
+        self.logger.warning(message)
         # set_color(FOREGROUND_WHITE)
 
     def error(self, message, color = FOREGROUND_RED):
@@ -125,14 +125,13 @@ class Logger:
 
 
 def main():
-    logyyx = Logger(path = "yyx.log", Clevel = logging.ERROR, Flevel = logging.DEBUG)
+    logyyx = Logger(path = "yyx", Clevel = logging.ERROR, Flevel = logging.DEBUG)
+
     logyyx.debug(message = "一个debug信息")
     logyyx.info(message = "一个info信息")
-    # logyyx.warn(message = "一个warning信息")
-    # logyyx.error(message = "一个error信息")
-    # logyyx.critical(message = "一个致命critical信息")
-
-
+    logyyx.warn(message = "一个warning信息")
+    logyyx.error(message = "一个error信息")
+    logyyx.critical(message = "一个致命critical信息")
 
 if __name__ == "__main__":
     main()
