@@ -41,7 +41,7 @@ class WashingMode(Observer):
     
     def update(self, waterHeater):
         if waterHeater.getTemperature() >= 50 and waterHeater.getTemperature() < 70:
-            print("水已烧好！温度正好，可以用来洗澡了。")
+            print("水已烧好！温度正好, 可以用来洗澡了。")
 
 
 class DrinkingMode(Observer):

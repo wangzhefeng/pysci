@@ -48,7 +48,7 @@ class Account(Observable):
 
     def __getRegion(self, ip):
         """
-        由IP地址获取地区信息，这里只是模拟，真实项目中应该调用IP地址解析服务
+        由IP地址获取地区信息, 这里只是模拟, 真实项目中应该调用IP地址解析服务
         :param ip:
         :return:
         """
@@ -62,7 +62,7 @@ class Account(Observable):
     def __isLongDistance(self, name, region):
         """
         计算本次登录与最近几次登录的地区差距
-        这里只是简单的用字符串匹配来模拟，真实的项目中应该用地理信息相关的服务
+        这里只是简单的用字符串匹配来模拟, 真实的项目中应该用地理信息相关的服务
         :param name:
         :param region:
         :return:

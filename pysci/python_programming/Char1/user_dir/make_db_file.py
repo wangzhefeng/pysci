@@ -20,7 +20,7 @@ def storeDbase(db, dbfilename = dbfilename):
 	dbfile.close()
 
 def loadDbase(dbfilename = dbfilename):
-	"解析数据 ，重新构建数据库"
+	"解析数据 , 重新构建数据库"
 	dbfile = open(dbfilename)
 	import sys
 	sys.stdin = dbfile

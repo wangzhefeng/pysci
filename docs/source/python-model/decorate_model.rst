@@ -8,7 +8,7 @@ Decorate Model
 
 
 
-- Component 是一个抽象类，代表具有某种功能(function)的组件
+- Component 是一个抽象类, 代表具有某种功能(function)的组件
 
     - ComponentImplA 是 Component 的具体的实现子类
 

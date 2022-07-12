@@ -52,10 +52,10 @@ def login(username, password):
             print('登录成功')
             break
         else:
-            print('请输入的的密码有误，请重新输入：')
+            print('请输入的的密码有误, 请重新输入：')
             login(username,password)
     else:
-        print('您输入的账户未注册，请先注册{}'.format(username))
+        print('您输入的账户未注册, 请先注册{}'.format(username))
         input_md5()
 
 input_md5()

@@ -21,14 +21,14 @@ class Visitor(metaclass = ABCMeta):
     def visit(self, data):
         """
         对数据对象的访问操作
-            - Visitor 的访问方法只有一个方法，是因为 Python 不支持方法的重载
+            - Visitor 的访问方法只有一个方法, 是因为 Python 不支持方法的重载
         """
         pass
 
 
 class ObjectStructure:
     """
-    数据结构的管理类，也是数据对象的一个容器，可遍历容器的所有元素
+    数据结构的管理类, 也是数据对象的一个容器, 可遍历容器的所有元素
     """
     def __init__(self):
         self.__datas = []

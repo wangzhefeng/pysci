@@ -120,7 +120,7 @@ class SolidState():
         return stateInfo < 0
 
     def behavior(self, context):
-        print("我性格高冷，当前体温", context._getStateInfo(), "℃，我坚如钢铁，彷如一冷血动物，请用我砸人，嘿嘿......")
+        print("我性格高冷, 当前体温", context._getStateInfo(), "℃, 我坚如钢铁, 彷如一冷血动物, 请用我砸人, 嘿嘿......")
 
 
 @singleton
@@ -135,7 +135,7 @@ class LiquidState():
         return (stateInfo >= 0 and stateInfo < 100)
 
     def behavior(self, context):
-        print("我性格温和，当前体温", context._getStateInfo(), "℃，我可滋润万物，饮用我可让你活力倍增......")
+        print("我性格温和, 当前体温", context._getStateInfo(), "℃, 我可滋润万物, 饮用我可让你活力倍增......")
 
 
 @singleton
@@ -150,7 +150,7 @@ class GaseousState():
         return stateInfo >= 100
 
     def behavior(self, context):
-        print("我性格热烈，当前体温", context._getStateInfo(), "℃，飞向天空是我毕生的梦想，在这你将看不到我的存在，我将达到我的境界......")
+        print("我性格热烈, 当前体温", context._getStateInfo(), "℃, 飞向天空是我毕生的梦想, 在这你将看不到我的存在, 我将达到我的境界......")
 
 
 # ------------------------------------

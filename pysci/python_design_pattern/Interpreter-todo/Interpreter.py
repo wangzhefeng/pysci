@@ -24,7 +24,7 @@ class VarExpression(Expressions):
 
 class SymbolExpression(Expressions):
     """
-    运算解析器，运算符的抽象类
+    运算解析器, 运算符的抽象类
     """
     def __init__(self, left, right):
         self._left = left
@@ -86,7 +86,7 @@ class Calculator:
     
     def parserText(self, expText):
         """
-        定义一个栈，处理运算的先后顺序
+        定义一个栈, 处理运算的先后顺序
         """
         stack = Stack()
         # 左右表达式

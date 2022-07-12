@@ -40,7 +40,7 @@ import xlrd
 
 ## xlwt
 
-> xlwt 可以用于写入新的 Excel 表格，或者在原表格基础上进行修改，但是 xlwt 仅限于 xls 格式
+> xlwt 可以用于写入新的 Excel 表格, 或者在原表格基础上进行修改, 但是 xlwt 仅限于 xls 格式
 
 ### xlwt 安装
 

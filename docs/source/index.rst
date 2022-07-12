@@ -8,23 +8,6 @@ Welcome to pysci's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents
-   
-   python
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: python-env
-
-   python-env/python-env
-   python-env/python-env-pip
-   python-env/python-env-conda
-   python-env/python-env-jupyter
-   
-   
-.. toctree::
-   :maxdepth: 2
    :caption: python-data
 
    python-data/python-data

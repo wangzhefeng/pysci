@@ -84,7 +84,7 @@ class HousingAgency:
         """
         print(self.getName(),
               "与房东", houseInfo.getOwnerName(),
-              "签订", houseInfo.getAddress(), "的房子的租赁合同，租期",
+              "签订", houseInfo.getAddress(), "的房子的租赁合同, 租期",
               period, "年。合同期内", self.getName(),
               "有权对其进行使用和转租！")
 
@@ -114,7 +114,7 @@ class HouseOwner:
 
 class Customer:
     """
-    用户，租房的贫下中农
+    用户, 租房的贫下中农
     """
     def __init__(self, name):
         self.__name = name
@@ -133,7 +133,7 @@ class Customer:
 
     def signContract(self, houseInfo, agency, period):
         print(self.getName(), "与中介", agency.getName(),
-              "签订", houseInfo.getAddress(), "的房子的租赁合同，租期",
+              "签订", houseInfo.getAddress(), "的房子的租赁合同, 租期",
               period, "年。合同期内", self.__name, "有权对其进行使用！")
 
 
@@ -159,9 +159,9 @@ def main():
         print()
 
         tony = Customer("Tony")
-        houseInfos = tony.findHouse("18 平方米左右，要有独立卫生间，要有窗户，最好朝南，有厨房更好！价位在 2000 元左右", myHome)
+        houseInfos = tony.findHouse("18 平方米左右, 要有独立卫生间, 要有窗户, 最好朝南, 有厨房更好！价位在 2000 元左右", myHome)
         print()
-        print("正在看房，寻找最合适的住巢......")
+        print("正在看房, 寻找最合适的住巢......")
         print()
         AppropriateHouse = tony.seeHouse(houseInfos)
         tony.signContract(AppropriateHouse, myHome, 1)

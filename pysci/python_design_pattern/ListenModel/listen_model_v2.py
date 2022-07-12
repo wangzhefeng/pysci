@@ -31,7 +31,7 @@ class Observable:
 
 
 class WaterHeater(Observable):
-    """热水器，战胜寒冬的有力武器"""
+    """热水器, 战胜寒冬的有力武器"""
 
     def __init__(self):
         super().__init__()
@@ -53,7 +53,7 @@ class WashingMode(Observer):
         if isinstance(observable, WaterHeater) and \
                 observable.getTemperature() > 50 and \
                 observable.getTemperature() < 70: \
-            print("水已烧好！温度正好，可以用来洗澡了。")
+            print("水已烧好！温度正好, 可以用来洗澡了。")
 
 
 class DrinkingMode(Observer):

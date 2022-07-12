@@ -52,12 +52,12 @@ def timeit_v1(func):
 
 def timeit_v2(func):
     """
-    定义一个计时器，传入一个函数，并返回另一个附加了计时功能的方法
+    定义一个计时器, 传入一个函数, 并返回另一个附加了计时功能的方法
 
     Args:
         func ([type]): [description]
     """
-    # 定义一个内嵌的包装函数，给传入的函数加上计时功能的包装
+    # 定义一个内嵌的包装函数, 给传入的函数加上计时功能的包装
     def wrapper():
         start = time.time()
         func()
@@ -86,7 +86,7 @@ class Rabbit:
         1.staticmethod: 把类中定义的实例方法变成静态方法
         2.classmethod: 把类中定义的实例方法变成类方法
         3.property: 把类中定义的实例方法变成类属性
-    由于模块里可以定义函数，所以静态方法和类方法的用处并不是太多，除非你想要完全的面向对象编程
+    由于模块里可以定义函数, 所以静态方法和类方法的用处并不是太多, 除非你想要完全的面向对象编程
     """
     def __init__(self, name: str) -> None:
         self._name = name
@@ -145,8 +145,8 @@ def timeit_v3(func):
     """
     functools 模块提供了两个装饰    
     wraps 装饰器：
-        1.函数有几个特殊属性比如函数名，在被装饰后，函数名会变成包装函数的名字 wrapper
-        2.如果希望使用反射，可能会导致意外的结果，这个装饰器可以解决这个问题，它能将装饰过的函数的特殊属性保留
+        1.函数有几个特殊属性比如函数名, 在被装饰后, 函数名会变成包装函数的名字 wrapper
+        2.如果希望使用反射, 可能会导致意外的结果, 这个装饰器可以解决这个问题, 它能将装饰过的函数的特殊属性保留
 
     Args:
         func ([type]): [description]
@@ -169,7 +169,7 @@ def foo_v4():
 def total_ordering(cls):
     """
     functools.total_ordering 装饰器的源码
-    它的作用是为了实现了至少 __it__, __le__, __gt__, __ge__ 其中一个的类加上其他的比较方法，这是一个类装饰器
+    它的作用是为了实现了至少 __it__, __le__, __gt__, __ge__ 其中一个的类加上其他的比较方法, 这是一个类装饰器
     Class decorator that fills in missing ordering methods
     """
     convert = {

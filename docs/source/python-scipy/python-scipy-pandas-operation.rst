@@ -22,7 +22,7 @@ Pandas 高级技巧
     print(df)
 
     # ----------------------
-    # 取两列中的非空数据的交集，pd.apply
+    # 取两列中的非空数据的交集, pd.apply
     # ----------------------
     def get_valid_value(col_x, col_y):
         if not pd.isna(col_x) and pd.isna(col_y):
@@ -83,7 +83,7 @@ Pandas 高级技巧
     # .index
     print(obj1.index)
 
-    # 2.索引，数组运算，字典函数in
+    # 2.索引, 数组运算, 字典函数in
     obj2 = Series([4, 7, -5, 3], index = ['d', 'b', 'a', 'c'])
     print(obj2)
     # 索引
@@ -124,7 +124,7 @@ Pandas 高级技巧
     #                               1.读入或生成数据表
     ########################################################################
     # 1.利用Python读取外部数据文件
-    ## 1.1 读取文本文件的数据，如txt文件和csv文件
+    ## 1.1 读取文本文件的数据, 如txt文件和csv文件
     #------------- Txt File ---------------------
     gapminderDataFiveYear1 = pd.read_table('https://www.stat.ubc.ca/~jenny/notOcto/STAT545A/examples/gapminder/data/gapminderDataFiveYear.txt', 
                                         sep = '\t', 
@@ -149,7 +149,7 @@ Pandas 高级技巧
     print(mtcars_csv.head())
     print(mtcars_csv.tail())
 
-    ## 1.2 读取电子表格文件，如Excel-(xlsx)文件
+    ## 1.2 读取电子表格文件, 如Excel-(xlsx)文件
     iris_xlsx = pd.read_excel('/home/wangzhefeng/project/data/iris.xlsx', 
                             sep = '', 
                             encoding = 'utf-8')
@@ -161,8 +161,8 @@ Pandas 高级技巧
     print(mtcars_xlsx.head())
     print(mtcars_xlsx.tail())
 
-    ## 1.3 读取统计软件生成的数据文件，如 SAS 数据集、SPSS 数据集等
-    ## 1.4 读取数据库数据，如MySQL数据、SQL Server数据
+    ## 1.3 读取统计软件生成的数据文件, 如 SAS 数据集、SPSS 数据集等
+    ## 1.4 读取数据库数据, 如MySQL数据、SQL Server数据
     # ---------------- pymssql(SQL Server) -----------------
     import pymssql
     conn = pymssql.connect(host = 'localhost',
@@ -211,7 +211,7 @@ Pandas 高级技巧
     print(result)
     asjson = json.dumps(result)
     print(asjson)
-    # 外层键为列名，内层键为行名，可以进行转置
+    # 外层键为列名, 内层键为行名, 可以进行转置
     siblings = DataFrame(result['siblings'], columns = ['name', 'age', 'pet'])
     print(siblings)
 
@@ -336,7 +336,7 @@ Pandas 高级技巧
     print(df_inner.reset_index())
 
 
-    ## 4.3 排序(按索引，按数值)
+    ## 4.3 排序(按索引, 按数值)
     # Series
     obj = Series(range(4), index = ['d', 'a', 'b', 'c'])
     print(obj)
@@ -410,7 +410,7 @@ Pandas 高级技巧
     #################################################################
     #                         6.数据筛选
     #################################################################
-    ## 6.1 按条件筛选（与，或，非）
+    ## 6.1 按条件筛选（与, 或, 非）
     print(df_inner.loc[(df_inner['age'] > 25) & (df_inner['city'] == 'beijing'), 
         ['id','city','age','category','gender']])
 
@@ -535,7 +535,7 @@ Pandas 高级技巧
 
     ## 切片
     obj[1:2]
-    obj['b':'c'] # 与obj[1:2]不同，包含 obj['c']
+    obj['b':'c'] # 与obj[1:2]不同, 包含 obj['c']
 
     # DataFrame
 

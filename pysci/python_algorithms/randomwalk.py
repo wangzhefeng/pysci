@@ -1,7 +1,7 @@
 import random
 """
-随机漫步生成是无规则的，是系统自行选择的结果.
-根据设定的规则自定生成，上下左右的方位，每次所经过的方向路径.
+随机漫步生成是无规则的, 是系统自行选择的结果.
+根据设定的规则自定生成, 上下左右的方位, 每次所经过的方向路径.
 """
 
 
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         #隐藏坐标轴
         plt.axes().get_xaxis().set_visible(False)
         plt.axes().get_yaxis().set_visible(False)
-        # 绘制散点图，并突出起点（0,0）和终点
+        # 绘制散点图, 并突出起点（0,0）和终点
         plt.scatter(rw.x_lab, rw.y_lab, c = list(range(rw.num_point)), cmap = plt.cm.YlOrBr, edgecolors = None, s = 15)
         plt.scatter(0, 0, c = 'green', edgecolors = None, s = 100)
         plt.scatter(rw.x_lab[-1], rw.y_lab[-1], c = 'red', edgecolors = None, s = 100)

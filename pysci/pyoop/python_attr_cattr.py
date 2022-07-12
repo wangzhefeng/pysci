@@ -29,7 +29,7 @@ class Color_1(object):
     
     def __repr__(self):
         """
-        在 Python 里面想要定义某个对象本身的打印输出结果的时候，需要实现它 __repr__ 方法
+        在 Python 里面想要定义某个对象本身的打印输出结果的时候, 需要实现它 __repr__ 方法
         """
         return f"{self.__class__.__name__}(r={self.r}, g={self.g}, b={self.b})"
     
@@ -102,7 +102,7 @@ def test_color():
 @attrs
 class Point_1(object):
     """
-    Point 数据结构，包含 x, y 的坐标
+    Point 数据结构, 包含 x, y 的坐标
     """
     x = attrib()
     y = attrib()
@@ -120,7 +120,7 @@ class Point_2(object):
 @attrs
 class Point_3(object):
     """
-    设置一个初始值，一直固定不变
+    设置一个初始值, 一直固定不变
     """
     x = attrib(init = False, default = 10)
     y = attrib(default = 100)

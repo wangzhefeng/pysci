@@ -36,7 +36,7 @@ Python log
         ELASTIC_SEARCH_HOST = 'eshost'    # Elasticsearch Host
         ELASTIC_SEARCH_PORT = 9200        # Elasticsearch Port
         ELASTIC_SEARCH_INDEX = 'runtime'  # Elasticsearch Index Name
-        APP_ENVIRONMENT = 'dev'           # 运行环境，如测试环境还是生产环境
+        APP_ENVIRONMENT = 'dev'           # 运行环境, 如测试环境还是生产环境
 
         def get_logger(name=None):
             """
@@ -64,7 +64,7 @@ Python log
 
             # 输出到文件
             if LOG_ENABLED and LOG_TO_FILE:
-                # 如果路径不存在，创建日志文件文件夹
+                # 如果路径不存在, 创建日志文件文件夹
                 log_dir = dirname(log_path)
                 if not exists(log_dir): makedirs(log_dir)
                 # 添加 FileHandler
@@ -120,7 +120,7 @@ Python log
             logger.debug("this is a debug message")
             logger.info('If you are using Python {}, prefer {feature} of course!', 3.6, feature = 'f - strings')
             
-            # 删除添加的 sink，重新刷新 log 文件并写入新的内容
+            # 删除添加的 sink, 重新刷新 log 文件并写入新的内容
             # logger.remove(trace)
             logger.debug("this is another debug message")
 

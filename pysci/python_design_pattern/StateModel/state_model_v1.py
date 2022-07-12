@@ -73,7 +73,7 @@ class SoildState(State):
         super().__init__(name)
 
     def behavior(self, water):
-        print("我性格高冷，当前体温" + str(water.getTemperature()) + "℃，我坚如钢铁，彷如一冷血动物，请用我砸人，嘿嘿......")
+        print("我性格高冷, 当前体温" + str(water.getTemperature()) + "℃, 我坚如钢铁, 彷如一冷血动物, 请用我砸人, 嘿嘿......")
 
 
 class LiquidState(State):
@@ -84,7 +84,7 @@ class LiquidState(State):
         super().__init__(name)
 
     def behavior(self, water):
-        print("我性格温和，当前体温" + str(water.getTemperature()) + "℃，我可滋润万物，饮用我可让你活力倍增......")
+        print("我性格温和, 当前体温" + str(water.getTemperature()) + "℃, 我可滋润万物, 饮用我可让你活力倍增......")
 
 
 class GaseousState(State):
@@ -95,7 +95,7 @@ class GaseousState(State):
         super().__init__(name)
 
     def behavior(self, water):
-        print("我性格热烈，当前体温" + str(water.getTemperature()) + "℃，飞向天空是我毕生的梦想，在这你将看不到我的存在，我将达到我的境界......")
+        print("我性格热烈, 当前体温" + str(water.getTemperature()) + "℃, 飞向天空是我毕生的梦想, 在这你将看不到我的存在, 我将达到我的境界......")
 
 
 # ------------------------------------

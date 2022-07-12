@@ -32,7 +32,7 @@ class Engineer(Person):
         return self.__skill
 
     def wear(self):
-        print("我是" + self.getSkill() + "工程师" + self._name, end = "，")
+        print("我是" + self.getSkill() + "工程师" + self._name, end = ", ")
         super().wear()
 
 
@@ -48,7 +48,7 @@ class Teacher(Person):
         return self.__title
 
     def wear(self):
-        print("我是" + self._name + self.getTitle(), end = "，")
+        print("我是" + self._name + self.getTitle(), end = ", ")
         super().wear()
 
 

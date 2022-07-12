@@ -8,7 +8,7 @@ print("当前进程ID:", os.getpid())
 
 def action(name, *add):
     """
-    定义一个函数，准备作为新进程的 target 参数
+    定义一个函数, 准备作为新进程的 target 参数
 
     Args:
         name ([type]): [description]
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         "http://c.biancheng.net/shell/",
         "http://c.biancheng.net/java/"
     )
-    # 创建子进程，执行 action 函数
+    # 创建子进程, 执行 action 函数
     my_process = Process(target = action, args = ("my_process 进程", *my_tuple))
     # 启动子进程
     my_process.start()

@@ -15,14 +15,14 @@ class ReaderView(metaclass = ABCMeta):
 
     def prePage(self):
         """
-        模板方法，往前翻一页
+        模板方法, 往前翻一页
         """
         content = self.getPage(self.__curPageNum - 1)
         self._displayPage(content)
 
     def nextPage(self):
         """
-        模板方法，往后翻一页
+        模板方法, 往后翻一页
         """
         content = self.getPage(self.__curPageNum + 1)
         self._displayPage(content)

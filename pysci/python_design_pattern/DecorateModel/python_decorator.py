@@ -36,7 +36,7 @@ def loggingDecorator(func):
 
 @loggingDecorator
 def showInfo(*args, **kwargs):
-    logging.info("这是一个测试函数，参数: %s", (args, kwargs))
+    logging.info("这是一个测试函数, 参数: %s", (args, kwargs))
 
 @loggingDecorator
 def showMin(a, b):
@@ -45,7 +45,7 @@ def showMin(a, b):
 
 
 class ClassDecorator:
-    """类装饰器，记录一个类被实例化的次数"""
+    """类装饰器, 记录一个类被实例化的次数"""
     def __init__(self, func):
         self.__numOfCall = 0
         self.__func = func

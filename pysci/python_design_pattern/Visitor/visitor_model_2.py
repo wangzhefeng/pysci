@@ -77,7 +77,7 @@ class GenderCounter(Visitor):
             print("Not support this type")
 
     def getInfo(self):
-        print(f"{self.__maleCat} 只雄猫，{self.__femaleCat} 只雌猫，{self.__maleDog} 只雄狗，{self.__femaleDog} 只雌狗.")
+        print(f"{self.__maleCat} 只雄猫, {self.__femaleCat} 只雌猫, {self.__maleDog} 只雄狗, {self.__femaleDog} 只雌狗.")
 
 
 class WeightCounter(Visitor):

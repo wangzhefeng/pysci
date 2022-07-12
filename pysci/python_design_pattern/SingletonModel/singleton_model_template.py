@@ -47,7 +47,7 @@ class Singleton2(type):
 
     def __call__(cls, *args, **kwargs):
         """
-        控制对象的创建过程，如果 cls._instance 为 None，则创建，否则直接返回
+        控制对象的创建过程, 如果 cls._instance 为 None, 则创建, 否则直接返回
         """
         if cls._instance is None:
             cls._instance = super().__call__(*args, **kwargs)
