@@ -13,7 +13,7 @@
 
 .. contents::
 
-.. _header-n6:
+
 
 1.Python Tuple赋值问题
 ======================
@@ -38,7 +38,7 @@
    > Error: Exception
    > End
 
-.. _header-n13:
+
 
 2.python数据结构
 ================
@@ -89,7 +89,6 @@
 
 -  列表、字典可以动态地扩大克缩小；
 
-.. _header-n89:
 
 3.python buildin functions
 ==========================
@@ -339,7 +338,6 @@
    isinstance(a, int)
    isinstance(a, [str, int, list])
 
-.. _header-n287:
 
 4.python collections 库
 =======================
@@ -354,32 +352,31 @@
    # Counts the frequency of each character
    y = Counter("Hello World!")
 
-.. _header-n290:
 
 5.Python lambda表达式
 =====================
 
-.. _header-n291:
+
 
 lambda表达式
 ------------
 
-.. _header-n292:
+
 
 为什么使用lambda表达式
 ----------------------
 
-.. _header-n293:
+
 
 嵌套lambda表达式和作用域
 ------------------------
 
-.. _header-n294:
+
 
 回调
 ----
 
-.. _header-n296:
+
 
 6.Python OOP
 ============
@@ -388,7 +385,6 @@ lambda表达式
 
    -  类就是一些函数的包，这些函数大量使用并处理内置对象类型。不过类的设计是为了创建和管理新的对象，并且他们也支持继承，这是一种代码定制和复用的机制；
 
-.. _header-n306:
 
 7.Python单例(singleton Pattern)模式
 ===================================
@@ -416,7 +412,6 @@ lambda表达式
 
       -  实现单例模式
 
-.. _header-n335:
 
 8.信息熵，信息增益，信息增益率，Gini指数
 ========================================
@@ -430,14 +425,12 @@ lambda表达式
 
    -  信息熵越小表示越确定，随机性越小；
 
-.. _header-n348:
 
 信息熵、条件熵、联合熵、互信息、相对熵
 --------------------------------------
 
-**信息熵**\ ：
+**信息熵**:
 
-.. _header-n352:
 
 9.Python 中的\ `深拷贝和浅拷贝 <https://docs.python.org/3.6/library/copy.html>`__
 =================================================================================
@@ -511,7 +504,6 @@ lambda表达式
    print('c = ', c)
    print('d = ', d)
 
-.. _header-n398:
 
 浅拷贝
 ------
@@ -524,7 +516,6 @@ lambda表达式
 
 浅拷贝仅仅对对象自身创建了一份拷贝，而没有再进一步处理对象中包含的值，因此使用浅拷贝的典型使用场景是：\ **对象自身发生改变的同时需要保持对象中的值完全相同**\ ，比如：list排序。
 
-.. _header-n404:
 
 深拷贝
 ------
@@ -535,12 +526,10 @@ lambda表达式
 
    使用\ ``__copy__``\ 和\ ``__deepcopy``\ 可以完成对一个对象拷贝的定制
 
-.. _header-n411:
 
 10.介绍一下SVM的原理
 ====================
 
-.. _header-n413:
 
 11.Python序列反转
 =================
@@ -580,14 +569,12 @@ lambda表达式
    S_reversed_v2 = "".join(reversed(S))
    print(S_reversed_v1, S_reversed_v2)
 
-.. _header-n430:
 
 12.Python字典反转
 =================
 
    字典的key和value对换
 
-.. _header-n433:
 
 压缩器
 ------
@@ -610,7 +597,6 @@ lambda表达式
    D_reversed_v1 = dict(zip(D.values(), D.keys()))
    print(D_reversed_v1)
 
-.. _header-n435:
 
 字典解析
 --------
@@ -620,7 +606,6 @@ lambda表达式
    D_reversed_v2 = {v: k for k, v in D.items()}
    print(D_reversed_v2)
 
-.. _header-n438:
 
 13.Python求众数
 ===============
@@ -636,7 +621,6 @@ lambda表达式
    np.random.seed(123)
    nums = np.random.randint(low = 1, high = 10, size = 10)
 
-.. _header-n446:
 
 numpy.argmax(np.bincount())
 ---------------------------
@@ -646,7 +630,6 @@ numpy.argmax(np.bincount())
    nums_mode_v1 = np.argmax(np.bincount(nums))
    print(nums_mode_v1)
 
-.. _header-n448:
 
 scipy.stats
 -----------
@@ -657,7 +640,6 @@ scipy.stats
    nums_mode_v2 = stats.mode(nums)[0][0]
    print(nums_mode_v2)
 
-.. _header-n450:
 
 14.Pandas DataFrame合并,连接 & Numpy ndarray合并, 连接
 ======================================================
@@ -696,7 +678,6 @@ scipy.stats
 
    -  c\_
 
-.. _header-n489:
 
 15.字符串拼接
 =============
@@ -709,7 +690,6 @@ scipy.stats
 
    -  "".join()
 
-.. _header-n500:
 
 +=
 --
@@ -725,7 +705,6 @@ scipy.stats
        BigString += s + ' '
    print(BigString)
 
-.. _header-n503:
 
 % / .format()
 -------------
@@ -737,7 +716,6 @@ scipy.stats
    print(S1)
    print(S2)
 
-.. _header-n505:
 
 "".join()
 ---------
@@ -747,7 +725,6 @@ scipy.stats
    S = " ".join(pieces)
    print(S)
 
-.. _header-n508:
 
 16.随机数生成 (函数参数)
 ========================
@@ -775,7 +752,6 @@ scipy.stats
    # np.random.chisquare(5)
    # np.random.gamma(5)
 
-.. _header-n512:
 
 17 Python-Numpy ``.ravel()``, ``.flatten()``, ``.flat()``
 =========================================================
@@ -872,7 +848,6 @@ scipy.stats
    f1.next()
    f1.copy()
 
-.. _header-n572:
 
 18 解析字符串
 =============

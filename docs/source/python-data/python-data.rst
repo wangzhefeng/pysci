@@ -1,9 +1,7 @@
-.. _header-n2:
 
 Python Data
 ===========
 
-.. _header-n3:
 
 
 1.Python 数字
@@ -13,7 +11,6 @@ Python Data
 2.Python String
 ------------------------
 
-.. _header-n5:
 
 .. code:: python
 
@@ -64,7 +61,6 @@ Python Data
    print(int("42") + 1)
 
 
-.. _header-n8:
 
 
 3.Python 列表
@@ -78,7 +74,6 @@ Python Data
 5.Python 字典
 ------------------
 
-.. _header-n9:
 
 1.字典中的键映射多个值
 ~~~~~~~~~~~~~~~~~~~~~~

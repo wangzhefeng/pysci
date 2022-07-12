@@ -1,9 +1,7 @@
-.. _header-n0:
 
 Python 正则表达式
 =================
 
-.. _header-n3:
 
 1. Python ``re`` 库介绍
 -----------------------
@@ -18,7 +16,6 @@ Python ``re`` 库主要定义了：
 
 -  1 个异常
 
-.. _header-n14:
 
 2. Python ``re`` 库使用
 -----------------------
@@ -27,7 +24,6 @@ Python ``re`` 库主要定义了：
 
    import re
 
-.. _header-n16:
 
 2.1 ``re`` 库常量
 ~~~~~~~~~~~~~~~~~
@@ -53,7 +49,6 @@ Python ``re`` 库主要定义了：
 
       -  ``re.DEBUG``
 
-.. _header-n39:
 
 (1) ``re``\ 库源码：
 ^^^^^^^^^^^^^^^^^^^^
@@ -95,7 +90,6 @@ Python ``re`` 库主要定义了：
            return res
        __str__ = object.
 
-.. _header-n41:
 
 (2) ``re.IGNORECASE`` 使用：
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -117,7 +111,6 @@ Python ``re`` 库主要定义了：
    print("默认模式：", re.findall(pattern, text))
    print("忽略大小写模式：", re.findall(pattern, text, re.I))
 
-.. _header-n57:
 
 (3) ``re.ASCII`` 使用：
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -141,7 +134,6 @@ Python ``re`` 库主要定义了：
    print("Unicode:", re.findall(pattern, text))
    print("ASCII:", re.findall(pattern, text, re.A))
 
-.. _header-n72:
 
 (4) ``re.DOTALL`` 使用
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -163,22 +155,18 @@ Python ``re`` 库主要定义了：
    print("默认模式:", re.findall(pattern, text))
    print(".匹配所有模式:", re.findall(pattern, text, re.S))
 
-.. _header-n87:
 
 2.2 ``re`` 库函数
 ~~~~~~~~~~~~~~~~~
 
-.. _header-n90:
 
 2.4 ``re`` 库异常
 ~~~~~~~~~~~~~~~~~
 
-.. _header-n92:
 
 2.5 正则对象 ``pattern``
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _header-n96:
 
 Reference
 ~~~~~~~~~

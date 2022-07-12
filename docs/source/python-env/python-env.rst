@@ -194,7 +194,7 @@ Python Env
       # 安装验证
       $ python3.7 --version
 
-2.2.3 安装完成后，修改 python3 的默认指向
+2.2.3 安装完成后, 修改 python3 的默认指向
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    .. code-block:: shell
@@ -243,7 +243,7 @@ Python Env
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 2.3.1 管网下载安装、手动配置环境变量
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    - https://www.python.org/downloads/windows/
 
@@ -251,9 +251,9 @@ Python Env
    
    注意：
 
-    - 升级系统 pip 可能会导致问题。如果不是在虚拟环境中，
+    - 升级系统 pip 可能会导致问题。如果不是在虚拟环境中, 
       请针对下面的命令使用 ``python3 -m pip``。
-      这样可以确保您升级并使用 Python pip，而不是系统 pip。
+      这样可以确保您升级并使用 Python pip, 而不是系统 pip。
 
 2.3.2 Chocolatey 安装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -477,15 +477,15 @@ Location of Environments and Project Directories
 
 .. note:: 
 
-   这里只介绍 Linux 和 macOS 的使用，对于 Windows 用户参考 https://github.com/pyenv-win/pyenv-win
+   这里只介绍 Linux 和 macOS 的使用, 对于 Windows 用户参考 https://github.com/pyenv-win/pyenv-win
 
 3.5.1 安装 pyenv
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. 构建依赖
 
-   在安装 pyenv 之前，需要安装一些操作系统特定的依赖项，这些依赖项主要是用 C 编写的开发应用程序，
-   并且是必需的，因为 pyenv 是通过从源码构建来安装 Python 的
+   在安装 pyenv 之前, 需要安装一些操作系统特定的依赖项, 这些依赖项主要是用 C 编写的开发应用程序, 
+   并且是必需的, 因为 pyenv 是通过从源码构建来安装 Python 的
 
    - Ubuntu/Debian
    
@@ -524,7 +524,7 @@ Location of Environments and Project Directories
          $ brew install openssl readline sqlite3 xz zlib
          $ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 
-2. 安装 pyenv(使用 pyenv-installer 项目)，安装内容:
+2. 安装 pyenv(使用 pyenv-installer 项目), 安装内容:
 
    - 1.pyenv: pyenv 应用
    - 2.pyenv-virtualenv: pyenv 和虚拟环境的插件
@@ -563,7 +563,7 @@ Location of Environments and Project Directories
          $ pyenv install --list | grep "jython"
          $ pyenv install --list
 
-2. 确定要安装的 Python 版本后，安装 Python
+2. 确定要安装的 Python 版本后, 安装 Python
 
       .. code-block:: shell
       
@@ -685,7 +685,7 @@ Location of Environments and Project Directories
 
 3. 同时激活多个版本
 
-   假设 project2 使用 3.8 中的实验性功能，但仍然想让代码适用于 Pyton3.6 
+   假设 project2 使用 3.8 中的实验性功能, 但仍然想让代码适用于 Pyton3.6 
 
    .. code-block:: shell
       
@@ -741,7 +741,7 @@ Location of Environments and Project Directories
    .. code-block:: shell
    
       # 设置特定与应用程序的 Python 版本
-      # 此命令会在当前目录中创建一个 .python-version 文件，进入该目录会自动激活该文件中的 Python 版本
+      # 此命令会在当前目录中创建一个 .python-version 文件, 进入该目录会自动激活该文件中的 Python 版本
       $ pyenv local 3.6
 
 7. ``shell``
@@ -1101,9 +1101,9 @@ Location of Environments and Project Directories
 
 .. note:: 注意:
 
-    升级系统 pip 可能会导致问题。如果不是在虚拟环境中，
+    升级系统 pip 可能会导致问题。如果不是在虚拟环境中, 
     请针对下面的命令使用 ``python3 -m pip``。
-    这样可以确保您升级并使用 Python pip，而不是系统 pip。
+    这样可以确保您升级并使用 Python pip, 而不是系统 pip。
 
 
 

@@ -1,9 +1,6 @@
-.. _header-n0:
 
 Python 数值优化
 ========================
-
-.. _header-n3:
 
 数值优化
 ------------------------
@@ -57,8 +54,6 @@ Python 数值优化
       -  混合鲍威尔
 
       -  莱文贝格-马夸特
-
-.. _header-n62:
 
 APIs 说明
 -------------------------------
@@ -142,7 +137,6 @@ APIs 说明
                                niter_success = None, 
                                seed = None)
 
-.. _header-n124:
 
 1.多元标量函数的无约束最小化(minimize)
 --------------------------------------
@@ -171,12 +165,11 @@ APIs 说明
 
    -  ``method = 'trust-exact'``
 
-.. _header-n159:
 
 示例
 ~~~~
 
-官方示例：
+官方示例: 
 
 .. code:: python
 
@@ -210,7 +203,7 @@ APIs 说明
    bnds = ((0, None), (0, None))
    res = minimize(fun, (2, 0), method = "SLSQP", bounds = bnds, constraints = cons)
 
-示例2：
+示例2: 
 
 .. code:: python
 
@@ -224,7 +217,7 @@ APIs 说明
 
    def fun(args):
        """
-       待优化函数：[1 / x + x]
+       待优化函数: [1 / x + x]
        """
        a = args
        v = lambda x: a / x[0] + x[0]
@@ -234,7 +227,7 @@ APIs 说明
 
    def con(args):
        """
-       约束条件：
+       约束条件: 
            None
        """
        pass
@@ -251,14 +244,14 @@ APIs 说明
 
    def main():
        result = optimizer()
-       print("优化得到的目标函数最小值：", result.fun)
-       print("优化状态：", result.success)
-       print("优化路径：", result.x)
+       print("优化得到的目标函数最小值: ", result.fun)
+       print("优化状态: ", result.success)
+       print("优化路径: ", result.x)
 
    if __name__ == "__main__":
        main()
 
-示例3：
+示例3: 
 
 .. code:: python
 
@@ -269,13 +262,13 @@ APIs 说明
    import numpy as np
 
    """
-   目标函数： min[(2+x1)/(1+x2) -3 * x1 + 4 * x3]
-   约束条件： x1, x2, x3 的范围都在 [0.1, 0.9] 范围内
+   目标函数:  min[(2+x1)/(1+x2) -3 * x1 + 4 * x3]
+   约束条件:  x1, x2, x3 的范围都在 [0.1, 0.9] 范围内
    """
 
    def fun(args):
        """
-       待优化函数：[(2+x1)/(1+x2) -3 * x1 + 4 * x3]
+       待优化函数: [(2+x1)/(1+x2) -3 * x1 + 4 * x3]
        """
        a, b, c, d = args
        v = lambda x: (a + x[0]) / (b + x[1]) - c * x[0] + d * x[2]
@@ -285,7 +278,7 @@ APIs 说明
 
    def con(args):
        """
-       约束条件：
+       约束条件: 
            x1 - x1_min >= 0
            x1_max - x1 >= 0
            x2 - x2_min >= 0
@@ -349,14 +342,12 @@ APIs 说明
 
    def main():
        result = optimizer()
-       print("优化得到的目标函数最小值：", result.fun)
-       print("优化状态：", result.success)
-       print("优化路径：", result.x)
+       print("优化得到的目标函数最小值: ", result.fun)
+       print("优化状态: ", result.success)
+       print("优化路径: ", result.x)
 
    if __name__ == "__main__":
        main()
-
-.. _header-n167:
 
 2.多元标量函数的约束最小化(minimize)
 ------------------------------------
@@ -377,17 +368,17 @@ APIs 说明
 
    -  ``method = "SLSQP"``
 
-.. _header-n188:
+
 
 3.全局最优
 ----------
 
-.. _header-n190:
+
 
 4.最小二乘最小化
 ----------------
 
-.. _header-n192:
+
 
 5.单变量函数最小化器
 --------------------
@@ -400,17 +391,17 @@ APIs 说明
 
    -  ``method = "bounded"``
 
-.. _header-n206:
+
 
 6.自定义最小化器
 ----------------
 
-.. _header-n208:
+
 
 7.寻根
 ------
 
-.. _header-n210:
+
 
 8.线性规划
 ----------

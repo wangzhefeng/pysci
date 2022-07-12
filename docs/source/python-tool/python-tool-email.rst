@@ -1,9 +1,7 @@
-.. _header-n0:
 
 Python email
 ============
 
-.. _header-n4:
 
 test 1
 ------
@@ -115,7 +113,6 @@ test 1
    if __name__ == "__main__":
    	main()
 
-.. _header-n7:
 
 test 2
 ------
