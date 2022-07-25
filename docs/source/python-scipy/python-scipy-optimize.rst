@@ -5,7 +5,7 @@ Python 数值优化
 数值优化
 ------------------------
 
-   scipy.optimize 提供了多种常用的优化算法。
+   scipy.optimize 提供了多种常用的优化算法. 
 
 1. 无约束和约束多元标量函数
 
@@ -424,8 +424,8 @@ APIs 说明
        x1, x2, x3 >= 0
 
    scipy.optimize.linprog(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None, bounds=None, method='simplex', callback=None, options=None)
-   - c 函数系数数组, 最大化参数为c, 最小化为-c, 函数默认计算最小化。
-   - A_ub 不等式未知量的系数, 默认转成 <= , 如果原式是 >= 系数乘负号。
+   - c 函数系数数组, 最大化参数为c, 最小化为-c, 函数默认计算最小化. 
+   - A_ub 不等式未知量的系数, 默认转成 <= , 如果原式是 >= 系数乘负号. 
    - B_ub 对应A_ub不等式的右边结果
    - A_eq 等式的未知量的系数
    - B_eq 等式的右边结果

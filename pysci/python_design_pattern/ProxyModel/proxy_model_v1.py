@@ -29,8 +29,8 @@ class TonyReception(ReceiveParcel):
         return self.__phoneNum
     
     def receive(self, parcelContent):
-        print("货物主人：%s, 手机号：%s" % (self.getName(), self.getPhoneNum()))
-        print("接收到一个包裹, 包裹内容：%s" % parcelContent)
+        print("货物主人: %s, 手机号: %s" % (self.getName(), self.getPhoneNum()))
+        print("接收到一个包裹, 包裹内容: %s" % parcelContent)
 
 class WendyReception(ReceiveParcel):
     """Wendy 代收"""
@@ -42,7 +42,7 @@ class WendyReception(ReceiveParcel):
         print("我是%s的朋友, 我来帮他代收快递！" % (self.__receiver.getName() + ""))
         if self.__receiver is not None:
             self.__receiver.receive(parcelContent)
-        print("代收人：%s" % self.getName())
+        print("代收人: %s" % self.getName())
 
 
 def testReceiveParcel():
@@ -51,7 +51,7 @@ def testReceiveParcel():
     tony.receive("雪地靴")
     print()
 
-    print("Wendy代收：")
+    print("Wendy代收: ")
     wendy = WendyReception("Wendy", tony)
     wendy.receive("雪地靴")
 

@@ -4,7 +4,7 @@
 
 class Singleton1(object):
     """
-    单例实现方式一：
+    单例实现方式一: 
         重写 __new__ 和 __init__ 方法
     """
     __instance = None
@@ -37,7 +37,7 @@ print("tony == karry:", tony == karry)
 
 class Singleton2(type):
     """
-    单例实现方式二：
+    单例实现方式二: 
         自定义 metaclass 的方法
     """
     def __init__(cls, what, bases = None, dict = None):

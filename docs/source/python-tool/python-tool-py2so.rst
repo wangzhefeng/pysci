@@ -6,7 +6,7 @@ Python 编译
 --------------------------------
 
    - 系统环境: Ubuntu 19.04
-   - Python 环境：Python 3.7.5
+   - Python 环境: Python 3.7.5
 
 2.安装Python依赖库
 --------------------------------
@@ -19,7 +19,7 @@ Python 编译
 3.写一个测试 demo
 --------------------------------
 
-新建加密脚本和测试脚本：
+新建加密脚本和测试脚本: 
 
    - ``python_test`` 项目目录
    - ``test.py`` 待编译的 ``.py`` 脚本
@@ -34,7 +34,7 @@ Python 编译
       $ touch so_test.py
       $ touch setup.py
 
-编译前项目目录：
+编译前项目目录: 
 
    .. code:: 
 
@@ -43,7 +43,7 @@ Python 编译
       ├── so_test.py
       └── test.py
 
-编写测试脚本：
+编写测试脚本: 
 
    -  待编译 ``.py`` 脚本
 
@@ -83,13 +83,13 @@ Python 编译
 
          setup(ext_modules = cythonize(["test.py",]))
 
-编译前测试：
+编译前测试: 
 
    .. code:: shell
 
       $ python3 so_test.py
 
-编译前测试输出结果：
+编译前测试输出结果: 
 
    .. code:: 
 
@@ -99,7 +99,7 @@ Python 编译
 3.对脚本进行编译
 ----------------------------
 
-编译：
+编译: 
 
    .. code:: shell
 

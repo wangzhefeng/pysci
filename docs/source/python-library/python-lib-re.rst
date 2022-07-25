@@ -8,7 +8,7 @@ Python 正则表达式
 
    ``re`` 库是 Python 处理文本的标准库
 
-Python ``re`` 库主要定义了：
+Python ``re`` 库主要定义了: 
 
 -  9 个常量
 
@@ -28,8 +28,8 @@ Python ``re`` 库主要定义了：
 2.1 ``re`` 库常量
 ~~~~~~~~~~~~~~~~~
 
-   ``re`` 库 中的常量表示不可更改的变量, 一般用于做标记。\ ``re``
-   模块中有 9 个常量, 常量值都是 ``int`` 类型：
+   ``re`` 库 中的常量表示不可更改的变量, 一般用于做标记. \ ``re``
+   模块中有 9 个常量, 常量值都是 ``int`` 类型: 
 
       -  ``re.ASCII`` or ``re.A``
 
@@ -50,7 +50,7 @@ Python ``re`` 库主要定义了：
       -  ``re.DEBUG``
 
 
-(1) ``re``\ 库源码：
+(1) ``re``\ 库源码: 
 ^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
@@ -91,41 +91,41 @@ Python ``re`` 库主要定义了：
        __str__ = object.
 
 
-(2) ``re.IGNORECASE`` 使用：
+(2) ``re.IGNORECASE`` 使用: 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  语法：
+-  语法: 
 
    -  ``re.IGNORECASE`` or ``re.I``
 
--  作用：
+-  作用: 
 
    -  忽略大小写匹配
 
--  代码：
+-  代码: 
 
 .. code:: python
 
    text =  "Hello World."
    pattern = r"Hello World."
-   print("默认模式：", re.findall(pattern, text))
-   print("忽略大小写模式：", re.findall(pattern, text, re.I))
+   print("默认模式: ", re.findall(pattern, text))
+   print("忽略大小写模式: ", re.findall(pattern, text, re.I))
 
 
-(3) ``re.ASCII`` 使用：
+(3) ``re.ASCII`` 使用: 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
--  语法：
+-  语法: 
 
    -  ``re.ASCII`` or ``re.A``
 
--  作用：
+-  作用: 
 
    -  让
       ``\w``\ , \ ``\W``\ , \ ``\b``\ , \ ``\B``\ , \ ``\d``\ , \ ``\D``\ , \ ``\s``\ , \ ``\S``
       只匹配 ASCII 编码支持的字符, 而不是 Unicode 编码支持的字符
 
--  代码：
+-  代码: 
 
 .. code:: python
 
@@ -138,15 +138,15 @@ Python ``re`` 库主要定义了：
 (4) ``re.DOTALL`` 使用
 ^^^^^^^^^^^^^^^^^^^^^^
 
--  语法：
+-  语法: 
 
    -  ``re.DOTALL`` or ``re.S``
 
--  作用：
+-  作用: 
 
    -  让 ``.`` 匹配所有字符, 包括换行符
 
--  代码：
+-  代码: 
 
 .. code:: python
 

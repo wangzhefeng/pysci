@@ -14,7 +14,7 @@ class Person:
         self.__age = age
     
     def showMyself(self):
-        print("我是" + self.__name + ", 年龄" + str(self.__age) + "。")
+        print("我是" + self.__name + ", 年龄" + str(self.__age) + ". ")
     
     def coding(self):
         print("我是码农, 我用程序改变世界, Coding......")
@@ -56,7 +56,7 @@ class PetStore:
         self.__name = name
     
     def showMyself(self):
-        print("%s 宠物店有以下宠物：" % self.__name)
+        print("%s 宠物店有以下宠物: " % self.__name)
         for pet in self.__petList:
             print(pet + "\t", end = "")
         print()
@@ -67,23 +67,23 @@ class PetStore:
 def testPetStore():
     petter = PetStore("Petter")
     petter.addPet("小狗Coco")
-    print("父本 petter：", end = "")
+    print("父本 petter: ", end = "")
     petter.showMyself()
     print()
 
     petter1 = deepcopy(petter)
     petter1.addPet("小猫 Amy")
-    print("副本 petter1：", end = "")
+    print("副本 petter1: ", end = "")
     petter1.showMyself()
-    print("父本 petter：", end = "")
+    print("父本 petter: ", end = "")
     petter.showMyself()
     print()
 
     petter2 = copy(petter)
     petter2.addPet("小兔 Ricky")
-    print("副本 petter2：", end = "")
+    print("副本 petter2: ", end = "")
     petter2.showMyself()
-    print("父本 petter：", end = "")
+    print("父本 petter: ", end = "")
     petter.showMyself()
 
 

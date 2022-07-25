@@ -24,7 +24,7 @@ from datetime import datetime
 db = {}
 
 def input_md5():
-    print('请注册：')
+    print('请注册: ')
     username = input('username:')
     password = input('password:')
     register(username, password)
@@ -43,7 +43,7 @@ def register(username,password):
 
 
 def login(username, password):
-    print('请登录：')
+    print('请登录: ')
     username = input('username:')
     password = input('password:')
     p = get_md5(password + username + 'the-Salt')
@@ -52,7 +52,7 @@ def login(username, password):
             print('登录成功')
             break
         else:
-            print('请输入的的密码有误, 请重新输入：')
+            print('请输入的的密码有误, 请重新输入: ')
             login(username,password)
     else:
         print('您输入的账户未注册, 请先注册{}'.format(username))

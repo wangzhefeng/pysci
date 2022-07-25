@@ -126,7 +126,7 @@ with pymssql.connect(server, user, password, "你的连接默认数据库名称"
         for row in cursor:
             print("ID=%d, Name=%s" % (row['id'], row['name']))
 
-# 调用存储过程：
+# 调用存储过程: 
 with pymssql.connect(server, user, password, "tempdb") as conn:
     with conn.cursor(as_dict=True) as cursor:
         cursor.execute("""
@@ -162,7 +162,7 @@ for row in conn:
 numemployees = conn.execute_scalar("SELECT COUNT(*) FROM employees")
 # 查询一条数据
 employeedata = conn.execute_row("SELECT * FROM employees WHERE id=%d", 13)
-# 带参数查询的几个例子：
+# 带参数查询的几个例子: 
 conn.execute_query('SELECT * FROM empl WHERE id=%d', 13)
 conn.execute_query('SELECT * FROM empl WHERE name=%s', 'John Doe')
 conn.execute_query('SELECT * FROM empl WHERE id IN (%s)', ((5, 6),))

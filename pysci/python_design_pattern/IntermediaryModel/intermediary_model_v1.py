@@ -27,13 +27,13 @@ class HouseInfo:
         return self.__owner.getName()
 
     def showInfo(self, isShowOwner = True):
-        print("面积：" + str(self.__area) + "平方米",
-              "价格：" + str(self.__price) + "元",
-              "窗户：" + ("有" if self.__hasWindow else "没有"),
-              "卫生间：" + self.__hasBathroom,
-              "厨房：" + ("有" if self.__hasKitchen else "没有"),
-              "地址：" + self.__address,
-              "房东：" + self.getOwnerName() if isShowOwner else "")
+        print("面积: " + str(self.__area) + "平方米",
+              "价格: " + str(self.__price) + "元",
+              "窗户: " + ("有" if self.__hasWindow else "没有"),
+              "卫生间: " + self.__hasBathroom,
+              "厨房: " + ("有" if self.__hasKitchen else "没有"),
+              "地址: " + self.__address,
+              "房东: " + self.getOwnerName() if isShowOwner else "")
 
 
 class HousingAgency:
@@ -69,7 +69,7 @@ class HousingAgency:
         :param searchCondition:
         :return:
         """
-        print(self.getName(), "为您找到以下最合适的房源：")
+        print(self.getName(), "为您找到以下最合适的房源: ")
         for info in self.__houseInfos:
             info.showInfo(False)
 
@@ -85,7 +85,7 @@ class HousingAgency:
         print(self.getName(),
               "与房东", houseInfo.getOwnerName(),
               "签订", houseInfo.getAddress(), "的房子的租赁合同, 租期",
-              period, "年。合同期内", self.getName(),
+              period, "年. 合同期内", self.getName(),
               "有权对其进行使用和转租！")
 
     def signContracts(self, period):
@@ -109,7 +109,7 @@ class HouseOwner:
 
     def publishHouseInfo(self, agency):
         agency.addHouseInfo(self.__houseInfo)
-        print(self.getName() + "在", agency.getName(), "发布房源出租信息：")
+        print(self.getName() + "在", agency.getName(), "发布房源出租信息: ")
         self.__houseInfo.showInfo()
 
 class Customer:
@@ -134,7 +134,7 @@ class Customer:
     def signContract(self, houseInfo, agency, period):
         print(self.getName(), "与中介", agency.getName(),
               "签订", houseInfo.getAddress(), "的房子的租赁合同, 租期",
-              period, "年。合同期内", self.__name, "有权对其进行使用！")
+              period, "年. 合同期内", self.__name, "有权对其进行使用！")
 
 
 

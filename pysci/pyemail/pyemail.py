@@ -84,7 +84,7 @@ def main():
     msg = """
     <p>Python 邮件发送测试...</p>
     <p><a href="http://www.runoob.com">菜鸟教程链接</a></p>
-    <p>图片演示：</p>
+    <p>图片演示: </p>
     <p><img src="cid:image1"></p>
     """
     fp = open('./data/test.jpg', 'rb')

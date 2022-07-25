@@ -77,10 +77,10 @@ class SmsSender(Observer):
     """
     def update(self, observable, object):
         print("[短信发送] " +
-              object["name"] + "您好！检测到您的账户可能登录异常。最近一次登录信息：\n" +
-              "登录地区：" + object["region"] +
-              " 登录 ip：" + object["ip"],
-              "登录时间：" + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(object["time"])))
+              object["name"] + "您好！检测到您的账户可能登录异常. 最近一次登录信息: \n" +
+              "登录地区: " + object["region"] +
+              " 登录 ip: " + object["ip"],
+              "登录时间: " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(object["time"])))
 
 
 class MailSender(Observer):
@@ -90,10 +90,10 @@ class MailSender(Observer):
     def update(self, observable, object):
         print("[邮件发送]" +
               object["name"] +
-              "您好！检测到您的账户可能登录异常。最近一次登录信息：\n" +
-              "登录地区：" + object["region"] +
-              "登录 ip：" + object["ip"] +
-              "登录时间：" + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(object["time"])))
+              "您好！检测到您的账户可能登录异常. 最近一次登录信息: \n" +
+              "登录地区: " + object["region"] +
+              "登录 ip: " + object["ip"] +
+              "登录时间: " + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(object["time"])))
 
 
 def testLogin():

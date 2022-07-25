@@ -114,12 +114,12 @@ class Calculator:
 
 def testCalculator():
     # 获取表达式
-    expStr = input("请输入表达式：");
+    expStr = input("请输入表达式: ");
     # 获取各参数的键值对
     newExp, expressionMap = getMapValue(expStr)
     calculator = Calculator(newExp)
     result = calculator.run(expressionMap)
-    print("运算结果为：" + expStr + " = " + str(result))
+    print("运算结果为: " + expStr + " = " + str(result))
 
 
 def getMapValue(expStr):

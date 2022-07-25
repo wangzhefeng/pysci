@@ -7,14 +7,14 @@
 # * Date        : 2021.11.06
 # * Version     : 1.0.0
 # * Description : 
-# *               1.logger：提供日志接口, 供应用代码使用
-# *             	 - logger 最常用的操作有两类：配置和发送日志消息
+# *               1.logger: 提供日志接口, 供应用代码使用
+# *             	 - logger 最常用的操作有两类: 配置和发送日志消息
 # *                  - 可以通过 logging.getLogger(name) 获取 logger 对象, 如果不指定 name 则返回 root 对象, 多次使用相同的 name 调用 getLogger 方法返回同一个 logger 对象
-# *               2.handler：将日志记录(log record)发送到合适的目的地(destination), 比如文件, socket 等
+# *               2.handler: 将日志记录(log record)发送到合适的目的地(destination), 比如文件, socket 等
 # *             	 - 一个 logger 对象可以通过 addHandler 方法添加到多个 handler, 每个 handler 又可以定义不同日志级别, 以实现日志分级过滤显示
-# *               3.filter：提供一种优雅的方式决定一个日志记录是否发送到 handler
-# *               4.formatter：指定日志记录输出的具体格式
-# *             	 - formatter 的构造方法需要两个参数：消息的格式字符串和日期字符串, 这两个参数都是可选的
+# *               3.filter: 提供一种优雅的方式决定一个日志记录是否发送到 handler
+# *               4.formatter: 指定日志记录输出的具体格式
+# *             	 - formatter 的构造方法需要两个参数: 消息的格式字符串和日期字符串, 这两个参数都是可选的
 # *               5.日志级别
 # *                 - NOTSET < DEBUG < INFO < WARNING < ERROR < CRITICAL
 # *               6.logging 用法解析
@@ -31,7 +31,7 @@
 # *             	  %(name)s 				Logger 的名字
 # *             	  %(levelname)s 		文本形式的日志级别
 # *             	  %(message)s 			用户输出的消息
-# *             	  %(asctime)s 			字符串形式的当前时间。默认格式是 “2003-07-08 16:49:45,896”。逗号后面的是毫秒
+# *             	  %(asctime)s 			字符串形式的当前时间. 默认格式是 “2003-07-08 16:49:45,896”. 逗号后面的是毫秒
 # *             	  %(levelno)s 			数字形式的日志级别
 # *             	  %(pathname)s 			调用日志输出函数的模块的完整路径名, 可能没有
 # *             	  %(filename)s 			 调用日志输出函数的模块的文件名
@@ -40,9 +40,9 @@
 # *             	  %(lineno)d 			调用日志输出函数的语句所在的代码行
 # *             	  %(created)f 			当前时间, 用 UNIX 标准的表示时间的浮 点数表示
 # *             	  %(relativeCreated)d 	输出日志信息时的, 自 Logger 创建以 来的毫秒数
-# *             	  %(thread)d 			线程 ID。可能没有
-# *             	  %(threadName)s 		线程名。可能没有
-# *             	  %(process)d 			进程 ID。可能没有
+# *             	  %(thread)d 			线程 ID. 可能没有
+# *             	  %(threadName)s 		线程名. 可能没有
+# *             	  %(process)d 			进程 ID. 可能没有
 # *               6.5 记录 
 # *             	  使用 object.debug(message) 来记录日志
 # * Link        : link

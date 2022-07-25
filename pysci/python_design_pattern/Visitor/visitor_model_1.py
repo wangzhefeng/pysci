@@ -4,9 +4,9 @@ from VisitorModel import DataNode, Visitor, ObjectStructure
 
 
 """
-封装一些作用于某种数据结构中各元素的操作, 它可以在不改变数据结构的前提下定义作用于这些元素的新的操作。
+封装一些作用于某种数据结构中各元素的操作, 它可以在不改变数据结构的前提下定义作用于这些元素的新的操作. 
 
-访问模式的核心思想在于：
+访问模式的核心思想在于: 
     - 可以在不改变数据结构的前提下定义作用于这些元素的新操作
     - 将数据结构和操作(或算法)进行解耦, 而且能更方便地拓展新的操作
 """
@@ -40,7 +40,7 @@ class Engineer(Visitor):
         :param book: DesignPatternBook 实例
         :type book: [type]
         """
-        print("技术人读%s一书后的感受：能抓住模式的核心思想, 深入浅出, 很有见地!" % book.getName())
+        print("技术人读%s一书后的感受: 能抓住模式的核心思想, 深入浅出, 很有见地!" % book.getName())
 
 
 class ProductManager(Visitor):
@@ -53,7 +53,7 @@ class ProductManager(Visitor):
         :param book: DesignPatternBook 实例
         :type book: [type]
         """
-        print("产品经理%s一书后的感受：配图非常有趣, 文章很有层次感!" % book.getName())
+        print("产品经理%s一书后的感受: 配图非常有趣, 文章很有层次感!" % book.getName())
 
 
 class OtherFriend(Visitor):
@@ -66,7 +66,7 @@ class OtherFriend(Visitor):
         :param book: DesignPatternBook 实例
         :type book: [type]
         """
-        print("IT圈外的朋友读%s一书 后的感受：技术的内容一脸懵, 但故事很精彩, 像看小说或故事集!" % book.getName())
+        print("IT圈外的朋友读%s一书 后的感受: 技术的内容一脸懵, 但故事很精彩, 像看小说或故事集!" % book.getName())
 
 
 

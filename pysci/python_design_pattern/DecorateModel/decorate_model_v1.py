@@ -16,7 +16,7 @@ class Person(metaclass = ABCMeta):
 
     @abstractmethod
     def wear(self):
-        print("着装：")
+        print("着装: ")
 
 
 class Engineer(Person):

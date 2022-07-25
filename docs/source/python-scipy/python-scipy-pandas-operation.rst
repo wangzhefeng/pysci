@@ -922,7 +922,7 @@ Pandas 高级技巧
     ######################################################################################################
     #                          Time Series
     ######################################################################################################
-    # 三种时间序列数据：
+    # 三种时间序列数据: 
     # timestamp
     # period
     # interval
@@ -931,7 +931,7 @@ Pandas 高级技巧
     # import time
     # import calendar
 
-    # datetime中的四种数据类型：
+    # datetime中的四种数据类型: 
     # date: 以公历形式存储日期year, month, day
     # time: 将时间存储为hour, minute, second, microsecond
     # datetime: 存储日期和时间(year, month, day, hour, minute, second, microsecond)
@@ -978,7 +978,7 @@ Pandas 高级技巧
     str(stamp)
     stamp.strftime('%Y-%m-%d')
     stamp.strftime('%F')
-    # %Y：四位数的year
+    # %Y: 四位数的year
     # %y: 两位数的year
     # %m: 两位数的month
     # %d: 两位数的day

@@ -6,7 +6,7 @@ from abc import ABCMeta, abstractmethod
 
 
 class WaterHeater:
-    """热水器：战胜寒冬的有利武器"""
+    """热水器: 战胜寒冬的有利武器"""
 
     def __init__(self):
         self.__observes = []
@@ -17,7 +17,7 @@ class WaterHeater:
 
     def setTemperature(self, temperature):
         self.__temperature = temperature
-        print("当前温度是：" + str(self.__temperature) + "℃")
+        print("当前温度是: " + str(self.__temperature) + "℃")
         self.notifies()
 
     def addObserver(self, observer):
@@ -41,7 +41,7 @@ class WashingMode(Observer):
     
     def update(self, waterHeater):
         if waterHeater.getTemperature() >= 50 and waterHeater.getTemperature() < 70:
-            print("水已烧好！温度正好, 可以用来洗澡了。")
+            print("水已烧好！温度正好, 可以用来洗澡了. ")
 
 
 class DrinkingMode(Observer):
@@ -49,7 +49,7 @@ class DrinkingMode(Observer):
     
     def update(self, waterHeater):
         if waterHeater.getTemperature() >= 100:
-            print("水已烧开！可以用来饮用了。")
+            print("水已烧开！可以用来饮用了. ")
 
 
 
