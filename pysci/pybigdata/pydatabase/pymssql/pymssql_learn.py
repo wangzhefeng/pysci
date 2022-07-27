@@ -1,7 +1,17 @@
-
 # -*- coding: utf-8 -*-
 
-__author__ = "wangzhefeng"
+
+# ***************************************************
+# * File        : pymssql_learn.py
+# * Author      : Zhefeng Wang
+# * Email       : wangzhefengr@163.com
+# * Date        : 2022-07-26
+# * Version     : 0.1.072621
+# * Description : description
+# * Link        : link
+# * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
+# ***************************************************
+
 
 from os import getenv
 import pymssql
@@ -11,26 +21,28 @@ user = getenv('PYMSSQL_TEST_USERNAME')
 password = getenv('PYMSSQL_TEST_PASSWORD')
 
 
-conn = pymssql.connect(host = server,
-					   user = user,
-					   password = password,
-					   database = 'tempdb')
+conn = pymssql.connect(
+    host = server,
+    user = user,
+    password = password,
+    database = 'tempdb',
+)
 cursor = conn.cursor()
 
 
 cursor.execute("""
-	IF OBJECT_ID('persons', 'U') IS NOT NULL DROP TABLE persons
-	CREATE TABLE persons
-		id INT NOT NULL,
-		name VARCHAR(100),
-		salesrep VARCHAR(100),
-		PRIMARY KEY(id)"""
+    IF OBJECT_ID('persons', 'U') IS NOT NULL DROP TABLE persons
+    CREATE TABLE persons
+        id INT NOT NULL,
+        name VARCHAR(100),
+        salesrep VARCHAR(100),
+        PRIMARY KEY(id)"""
 )
 cursor.executemany(
-	"INSERT INTO persons VALUES (%d, %s, %s)",
-	[(1, 'John Smith', 'John Doe'),
-	 (2, 'Jane Doe', 'John Doe'),
-	 (3, 'Mike T.', 'Sarah H.')]
+    "INSERT INTO persons VALUES (%d, %s, %s)",
+    [(1, 'John Smith', 'John Doe'),
+     (2, 'Jane Doe', 'John Doe'),
+     (3, 'Mike T.', 'Sarah H.')]
 )
 conn.commit()
 
@@ -38,9 +50,9 @@ cursor.execute("SELECT * FROM persons WHERE salesrep = %s", 'John Doe')
 row = cursor.fetchone()
 
 while row:
-	print("ID=%d, NAME=%s" % (row[0], row[1]))
-	row = cursor.fetchone()
-	print(row)
+    print("ID=%d, NAME=%s" % (row[0], row[1]))
+    row = cursor.fetchone()
+    print(row)
 
 cursor.close()
 conn.close()

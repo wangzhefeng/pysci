@@ -1,9 +1,17 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# @Date    : 2017-05-03 21:55:51
-# @Author  : Your Name (you@example.org)
-# @Link    : http://example.org
-# @Version : $Id$
+
+
+# ***************************************************
+# * File        : pymysql.py
+# * Author      : Zhefeng Wang
+# * Email       : wangzhefengr@163.com
+# * Date        : 2022-07-26
+# * Version     : 0.1.072621
+# * Description : description
+# * Link        : link
+# * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
+# ***************************************************
+
 
 # import os
 # import numpy as np

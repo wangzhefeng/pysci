@@ -5,14 +5,21 @@
 * 系统环境: Ubuntu 18.04
 * Python 环境: Python 3.7.5
 
-### 1.安装依赖库
+### 安装依赖库
 
 ```bash
 $ sudo apt install python3-dev gcc
 $ pip install cython
 ```
 
-### 2.写一个测试 demo
+### 写一个测试 demo
+
+新建加密脚本和测试脚本: 
+
+- `script` 项目目录
+- `TodayModule.py` 待编译的 `.py` 脚本
+- `main.py` 对 `TodayModule.py` 进行调用的脚本
+- `setup.py` 对 `TodayModule.py` 执行编译的脚本
 
 ```bash
 $ mkdir script
@@ -22,13 +29,22 @@ $ touch main.py
 $ touch setup.py
 ```
 
-测试文件夹目录: 
+编译前测试文件夹目录: 
 
 * `py2so/script/ToadyModule.py`
 * `py2so/script/main.py`
 * `py2so/script/setup.py`
 
-测试文件脚本: 
+```
+script
+    ├── setup.py
+    ├── main.py
+    └── ToadyModule.py
+```
+
+编写测试文件脚本: 
+
+* 待编译 `.py` 脚本
 
 ```python
 # TodayModule.py
@@ -43,6 +59,8 @@ class Today():
         print("Hello World!")
 ```
 
+* 对 `TodayModule.py` 进行调用的脚本
+
 ```python
 # main.py
 
@@ -53,13 +71,15 @@ t.get_time()
 t.say()
 ```
 
+* 对 `TodayModule.py` 执行编译的脚本
+
 ```python
 # setup.py
 
 from distutils.core import setup
 from Cython.Build import cythonize
 
-setup(ext_modules = cythonize(["test.py"]))
+setup(ext_modules = cythonize(["TodayModule.py"]))
 ```
 
 编译前测试: 
@@ -75,10 +95,10 @@ $ python3 main.py
 Hello World!
 ```
 
-
-### 3.对 `TodayModule.py` 进行编译加密
+### 对 `TodayModule.py` 进行编译加密
 
 ```bash
+$ cd ./py2so
 $ python3 setup.py build_ext
 ```
 
@@ -95,8 +115,21 @@ $ python3 setup.py build_ext
 * `py2so/script/setup.py`
 * `py2so/script/main.py`
 
+```
+script
+    ├── build
+    │   ├── lib.linux-x86_64-3.7
+    │   │   └── TodayModule.cpython-37m-x86_64-linux-gnu.so
+    │   └── temp.linux-x86_64-3.7
+    │       └── TodayModule.o
+    ├── setup.py
+    ├── main.py
+    ├── TodayModule.c
+    └── TodayModule.py
+```
 
-### 4.运行加密后的文件
+
+### 运行加密后的文件
 
 编译后测试: 
 
