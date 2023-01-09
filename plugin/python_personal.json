@@ -31,7 +31,6 @@
             "# python libraries",
             "import os",
             "import sys",
-            "$1",
             "\n",
             "# global variable",
             "LOGGING_LABEL = __file__.split('/')[-1][:-3]",
@@ -44,7 +43,7 @@
             "	\"\"\"",
             "	类说明文档",
             "	\"\"\"",
-            "	_class_config_param = 100  # 类私有不变量",
+            "	_class_config_param = None  # 类私有不变量",
             "\t",
             "	def __init__(self, id_):",
             "		self.id = id_",
@@ -75,11 +74,37 @@
             "# 测试代码 main 函数",
             "def main():",
             "	pass",
-            "\n",
+            "",
             "if __name__ == \"__main__\":",
             "	main()",
             "\n"
         ],
+    },
+    "PYSCI": {
+        "prefix": "sci",
+        "body": [
+            "import numpy as np",
+            "import pandas as pd",
+            "pd.set_option('display.max_columns', None, 'display.max_rows', None)",
+            "\n",
+        ],
+        "description": "生成 python 科学库 import"
+    },
+    "HEADER_COMMENT": {
+        "prefix": "line",
+        "body": [
+            "# ------------------------------",
+            "# ",
+            "# ------------------------------",
+        ],
+        "description": "生成 python 科学库 import"
+    },
+    "TIMEFORMAT": {
+        "prefix": "timefmt",
+        "body": [
+            "'%Y-%m-%d %H:%M:%S'",
+        ],
+        "description": "生成 time 格式"
     },
     "HEADER": {
         "prefix": "header",
@@ -148,7 +173,7 @@
             "# 测试代码 main 函数",
             "def main():",
             "	pass",
-            "\n",
+            "",
             "if __name__ == \"__main__\":",
             "	main()",
             "\n"
@@ -165,3 +190,4 @@
         "description": "tensorflow package 载入"
     },
 }
+
