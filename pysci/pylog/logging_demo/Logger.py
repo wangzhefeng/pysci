@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # *********************************************
 # * Author      : zhefeng wang
 # * Email       : wangzhefengr@163.com
@@ -47,7 +46,6 @@
 # *             	  使用 object.debug(message) 来记录日志
 # * Link        : link
 # **********************************************
-
 
 # python libraries
 import logging

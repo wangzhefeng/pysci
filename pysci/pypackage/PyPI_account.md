@@ -1,0 +1,16 @@
+PyPI:
+username: wangzf
+password: Tinker711235813
+e-mail: wangzhefengr@163.com
+token: pypi-AgEIcHlwaS5vcmcCJGU0NDA4N2M3LWYwNDEtNGUwYi05Nzk1LTRjYzJlN2E3MjlkZgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgc3inPIBRFUZzY0WVhBVIFZSKW0F2KT2eo3lLmfw2Hjg
+token_dir: ~/.pypirc
+
+
+
+
+TestPyPI:
+username: wangzhefeng
+password: Tinker711235813
+e-mail: wangzhefengr@163.com
+token: pypi-AgENdGVzdC5weXBpLm9yZwIkNDZmM2U3YjMtYTdhYS00NmZjLTk2ODYtMDJkNjE2NjM3YTQ1AAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiBX4HzzVumMgWAwlP96J43Bsk7jjulXVKO7I36wskjB6A
+token_dir: ~/.pypirc
