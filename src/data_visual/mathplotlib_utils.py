@@ -1,3 +1,23 @@
+# -*- coding: utf-8 -*-
+
+# ***************************************************
+# * File        : mathplotlib_utils.py
+# * Author      : Zhefeng Wang
+# * Email       : wangzhefengr@163.com
+# * Date        : 2023-07-11
+# * Version     : 0.1.071123
+# * Description : description
+# * Link        : link
+# * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
+# ***************************************************
+
+# python libraries
+import os
+import sys
+ROOT = os.getcwd()
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
+
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
@@ -5,10 +25,12 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.dates as mpl_dates
 
+# global variable
+LOGGING_LABEL = __file__.split('/')[-1][:-3]
+
 # config
 plt.style.use("classic")
 plt.style.use("seaborn-whitegrid")
-
 
 
 def math_function_plot(func, x, imgpath = None):
@@ -88,9 +110,10 @@ def scatter_plot(df, xlabel, *ylabels, imgpath = None):
             plt.savefig(imgpath)
         plt.show()
 
-def scatter_many_plot(df, *xlabels, *ylabels, imgpath = None):
-    if len(x_lables) == len(ylables):
-        num_plots = len(x_labels)
+
+def scatter_many_plot(df, xlabels, ylabels, imgpath = None):
+    if len(xlabels) == len(ylabels):
+        num_plots = len(xlabels)
         fig, axs = plt.subplots(figsize = (8 * num_plots, 8))
         for i in range(num_plots):
             plt.subplot(1, num_plots, i)
@@ -108,3 +131,9 @@ def bar_plot():
 
 
 
+# 测试代码 main 函数
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()

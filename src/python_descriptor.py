@@ -65,7 +65,7 @@ class Student:
 
 # 测试代码 main 函数
 def main():
-    std1 = Student("xiaoming", 7x)
+    std1 = Student("xiaoming", 7)
 
 
 if __name__ == "__main__":
