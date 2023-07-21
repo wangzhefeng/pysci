@@ -23,9 +23,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# plt config
+plt.style.use("seaborn-whitegird")
+
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
-plt.style.use("seaborn-whitegird")
 
 
 def scatter_matrix(df, cagegorical = None):

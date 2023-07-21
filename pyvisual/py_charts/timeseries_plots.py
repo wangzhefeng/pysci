@@ -1,4 +1,22 @@
+# -*- coding: utf-8 -*-
+
+# ***************************************************
+# * File        : timeseries_plot.py
+# * Author      : Zhefeng Wang
+# * Email       : wangzhefengr@163.com
+# * Date        : 2023-07-21
+# * Version     : 0.1.072122
+# * Description : description
+# * Link        : link
+# * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
+# ***************************************************
+
+# python libraries
 import os
+import sys
+ROOT = os.getcwd()
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
 
 import numpy as np
 import pandas as pd
@@ -10,16 +28,9 @@ import matplotlib.dates as mpl_dates
 from matplotlib import rc
 import matplotlib.font_manager as mfm
 
+# global variable
+LOGGING_LABEL = __file__.split('/')[-1][:-3]
 
-columns = [
-    '日期', 
-    '热值(kcal/kg)', 
-    '飞灰(%)', 
-    '大渣(%)', 
-    '排烟温度(℃)', 
-    '效率(%)'
-    '排烟氧浓度(%)',
-]
 
 def timeseries_plot_two_y(df, col_left, col_right, col_left_ylim, col_right_ylim, title, imgpath):
     # config
@@ -86,27 +97,12 @@ def timeseries_plot(df, imgpath, title, xlabel, *ylabels):
         plt.savefig(os.path.join(os.path.dirname(__file__), imgpath))
 
 
-# ------------------------------
-# data
-# ------------------------------
-df_1hour = pd.read_csv(
-    os.path.join(os.path.dirname(__file__), "boiler_m4_1h.csv"),
-    parse_dates = ["ts"]
-)
-df_1min = pd.read_csv(
-    os.path.join(os.path.dirname(__file__), "boiler_m4_1min.csv"),
-    parse_dates = ["ts"]
-)
-df_5s = pd.read_csv(
-    os.path.join(os.path.dirname(__file__), "boiler_m4_5s.csv"),
-    parse_dates = ["ts"]
-)
 
 
-timeseries_plot(
-    df_1min.loc[(df_1min["ts"] >= "2022-09-23 8:00:00") & (df_1min["ts"] <= "2022-09-23 9:00:00")],
-    "figure_1min_08_09.png",
-    "时序图",
-    "ts",
-    "nitrate_lime_feeding_bunker_position"
-)
+
+# 测试代码 main 函数
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()

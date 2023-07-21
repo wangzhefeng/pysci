@@ -12,11 +12,10 @@
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # ***************************************************
 
-
 # python libraries
 import os
-import pandas as pd
 
+import pandas as pd
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
@@ -70,7 +69,7 @@ def merge_data(data_path, data_files, result_filename, dt_col_name, date_start, 
     })
     for data_file in data_files:
         data = read_data(data_file, dt_col_name)
-        df = df.merge(data, on = [dt_col_name], how = "left")
+        df = df.merge(data, on = [dt_col_name], how = "left") # type: ignore
     # 数据填充
     df = df.fillna(method = "ffill")
     df = df.fillna(method = "bfill")
@@ -86,4 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

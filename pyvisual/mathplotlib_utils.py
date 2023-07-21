@@ -78,15 +78,15 @@ def timeseries_plot(df, xlabel, *ylabels, imgpath = None):
     fig, axs = plt.subplots(figsize = (30, 7), sharey = True, tight_layout = True)
     for ylabel in ylabels:
         plt.plot_date(df[xlabel], df[ylabel], linestyle = "solid", label = ylabel)
+        plt.gcf().autofmt_xdate()
+        date_format = mpl_dates.DateFormatter("%Y-%B-%d")
+        plt.gca().xaxis.set_major_formatter(date_format)
+        
+        plt.title(ylabel)
+        plt.xlabel("Date")
+        plt.ylabel(ylabel)
+        plt.legend()
     
-    plt.gcf().autofmt_xdate()
-    date_format = mpl_dates.DateFormatter("%Y-%B-%d")
-    plt.gca().xaxis.set_major_formatter(date_format)
-    
-    plt.title(ylabel)
-    plt.xlabel("Date")
-    plt.ylabel(ylabel)
-    plt.legend()
     if imgpath:
         fig.save(imgpath)
     plt.show();
