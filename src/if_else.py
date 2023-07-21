@@ -55,12 +55,6 @@ def parse_level_2():
     return discount
 
 
-def parse_level_2():
-    "大量计算代码"
-    discount = 0.2
-    return discount
-
-
 def parse_level_3():
     "大量计算代码"
     discount = 0.3

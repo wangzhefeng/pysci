@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # *********************************************
 # * Author      : Zhefeng Wang
 # * Email       : wangzhefengr@163.com
@@ -11,11 +10,9 @@
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
 # **********************************************
 
-
 # python libraries
 import os
 import sys
-
 
 # global variable
 GLOBAL_VARIABLE = None
@@ -26,12 +23,8 @@ def func():
 
 
 
-
-
-
 # 测试代码 main 函数
 def main():
-
     arr = [1, 2, 3, 4, 5]
     print(list(
         map(
@@ -47,9 +40,6 @@ def main():
                | where(lambda x: x % 2 == 0)
                | select(lambda x: x * 2)
     ))
-    
-
 
 if __name__ == "__main__":
     main()
-

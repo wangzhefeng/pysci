@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # ***************************************************
-# * File        : main.py
+# * File        : test.py
 # * Author      : Zhefeng Wang
 # * Email       : wangzhefengr@163.com
 # * Date        : 2023-07-18
@@ -18,13 +18,9 @@ ROOT = os.getcwd()
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
-import torch
-
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
 
-
-print(torch.cuda.is_available())
 
 
 
