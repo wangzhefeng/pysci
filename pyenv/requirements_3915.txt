@@ -51,7 +51,7 @@ six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
 tensorboard @ file:///home/conda/feedstock_root/build_artifacts/tensorboard_1629677129676/work/tensorboard-2.6.0-py3-none-any.whl
 tensorboard-data-server @ file:///D:/bld/tensorboard-data-server_1670043950676/work/tensorboard_data_server-0.6.1-py3-none-any.whl
 tensorboard-plugin-wit @ file:///home/conda/feedstock_root/build_artifacts/tensorboard-plugin-wit_1641458951060/work/tensorboard_plugin_wit-1.8.1-py3-none-any.whl
-tensorflow==2.6.0
+tensorflow==2.11.1
 tensorflow-estimator @ file:///home/builder/adipietro/tf/tensorflow-estimator_1630508970172/work/tensorflow_estimator-2.6.0-py2.py3-none-any.whl
 termcolor @ file:///home/conda/feedstock_root/build_artifacts/termcolor_1682317048417/work
 typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1688315532570/work
