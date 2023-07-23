@@ -2,7 +2,7 @@ jupyter==1.0.0
 jupyterlab==4.0.2
 notebook==6.5.4
 ipykernel==6.24.0
-numpy==1.25.1
+numpy==1.22.0
 pandas==2.0.3
 matplotlib==3.7.2
 seaborn==0.12.2
