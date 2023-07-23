@@ -46,7 +46,7 @@ pyu2f @ file:///home/conda/feedstock_root/build_artifacts/pyu2f_1604248910016/wo
 requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1684774241324/work
 requests-oauthlib @ file:///home/conda/feedstock_root/build_artifacts/requests-oauthlib_1643557462909/work
 rsa @ file:///home/conda/feedstock_root/build_artifacts/rsa_1658328885051/work
-scipy==1.11.1
+scipy==1.10.0
 six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
 tensorboard @ file:///home/conda/feedstock_root/build_artifacts/tensorboard_1629677129676/work/tensorboard-2.6.0-py3-none-any.whl
 tensorboard-data-server @ file:///D:/bld/tensorboard-data-server_1670043950676/work/tensorboard_data_server-0.6.1-py3-none-any.whl
