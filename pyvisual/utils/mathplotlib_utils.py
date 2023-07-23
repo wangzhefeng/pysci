@@ -18,19 +18,16 @@ ROOT = os.getcwd()
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
+from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
+
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.dates as mpl_dates
 
 # global variable
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
-
-# config
-plt.style.use("classic")
-plt.style.use("seaborn-whitegrid")
 
 
 def math_function_plot(func, x, imgpath = None):
