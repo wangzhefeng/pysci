@@ -243,4 +243,13 @@
         ],
         "description": "generate content"
     },
+    "Dash under line": {
+        "prefix": "underline",
+        "body": [
+            "<span style='border-bottom:1.5px dashed red;'>${1}</span>",
+        ],
+        "description": "generate dash under line"
+    },
 }
+
+

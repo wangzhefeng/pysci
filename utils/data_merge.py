@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-
 # ***************************************************
 # * File        : data_merge.py
 # * Author      : Zhefeng Wang
 # * Email       : wangzhefengr@163.com
-# * Date        : 2022-08-10
-# * Version     : 0.1.081015
+# * Date        : 2023-07-30
+# * Version     : 0.1.073015
 # * Description : description
 # * Link        : link
 # * Requirement : 相关模块版本需求(例如: numpy >= 2.1.0)
@@ -14,6 +13,10 @@
 
 # python libraries
 import os
+import sys
+ROOT = os.getcwd()
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))
 
 import pandas as pd
 

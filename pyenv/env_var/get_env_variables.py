@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # *********************************************
 # * Author      : Zhefeng Wang
 # * Email       : wangzhefengr@163.com
@@ -10,12 +9,10 @@
 # * Link        : https://mp.weixin.qq.com/s?__biz=Mzg3MjU3NzU1OA==&mid=2247496302&idx=1&sn=a0e2a6b17aceeac9c453e83fb429d262&source=41#wechat_redirect
 # **********************************************
 
-
 # python libraries
 import os
 import sys
 import json
-
 
 # global variable
 GLOBAL_VARIABLE = None
@@ -75,15 +72,11 @@ def get_env_var_by_environs():
 
 
 
-
 # 测试代码 main 函数
 def main():
     # get_evn_var_normal()
     # get_env_var_safe()
     get_env_var_by_environs()
 
-
 if __name__ == "__main__":
     main()
-
-

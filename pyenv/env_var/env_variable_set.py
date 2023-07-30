@@ -3,10 +3,8 @@ from os.path import dirname, abspath, join
 from environs import Env
 from loguru import logger
 
-
 env = Env()
 env.read_env()
-
 
 # definition of flags
 IS_WINDOWS = platform.system().lower() == 'windows'

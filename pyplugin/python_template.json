@@ -91,7 +91,8 @@
         "body": [
             "import numpy as np",
             "import pandas as pd",
-            "\n",
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
         ],
         "description": "生成 python 科学库 import"
     },
@@ -257,4 +258,10 @@
         ],
         "description": "生成 Torch Model Class"
     },
+    
+    
+    
+    
+    
+        
 }
