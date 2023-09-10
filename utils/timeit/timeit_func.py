@@ -33,14 +33,9 @@ def timeit_func(func):
         start = time.time()
         func()
         end = time.time()
-        print(f"function used: {end - start}")
+        print(f"function used: {end - start} second.")
     
     return wrapper
-
-
-def timeit_script():
-    pass
-
 
 
 

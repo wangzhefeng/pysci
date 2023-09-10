@@ -17,26 +17,31 @@ import sys
 ROOT = os.getcwd()
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
-from typing import List
+from typing import List, Tuple
 import warnings
 
+import pandas as pd
 import matplotlib as mpl
+from matplotlib import rc
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 # 字体尺寸设置
 # plt.rcParams["font.size"] = 10
-title_fontsize = 12
-label_fontsize = 8
+title_fontsize = 13
+label_fontsize = 7
 
-# 设置 figure plt.tight_layout()
-plt.rcParams["figure.autolayout"] = True
+# style sheet config
+plt.style.use("classic")
+plt.style.use("seaborn-whitegrid")
+plt.style.use("ggplot")
 
-# 处理 matplotlib 字体问题
-# print(mpl.matplotlib_fname())  # matplotlib font 目录
-# print(mpl.get_cachedir())  # matplotlib font 缓存
-plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "SimHei"]
-plt.rcParams["font.family"].append("SimHei")
+mpl.rcParams["axes.unicode_minus"] = False # 解决图像中的 “-” 负号的乱码问题
+plt.rcParams["figure.autolayout"] = True  # 设置 figure plt.tight_layout()
+plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "SimHei"]  # 处理 matplotlib 字体问题, 支持中文(macOS)
+plt.rcParams["font.family"].append("SimHei")  # 处理 matplotlib 字体问题
+plt.rcParams["axes.grid"] = True  # axis grid
+plt.rc('mathtext', default = 'regular')  # 支持数学符号
 
 warnings.filterwarnings("ignore")
 
@@ -44,256 +49,86 @@ warnings.filterwarnings("ignore")
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
 
 
-def plot_heatmap(dfs, 
-                 stat = "corr",  # 协方差矩阵: "cov"
-                 method = "spearman", 
-                 figsize = (5, 5), 
-                 titles: List[str] = "", 
-                 sort_col_list: List[str] = ["mqxh"],
-                 show: bool = False, 
-                 img_file_name: str = None):
-    """
-    相关系数、协方差矩阵热力图
+def lifecycle_of_a_plot():
+    import numpy as np
+    import matplotlib.pyplot as plt
+    print(plt.style.available)
+    plt.style.use("fivethirtyeight")
+    plt.rcParams.update({
+        "figure.autolayout": True,
+    })
 
-    Args:
-        dfs (_type_): _description_
-        stat (str, optional): _description_. Defaults to "corr".
-        figsize (tuple, optional): _description_. Defaults to (5, 5).
-        title (str, optional): _description_. Defaults to "".
-        show (bool, optional): _description_. Defaults to False.
-        img_file_name (str, optional): _description_. Defaults to None.
-    """
-    fig, axs = plt.subplots(
-        nrows = 1, ncols = len(dfs), 
-        figsize = figsize, 
-        # dpi = 540, 
-        facecolor = "w"
-    )
-    for df_idx, df, title in zip(range(len(dfs)), dfs, titles):
-        ax = axs[df_idx] if len(dfs) > 1 else axs
-        # 计算相关系数矩阵或协方差矩阵
-        if stat == "corr":
-            stat_matrix = df.corr(method).sort_values(by = sort_col_list, ascending = False)
-        elif stat == "cov":
-            stat_matrix = df.cov().sort_values(by = sort_col_list, ascending = False)
-        # 绘制相关系数矩阵热力图
-        sns.heatmap(
-            data = stat_matrix,
-            annot = True, 
-            annot_kws = {
-                "size": 8
-            },
-            square = True, 
-            # sns.diverging_palette(20, 220, n=256) or "YlGnBu" or "Blues"
-            cmap = sns.diverging_palette(20, 220, n = 256),
-            # linewidths = 0.1, 
-            linecolor = 'w',
-            center = 0,
-            vmin = -1, 
-            vmax = 1, 
-            fmt = ".2f",
-            cbar = False,
-            ax = ax,
-        )
-        ax.xaxis.tick_top()
-        ax.set_xticklabels(ax.get_xticklabels(), rotation = 90)
-        # ax.set_xlabel("", fontsize = label_fontsize)
-        # ax.set_ylabel("", fontsize = label_fontsize)
-        ax.set_title(f"{title}相关系数矩阵热力图", fontsize = title_fontsize)
-    
-    # 图像显示
-    if show:
-        plt.show()
-    # 图像保存
-    if img_file_name is not None:
-        fig.get_figure().savefig(f'imgs/{img_file_name}.png', bbox_inches = 'tight', transparent = True)
+    # data
+    data = {
+        'Barton LLC': 109438.50,
+        'Frami, Hills and Schmidt': 103569.59,
+        'Fritsch, Russel and Anderson': 112214.71,
+        'Jerde-Hilpert': 112591.43,
+        'Keeling LLC': 100934.30,
+        'Koepp Ltd': 103660.54,
+        'Kulas Inc': 137351.96,
+        'Trantow-Barrows': 123381.38,
+        'White-Trantow': 135841.99,
+        'Will LLC': 104437.60
+    }
+    group_data = list(data.values())
+    group_names = list(data.keys())
+    group_mean = np.mean(group_data)
 
+    # plot
+    def currency(x, pos):
+        """
+        The two arguments are the value and tick position
 
-def plot_scatter(df, 
-                 xcols, 
-                 ycols, 
-                 cate_cols, 
-                 figsize = (5, 5), 
-                 show: bool = False, 
-                 img_file_name: str = None):
-    """
-    散点图
-    scatter legend link ref: https://stackoverflow.com/questions/17411940/matplotlib-scatter-plot-legend
-    """
-    fig, axs = plt.subplots(nrows = 1, ncols = len(xcols), figsize = figsize)
-    for idx, xcol, ycol, cate_col in zip(range(len(xcols)), xcols, ycols, cate_cols):
-        # ax
-        ax = axs[idx] if len(xcols) > 1 else axs
-        # 散点图
-        if cate_col is not None:
-            sns.scatterplot(data = df, x = xcol, y = ycol, hue = cate_col, ax = ax)
+        Args:
+            x ([type]): [description]
+            pos ([type]): [description]
+        """
+        if x >= 1e6:
+            s = "${:1.1f}M".format(x * 1e-6)
         else:
-            sns.scatterplot(data = df, x = xcol, y = ycol, ax = ax)
+            s = "${:1.0f}K".format(x * 1e-3)
+        return s
+    
+    fig, ax = plt.subplots(figsize = (8, 4))
+
+    # bar
+    ax.barh(group_names, group_data)
+    labels = ax.get_xticklabels()
+    plt.setp(labels, rotation = 45, horizontalalignment = "right")
+    
+    # vertical line
+    ax.axvline(group_mean, ls = "--", color = "r")
+    
+    # group text
+    for group in [3, 5, 8]:
+        ax.text(145000, group, "New Company", fontsize = 10, verticalalignment = "center")
         
-        ax.grid()
-        ax.set_xlabel(xcol, fontsize = label_fontsize)
-        ax.set_ylabel(ycol, fontsize = label_fontsize)
-        ax.set_title(f"{xcol} 与 {ycol} 相关关系散点图", fontsize = title_fontsize)
+    # 标题设置
+    ax.title.set(y = 1.05)
+    # 设置X轴限制、X轴标签、Y轴标签、主标题
+    ax.set(xlim = [-10000, 140000], xlabel = "Total Revenue", ylabel = "Company", title = "Company Revenue")
+    # ax.set_xlim([-10000, 140000])
+    # ax.set_ylim([])
+    # ax.set_xlabel("Total Revenue")
+    # ax.set_ylabel("Company")
+    # ax.set_title("Company Revenue")
+    # 设置X轴主刻度标签格式
+    ax.xaxis.set_major_formatter(currency)
+    # ax.yaxis.set_major_formatter()
+    # ax.xaxis.set_minor_formatter()
+    # ax.yaxis.set_minor_formatter()
+    # 设置X轴主刻度标签
+    ax.set_xticks([0, 25e3, 50e3, 75e3, 100e3, 125e3])
+    # ax.set_yticks()
+    # ax.set_xticklabels()
+    # ax.set_yticklabels()
+    # 微调fig
+    fig.subplots_adjust(right = 0.1)
     
-    # 图像显示
-    if show:
-        plt.show()
-    # 图像保存
-    if img_file_name is not None:
-        fig.get_figure().savefig(f'imgs/{img_file_name}.png', bbox_inches = 'tight', transparent = True)
-
-
-def plot_scatter_reg(df, 
-                     xcols, 
-                     ycols, 
-                     figsize = (5, 5),
-                     show: bool = False, 
-                     img_file_name: str = None):
-    """
-    带拟合曲线的散点图
-    """
-    col_len = len(xcols)
-    fig, axs = plt.subplots(nrows = 1, ncols = col_len, figsize = figsize)
-    for idx, xcol, ycol in zip(range(col_len), xcols, ycols):
-        # ax
-        ax = axs[idx] if len(xcols) > 1 else axs
-        sns.regplot(
-            data = df, 
-            x = xcol, 
-            y = ycol, 
-            robust = True,
-            ax = ax
-        )
-        
-        ax.grid()
-        ax.set_xlabel(xcol, fontsize = label_fontsize)
-        ax.set_ylabel(ycol, fontsize = label_fontsize)
-        ax.set_title(f"{xcol} 与 {ycol} 相关关系散点图", fontsize = title_fontsize)
-    
-    # 图像显示
-    if show:
-        plt.show()
-    # 图像保存
-    if img_file_name is not None:
-        fig.get_figure().savefig(f'imgs/{img_file_name}.png', bbox_inches = 'tight', transparent = True)
-
-
-def plot_scatter_lm(df, xcol, ycol, cate_col, show: bool = False):
-    """
-    带拟合曲线的散点图
-
-    Args:
-        df (_type_): _description_
-        xcol (_type_): _description_
-        ycol (_type_): _description_
-        cate_col (_type_): _description_
-        figsize (tuple, optional): _description_. Defaults to (8, 5).
-        show (bool, optional): _description_. Defaults to False.
-        img_file_name (str, optional): _description_. Defaults to None.
-    """
-    if cate_col is not None:
-        sns.lmplot(
-            data = df, 
-            x = xcol, y = ycol, hue = cate_col, 
-            robust = True,
-            markers = ["o", "x"], 
-            palette = "Set1"
-        )
-    else:
-        sns.lmplot(
-            data = df, 
-            x = xcol, 
-            y = ycol, 
-            robust = True
-        )
-    # plt.xlabel(xcol, fontsize = label_fontsize)
-    # plt.ylabel(ycol, fontsize = label_fontsize)
-    plt.title(f"{xcol} 与 {ycol} 相关关系散点图", fontsize = title_fontsize)
-    
-    # 图像显示
-    if show:
-        plt.show()
-
-
-def plot_timeseries(df, ycols, cate_col, 
-                    figsize = (7, 5), 
-                    show: bool = False, 
-                    img_file_name: str = None):
-    """
-    时间序列图
-
-    Args:
-        df (_type_): _description_
-        ycols (_type_): _description_
-        cate_col (_type_): _description_
-        figsize (tuple, optional): _description_. Defaults to (7, 5).
-        show (bool, optional): _description_. Defaults to False.
-        img_file_name (str, optional): _description_. Defaults to None.
-    """
-    fig, axs = plt.subplots(nrows = 1, ncols = len(ycols), figsize = figsize)
-    for idx, ycol in enumerate(ycols):
-        # ax
-        ax = axs[idx] if len(ycols) > 1 else axs
-        # 线图
-        sns.lineplot(
-            data = df, x = df.index, y = ycol, hue = cate_col, 
-            # style = "manner", 
-            marker = "o", 
-            ax = ax
-        )
-        
-        ax.grid()
-        # ax.set_xlabel(xcol, fontsize = label_fontsize)
-        ax.set_xticklabels(ax.get_xticklabels(), rotation = 90)
-        # ax.set_ylabel(ycol, fontsize = label_fontsize)
-        ax.set_title(f"{ycol} 在不同 {cate_col} 下的对比图", fontsize = title_fontsize)
-    # 图像显示
-    if show:
-        plt.show()
-    # 图像保存
-    if img_file_name is not None:
-        fig.get_figure().savefig(f'imgs/{img_file_name}.png', bbox_inches = 'tight', transparent = True)
-
-
-def plot_scatter_matrix(df, 
-                      cols: List, 
-                      figsize = (10, 10), 
-                      title: str = "", 
-                      xlabel: str = None,
-                      ylabel: str = None,
-                      show: bool = False, 
-                      img_file_name: str = None):
-    """
-    散点图矩阵
-
-    Args:
-        df (_type_): _description_
-        cols (List): _description_
-        figsize (tuple, optional): _description_. Defaults to (10, 10).
-        title (str, optional): _description_. Defaults to "".
-        show (bool, optional): _description_. Defaults to False.
-        img_file_name (str, optional): _description_. Defaults to None.
-    """
-    fig, ax = plt.subplots(nrows = 1, ncols = 1, figsize = figsize)
-    sns.pairplot(
-        data = df[cols], 
-        kind = "reg", 
-        diag_kind = "kde", 
-        corner = True
-    )
-    # ax.grid()
-    # if xlabel is not None:
-    #     ax.set_xlabel(xlabel, fontsize = label_fontsize)
-    # if ylabel is not None:
-    #     ax.set_ylabel(ylabel, fontsize = label_fontsize)
-    # ax.set_title(f"{title} 的散点图矩阵", fontsize = title_fontsize)
-    
-    # 图像显示
-    if show:
-        plt.show()
-    # 图像保存
-    if img_file_name is not None:
-        fig.get_figure().savefig(f'imgs/{img_file_name}.png', bbox_inches = 'tight', transparent = True)
+    print(fig.canvas.get_supported_filetypes())
+    fig.savefig("sale.png", transparent = False, dpi = 80, bbox_inches = "tight")
+    plt.show()
 
 
 
