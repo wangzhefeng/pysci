@@ -29,6 +29,7 @@ import sys
 # 1.定义一个类
 # **********************************************
 class Example1:
+
     def __init__(self, data1: int, data2: int) -> None:
         self.__data1 = data1  # 类的私有属性
         self.data2 = data2
