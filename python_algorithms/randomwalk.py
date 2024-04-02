@@ -1,9 +1,10 @@
-import random
+
 """
 随机漫步生成是无规则的, 是系统自行选择的结果.
 根据设定的规则自定生成, 上下左右的方位, 每次所经过的方向路径.
 """
 
+import random
 
 class Randomwalk():
     """

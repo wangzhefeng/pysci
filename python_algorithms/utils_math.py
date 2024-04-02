@@ -104,8 +104,5 @@ def main():
     min_common_dividor = math_basic.getMinCommonDivisor()
     print(min_common_dividor)
 
-
-
 if __name__ == "__main__":
     main()
-

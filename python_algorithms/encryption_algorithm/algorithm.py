@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # *********************************************
 # * Author      : zhefeng wang
 # * Email       : wangzhefengr@163.com
@@ -14,11 +13,9 @@
 # * Link        : link
 # **********************************************
 
-
 # python libraries
 import hashlib
 from datetime import datetime
-
 
 # Example 1:登录验证
 db = {}
@@ -82,5 +79,4 @@ def updatescan(trackno):
 
 trackno = '1ZE356F80337946253'
 print(updatescan(trackno))
-
 

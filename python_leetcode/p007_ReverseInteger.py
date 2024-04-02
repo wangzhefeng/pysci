@@ -49,7 +49,6 @@ class Solution:
 
 
 
-
 def main():
 	x = -2147483649
 
@@ -60,8 +59,5 @@ def main():
 	res2 = solution.reverse1(x)
 	print(res2)
 
-
 if __name__ == "__main__":
 	main()
-
-

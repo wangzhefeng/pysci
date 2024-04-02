@@ -5,6 +5,10 @@
 # @Link    : http://example.org
 # @Version : $Id$
 
+
+
+
+
 class Solution():
 	
 	def LongestPrefix(self, strs):
@@ -18,3 +22,5 @@ class Solution():
 				return strs[0][:i]
 			i += 1
 		return strs[0][:i] if strs else ""
+
+

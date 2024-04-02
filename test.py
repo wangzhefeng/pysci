@@ -25,11 +25,30 @@ import numpy as np
 LOGGING_LABEL = __file__.split('/')[-1][:-3]
 
 
+class Father:
+    
+    def __init__(self, age: int):
+        self.age = age
+        print(f"age: {self.age}")
+
+    def getAge(self):
+        return self.age
+
+
+class Son(Father):
+    
+    def __init__(self, age: int):
+        """
+        重写父类 Father 的属性
+        """
+        self.age = age
 
 
 # 测试代码 main 函数
 def main():
-    pass
+    # 子类的实例继承了父类的方法
+    son = Son(18)
+    print(son.getAge())
 
 if __name__ == "__main__":
     main()
