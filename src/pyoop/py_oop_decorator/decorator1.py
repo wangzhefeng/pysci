@@ -1,5 +1,3 @@
-
-
 # Registering decorated objects to an API
 
 registry = {}

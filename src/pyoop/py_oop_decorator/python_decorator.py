@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # *********************************************
 # * Author      : zhefeng wang
 # * Email       : wangzhefengr@163.com
@@ -10,13 +9,11 @@
 # * Link        : link
 # **********************************************
 
-
 # python libraries
 import os
 import sys
 import time
 import functools
-
 
 # **********************************************
 # * 1.装饰器基础
@@ -219,8 +216,5 @@ def main():
     test_2()
     test_3()
 
-
-
 if __name__ == "__main__":
     main()
-

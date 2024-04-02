@@ -1,4 +1,3 @@
-
 class tracer:
     """
     统计被装饰函数的调用次数
@@ -11,14 +10,6 @@ class tracer:
         self.calls += 1
         print(f"call {self.calls} to {self.func.__name__}")
         return self.func(*args, **kwargs)
-
-
-
-
-
-
-
-
 
 
 
